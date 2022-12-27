@@ -7,11 +7,18 @@ about:
   image-width: 15em
   links:
     - icon: linkedin
+      text: "LinkedIn"
       href: https://www.linkedin.com/in/jim-gardner-330368ab/
     - icon: github
+      text: "GitHub"
       href: https://github.com/jimgar
     - icon: stack-overflow
+      text: "Stack Overflow"
       href: https://stackoverflow.com/users/20624624/jimgar
 ---
 
 Some content goes here.
+
+---
+
+And some more here.
