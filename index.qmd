@@ -1,6 +1,6 @@
 ---
 title: "Jim Gardner"
-image: cheddar.jpg
+image: cheddar.JPG
 about: 
   template: trestles
   image-shape: round
