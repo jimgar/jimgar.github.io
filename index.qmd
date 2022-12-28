@@ -3,22 +3,28 @@ title: "Jim Gardner"
 image: cheddar.JPG
 about: 
   template: trestles
-  image-shape: round
   image-width: 15em
-  links:
-    - icon: linkedin
-      text: "LinkedIn"
-      href: https://www.linkedin.com/in/jim-gardner-330368ab/
-    - icon: github
-      text: "GitHub"
-      href: https://github.com/jimgar
-    - icon: stack-overflow
-      text: "Stack Overflow"
-      href: https://stackoverflow.com/users/20624624/jimgar
+  image-shape: round
 ---
 
-Some content goes here.
+I am a Technical Analyst at [Policy in Practice](https://policyinpractice.co.uk/). I create tools in R to make our workflows smoother, and deliver analytics projects for clients. In my personal time I love to boulder, garden at [Leith Community Croft](https://www.earth-in-common.org/), and hang with my wife and friends!
 
----
+## Experience
 
-And some more here.
+Policy in Practice \| Technical Analyst \| Sept 2021 - present
+
+University of Edinburgh \| Research Assistant \| Sept 2016 - Aug 2021
+
+## Education
+
+**Queen Margaret University \| 2016 - 2017**
+
+MSc Gastronomy {{< fa carrot title="Carrot icon" >}}
+
+*Distinction*
+
+**Heriot-Watt University \| 2012 - 2016**
+
+BSc Biological Sciences {{< fa seedling title="Seedling icon" >}}
+
+*1st Class Hons*

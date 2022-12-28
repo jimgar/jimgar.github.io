@@ -3,12 +3,25 @@ project:
   output-dir: docs
 
 website:
-  title: "jimgar"
+  title: "Jim Gardner"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+    right:
+      - icon: github
+        href: https://github.com/jimgar
+      - icon: stack-overflow
+        href: https://stackoverflow.com/users/20624624/jimgar
+      - icon: linkedin
+        href: https://www.linkedin.com/in/jim-gardner-330368ab/
+      - icon: envelope-heart
+        href: mailto:jimmahgee@gmail.com
+  page-footer:
+    center: 
+      - icon: emoji-laughing
+    border: false
 
 format:
   html:
