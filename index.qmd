@@ -2,7 +2,7 @@
 title: "Jim Gardner"
 image: cheddar.JPG
 about: 
-  template: trestles
+  template: jolla
   image-width: 15em
   image-shape: round
 ---
