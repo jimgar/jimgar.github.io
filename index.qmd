@@ -2,7 +2,7 @@
 title: "Jim Gardner"
 image: cheddar.JPG
 about: 
-  template: jolla
+  template: trestles
   image-width: 15em
   image-shape: round
 ---
@@ -11,12 +11,20 @@ I am a Technical Analyst at [Policy in Practice](https://policyinpractice.co.uk/
 
 ## Experience
 
-Policy in Practice {{< fa gears title="Gear icon" >}} Technical Analyst {{< fa gears title="Gear icon" >}} Sept 2021 - present
+**Policy in Practice** {{< fa gears title="Gear icon" >}}
 
-University of Edinburgh {{< fa fish title="Guppy icon" >}} Research Assistant {{< fa fish title="Guppy icon" >}} Sept 2016 - Aug 2021
+Technical Analyst \| Sept 2021 - present
+
+**University of Edinburgh** {{< fa fish title="Guppy icon" >}}
+
+Research Assistant \| Sept 2016 - Aug 2021
 
 ## Education
 
-Queen Margaret University {{< fa carrot title="Carrot icon" >}} MSc Gastronomy {{< fa carrot title="Carrot icon" >}} 2016 - 2017
+**Queen Margaret University** {{< fa carrot title="Carrot icon" >}}
 
-Heriot-Watt University {{< fa seedling title="Seedling icon" >}} BSc Biological Sciences {{< fa seedling title="Seedling icon" >}} 2012 - 2016
+MSc Gastronomy (Distinction) \| 2016 - 2017
+
+**Heriot-Watt University** {{< fa seedling title="Seedling icon" >}}
+
+BSc Biological Sciences (1st Class Hons) \| 2012 - 2016
