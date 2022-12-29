@@ -5,26 +5,35 @@ about:
   template: trestles
   image-width: 15em
   image-shape: round
+  links: 
+    - icon: github
+      href: https://github.com/jimgar
+    - icon: stack-overflow
+      href: https://stackoverflow.com/users/20624624/jimgar
+    - icon: linkedin
+      href: https://www.linkedin.com/in/jim-gardner-330368ab/
+    - icon: envelope-heart
+      href: mailto:jimmahgee@gmail.com
 ---
 
 I am a Technical Analyst at [Policy in Practice](https://policyinpractice.co.uk/). I mainly use R to smoothen our workflows, and deliver analytics projects for clients. In my personal time I love to boulder, garden at [Leith Community Croft](https://www.earth-in-common.org/), and hang with my wife and friends!
 
 ## Experience
 
-**Policy in Practice** {{< fa gears title="Gear icon" >}}
+{{< fa gears title="Gear icon" >}} **Technical Analyst**
 
-Technical Analyst \| Sept 2021 - present
+Policy in Practice \| Sept 2021 - present
 
-**University of Edinburgh** {{< fa fish title="Guppy icon" >}}
+{{< fa fish title="Guppy icon" >}} **Research Assistant**
 
-Research Assistant \| Sept 2016 - Aug 2021
+IEB, University of Edinburgh \| Sept 2016 - Aug 2021
 
 ## Education
 
-**Queen Margaret University** {{< fa carrot title="Carrot icon" >}}
+{{< fa carrot title="Carrot icon" >}} **MSc Gastronomy (Distinction)**
 
-MSc Gastronomy (Distinction) \| 2016 - 2017
+Queen Margaret University \| 2016 - 2017
 
-**Heriot-Watt University** {{< fa seedling title="Seedling icon" >}}
+{{< fa seedling title="Seedling icon" >}} **BSc Biological Sciences (1st Class Hons)**
 
-BSc Biological Sciences (1st Class Hons) \| 2012 - 2016
+Heriot-Watt University \| 2012 - 2016
