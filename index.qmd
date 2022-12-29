@@ -13,27 +13,28 @@ about:
     - icon: linkedin
       href: https://www.linkedin.com/in/jim-gardner-330368ab/
     - icon: envelope-heart
-      href: mailto:jimmahgee@gmail.com
+      href: contact.qmd
+      text: ""
 ---
 
 I am a Technical Analyst at [Policy in Practice](https://policyinpractice.co.uk/). I mainly use R to smoothen our workflows, and deliver analytics projects for clients. In my personal time I love to boulder, garden at [Leith Community Croft](https://www.earth-in-common.org/), and hang with my wife and friends!
 
 ## Experience
 
-{{< fa gears title="Gear icon" >}} **Technical Analyst**
+{{< fa gears title="Gear icon" >}} Technical Analyst
 
 Policy in Practice \| Sept 2021 - present
 
-{{< fa fish title="Guppy icon" >}} **Research Assistant**
+{{< fa fish title="Guppy icon" >}} Research Assistant
 
 IEB, University of Edinburgh \| Sept 2016 - Aug 2021
 
 ## Education
 
-{{< fa carrot title="Carrot icon" >}} **MSc Gastronomy (Distinction)**
+{{< fa carrot title="Carrot icon" >}} MSc Gastronomy (Distinction)
 
 Queen Margaret University \| 2016 - 2017
 
-{{< fa seedling title="Seedling icon" >}} **BSc Biological Sciences (1st Class Hons)**
+{{< fa seedling title="Seedling icon" >}} BSc Biological Sciences (1st Class Hons)
 
 Heriot-Watt University \| 2012 - 2016
