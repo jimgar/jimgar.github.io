@@ -87,11 +87,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./index.html">
  <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./contact.html" aria-current="page"><i class="bi bi-envelope-heart" role="img">
-</i> 
- <span class="menu-text">Contact me</span></a>
-  </li>  
 </ul>
               <div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -128,15 +123,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mnqyaejw" method="post">
-<fieldset id="fs-frm-inputs">
-<label for="email-address">Your email</label> <input type="email" name="_replyto" id="email-address" required=""> <label for="message">Message</label>
-<textarea rows="5" name="message" id="message" required=""></textarea>
-<input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
-</fieldset>
-<input type="submit" value="Send">
-</form>
-<style>/* reset */
+<style>
 #fs-frm input,
 #fs-frm select,
 #fs-frm textarea,
@@ -227,6 +214,14 @@ ul.task-list li input[type="checkbox"] {
 }
 
 </style>
+<form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/mnqyaejw" method="post">
+<fieldset id="fs-frm-inputs">
+<label for="email-address">Your email</label> <input type="email" name="_replyto" id="email-address" required=""> <label for="message">Message</label>
+<textarea rows="5" name="message" id="message" required=""></textarea>
+<input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+</fieldset>
+<input type="submit" value="Send">
+</form>
 
 
 
@@ -509,11 +504,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </i> 
     </a>
   </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="mailto:jimmahgee@gmail.com">
-      <i class="bi bi-envelope-heart" role="img">
-</i> 
-    </a>
+    <li class="nav-item">
+    <a class="nav-link active" href="./contact.html" aria-current="page">Contact me</a>
   </li>  
 </ul>
     </div>
