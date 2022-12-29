@@ -4,13 +4,26 @@ project:
 
 website:
   title: "Jim Gardner"
+  twitter-card: true
   navbar:
     right:
       - href: index.qmd
         text: Home
+      - href: contact.qmd
+        icon: envelope-heart
   page-footer:
-    center: 
+    background: light
+    left: 
       - text: "Website built with Quarto, R, and RStudio"
+    right:
+      - icon: github
+        href: https://github.com/jimgar
+      - icon: stack-overflow
+        href: https://stackoverflow.com/users/20624624/jimgar
+      - icon: linkedin
+        href: https://www.linkedin.com/in/jim-gardner-330368ab/
+      - icon: envelope-heart
+        href: mailto:jimmahgee@gmail.com
     border: false
 
 format:

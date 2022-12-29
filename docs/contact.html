@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Jim Gardner - About</title>
+<title>Jim Gardner - Contact</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,6 +63,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="Jim Gardner - Contact">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -85,6 +87,11 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./index.html">
  <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./contact.html" aria-current="page"><i class="bi bi-envelope-heart" role="img">
+</i> 
+ <span class="menu-text">Contact</span></a>
+  </li>  
 </ul>
               <div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -106,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Contact</h1>
 </div>
 
 
@@ -121,7 +128,11 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>About this site</p>
+<form action="https://formspree.io/f/mnqyaejw" method="POST">
+<label> Your email: <input type="email" name="email"> </label> <label> Your message:
+<textarea name="message"></textarea>
+</label> <!-- your other form fields go here --> <button type="submit">Send</button>
+</form>
 
 
 
@@ -377,13 +388,41 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">
-        <ul class="footer-items list-unstyled">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
     <li class="nav-item">
  Website built with Quarto, R, and RStudio
   </li>  
 </ul>
-      </div>
+    </div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jimgar">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://stackoverflow.com/users/20624624/jimgar">
+      <i class="bi bi-stack-overflow" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/jim-gardner-330368ab/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:jimmahgee@gmail.com">
+      <i class="bi bi-envelope-heart" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
   </div>
 </footer>
 

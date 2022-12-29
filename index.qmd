@@ -20,20 +20,20 @@ I am a Technical Analyst at [Policy in Practice](https://policyinpractice.co.uk/
 
 ## Experience
 
-{{< fa gears title="Gear icon" >}} **Technical Analyst**
+{{< fa gears title="Gear icon" >}} Technical Analyst
 
 Policy in Practice \| Sept 2021 - present
 
-{{< fa fish title="Guppy icon" >}} **Research Assistant**
+{{< fa fish title="Guppy icon" >}} Research Assistant
 
 IEB, University of Edinburgh \| Sept 2016 - Aug 2021
 
 ## Education
 
-{{< fa carrot title="Carrot icon" >}} **MSc Gastronomy (Distinction)**
+{{< fa carrot title="Carrot icon" >}} MSc Gastronomy (Distinction)
 
 Queen Margaret University \| 2016 - 2017
 
-{{< fa seedling title="Seedling icon" >}} **BSc Biological Sciences (1st Class Hons)**
+{{< fa seedling title="Seedling icon" >}} BSc Biological Sciences (1st Class Hons)
 
 Heriot-Watt University \| 2012 - 2016

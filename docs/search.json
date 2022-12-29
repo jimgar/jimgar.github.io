@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "Your email:    Your message:\n\n  Send"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Jim Gardner",
@@ -19,12 +26,5 @@
     "title": "Jim Gardner",
     "section": "Education",
     "text": "Education\n MSc Gastronomy (Distinction)\nQueen Margaret University | 2016 - 2017\n BSc Biological Sciences (1st Class Hons)\nHeriot-Watt University | 2012 - 2016"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
   }
 ]
