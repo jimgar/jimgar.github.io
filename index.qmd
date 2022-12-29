@@ -3,7 +3,7 @@ title: "Jim Gardner"
 image: cheddar.JPG
 about: 
   template: trestles
-  image-width: 12em
+  image-width: 14em
   image-shape: round
   links: 
     - icon: github
