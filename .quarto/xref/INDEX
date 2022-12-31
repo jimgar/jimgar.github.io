@@ -10,5 +10,8 @@
   },
   "posts.qmd": {
     "posts.html": "3d1936e0"
+  },
+  "posts/test/test.qmd": {
+    "test.html": "bb509cf0"
   }
 }

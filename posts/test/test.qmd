@@ -1,0 +1,13 @@
+---
+title: "blog post test"
+description: "blog post description (appears underneath the title in smaller text) which is included on the listing page"
+author:
+  - name: Jim Gardner
+    url: https://jimgar.github.io/jimgar/
+date: 2022-12-31
+categories: [test, stuff] # self-defined categories
+citation: 
+  url: https://google.com
+# image: ../../cheddar.JPG
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---

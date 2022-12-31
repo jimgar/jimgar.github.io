@@ -1,8 +1,10 @@
 ---
 title: "Blog"
 listing: 
-  contents: posts
+  contents: posts/**/*.qmd
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
   sort: "date desc"
   categories: true
+  sort-ui: true
+  filter-ui: true
 ---

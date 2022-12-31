@@ -7,6 +7,13 @@
     "text": "Your email  Message"
   },
   {
+    "objectID": "posts/test/test.html",
+    "href": "posts/test/test.html",
+    "title": "blog post test",
+    "section": "",
+    "text": "CitationBibTeX citation:@online{gardner2022,\n  author = {Jim Gardner},\n  title = {Blog Post Test},\n  date = {2022-12-31},\n  url = {https://google.com},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nJim Gardner. 2022. “Blog Post Test.” December 31, 2022. https://google.com."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Jim Gardner",
@@ -32,6 +39,6 @@
     "href": "posts.html",
     "title": "Blog",
     "section": "",
-    "text": "No matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\nblog post test\n\n\n\ntest\n\n\nstuff\n\n\n\nblog post description (appears underneath the title in smaller text) which is included on the listing page\n\n\n\nJim Gardner\n\n\nDec 31, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
