@@ -13,7 +13,7 @@ about:
     - icon: linkedin
       href: https://www.linkedin.com/in/jim-gardner-330368ab/
     - icon: envelope-heart
-      href: jimgar/contact.html
+      href: contact.html
 ---
 
 I am a Technical Analyst at [Policy in Practice](https://policyinpractice.co.uk/). I mainly use R to smoothen our workflows, and deliver analytics projects for clients. In my personal time I love to boulder, garden at [Leith Community Croft](https://www.earth-in-common.org/), and hang with my wife and friends!
