@@ -1,0 +1,95 @@
+/*-- scss:defaults --*/
+
+
+// https://quarto.org/docs/output-formats/html-themes.html#sass-variables
+
+
+// ~*~ Fonts ~*~
+
+// Atkinson Hyperlegible designed for people with low vis
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Supermercado+One&display=swap');
+
+$font-family: 'Atkinson Hyperlegible', sans-serif;
+$font-family-monospace: 'Roboto Mono', monospace;
+$font-family-fredoka: 'Fredoka One', cursive;
+$font-family-supermercado: 'Supermercado One', cursive;
+
+// ~*~ Colors ~*~
+
+/* 
+- Create a simple colour palette with one dark colour and several lighter 
+  colours that work together.
+- Make sure darkest colour has a contrast of 10 - 12 with the lighter colours 
+  https://colourcontrast.cc/
+- Check the palette for colour-blind friendliness. The colours just need to 
+  be distinct from one another. {prismatic} is a great tool for this:
+  prismatic::check_color_blindness(c("#07193b", "#3fecff", "#cffaff"))
+*/
+
+$dark-navy-blue: #07193b;
+$light-sky-blue: #3fecff;
+$lightest-blue: #87cff3;
+$light-salmon: #ffb1b1;
+$light-yellow: #ffd977;
+$dull-red: #6c1111;
+
+// Base document colors
+$navbar-bg: $lightest-blue; // navbar
+$navbar-fg: $dark-navy-blue; // navbar foreground elements
+$navbar-hl: $dull-red; // highlight color when hovering over navbar links
+$body-bg: $dark-navy-blue; // page background 
+$body-color: $lightest-blue; // page text 
+$footer-bg: $lightest-blue; // footer 
+$link-color: $light-salmon; // hyperlinks 
+
+// Inline code
+$code-bg: $light-yellow; // inline code background color
+$code-color: $dark-navy-blue; // inline code text color
+
+// Code blocks
+$code-block-bg: $light-yellow; // code block background color
+
+
+/*-- scss:rules --*/
+
+// Get rid of the vertical border from 'trestles' template
+div.quarto-about-trestles {
+  .about-entity {
+    .bi {
+      color: $light-yellow;
+      font-size: 32px;
+    }
+    .about-link {
+      border: solid 0px;
+      border-radius: 0;
+    }
+  }
+  .about-contents {
+    @include media-breakpoint-up(lg) {
+      border-left: solid 0px $border-color;
+      padding-left: 1.5em;
+    }
+    .fa-solid {
+      color: $light-yellow;
+    }
+    p {
+    margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.navbar-title, .menu-text {
+  font-weight: bolder;
+  letter-spacing: 3px;
+  font-family: $font-family-fredoka;
+}
+
+.navbar-title {
+  font-family: $font-family-supermercado;
+}
+
+h1, .title {
+    font-family: $font-family-supermercado;
+}

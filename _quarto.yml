@@ -3,17 +3,13 @@ project:
   output-dir: docs
 
 website:
-  title: "Jim Gardner"
+  title: "~ jim"
   twitter-card: true
   navbar:
-    right:
+    left:
       - href: index.qmd
-        text: Home
+        text: ~ home
       - posts.qmd
-  page-footer:
-    background: light
-    left: 
-      - text: "Website built with Quarto, R, and RStudio"
     right:
       - icon: github
         href: https://github.com/jimgar
@@ -21,14 +17,11 @@ website:
         href: https://stackoverflow.com/users/20624624/jimgar
       - icon: linkedin
         href: https://www.linkedin.com/in/jim-gardner-330368ab/
-      - icon: envelope-heart
-        href: contact.qmd
-    border: false
+      - icon: mastodon
+        href: https://fosstodon.org/@jimgar
 
 format:
   html:
-    theme: 
-      light: minty
-      dark: superhero
-    css: styles.css
+    theme: [darkly, styles.scss]
+    mainfont: Atkinson Hyperlegible
     toc: true

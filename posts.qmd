@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "~ blog"
 listing: 
   contents: posts/**/*.qmd
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
@@ -8,3 +8,5 @@ listing:
   sort-ui: true
   filter-ui: true
 ---
+
+Test text blah blah
