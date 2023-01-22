@@ -9,5 +9,5 @@ categories: [test, stuff] # self-defined categories
 citation: 
   url: https://google.com
 # image: ../../cheddar.JPG
-draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---

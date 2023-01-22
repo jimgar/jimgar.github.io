@@ -13,5 +13,8 @@
   },
   "posts/test/test.qmd": {
     "test.html": "bb509cf0"
+  },
+  "posts/resources/resources.qmd": {
+    "resources.html": "f93c94c3"
   }
 }

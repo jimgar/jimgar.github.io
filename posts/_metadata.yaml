@@ -14,4 +14,5 @@ page-layout: article
 
 comments:
   giscus:
+    theme: dark_protanopia
     repo: jimgar/jimgar.github.io

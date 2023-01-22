@@ -29,6 +29,7 @@ $font-family-supermercado: 'Supermercado One', cursive;
 */
 
 $dark-navy-blue: #07193b;
+$purple-ish: #103884;
 $light-sky-blue: #3fecff;
 $lightest-blue: #87cff3;
 $light-salmon: #ffb1b1;
@@ -36,12 +37,11 @@ $light-yellow: #ffd977;
 $dull-red: #6c1111;
 
 // Base document colors
-$navbar-bg: $lightest-blue; // navbar
-$navbar-fg: $dark-navy-blue; // navbar foreground elements
-$navbar-hl: $dull-red; // highlight color when hovering over navbar links
+$navbar-bg: $purple-ish; // navbar
+$navbar-fg: $light-yellow; // navbar foreground elements
+$navbar-hl: $light-salmon; // highlight color when hovering over navbar links
 $body-bg: $dark-navy-blue; // page background 
 $body-color: $lightest-blue; // page text 
-$footer-bg: $lightest-blue; // footer 
 $link-color: $light-salmon; // hyperlinks 
 
 // Inline code
@@ -92,4 +92,39 @@ div.quarto-about-trestles {
 
 h1, .title {
     font-family: $font-family-supermercado;
+}
+
+h2 {
+  color: $light-yellow;
+}
+
+/*
+Listing page (posts.qmd)
+*/
+
+div.card-body.post-contents {
+  background-color: $purple-ish;
+}
+
+.quarto-grid-item .card-footer {
+  background-color: $light-salmon;
+  color: $dark-navy-blue;
+}
+
+.page-layout-article h1 {
+  color: $light-yellow;
+}
+
+// Blog post titles
+h5, .listing-title {
+  color: $light-yellow;
+}
+
+.listing-categories .listing-category {
+  color: $light-salmon !important;
+}
+
+// Meta headings at the top of posts
+.quarto-title-meta-heading {
+  color: $light-yellow;
 }

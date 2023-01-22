@@ -12,9 +12,9 @@ title: "Contact me"
 #fs-frm #card-element:disabled {
   font-family: inherit;
   font-size: 100%;
-  color: inherit;
+  color: #87cff3;
   border: none;
-  border-radius: 0;
+  border-radius: 5px;
   display: block;
   width: 100%;
   padding: 0;
@@ -25,7 +25,8 @@ title: "Contact me"
 #fs-frm label,
 #fs-frm legend,
 #fs-frm ::placeholder {
-  font-size: .825rem;
+  font-size: 1rem;
+  color: #ffd977;
   margin-bottom: .5rem;
   padding-top: .2rem;
   display: flex;
@@ -37,18 +38,18 @@ title: "Contact me"
 #fs-frm select,
 #fs-frm textarea,
 #fs-frm #card-element {
-  border: 1px solid rgba(0,0,0,0.2);
-  background-color: rgba(255,255,255,0.9);
+  border: 0px solid rgba(0,0,0,0.2);
+  background-color: #103884;
   padding: .75em 1rem;
   margin-bottom: 1.5rem;
 }
 #fs-frm input:focus,
 #fs-frm select:focus,
 #fs-frm textarea:focus {
-  background-color: white;
+  background-color: #103884;
   outline-style: solid;
   outline-width: thin;
-  outline-color: gray;
+  outline-color: #ffd977;
   outline-offset: -1px;
 }
 #fs-frm [type="text"],
@@ -59,6 +60,7 @@ title: "Contact me"
 #fs-frm [type="submit"],
 #fs-frm [type="reset"] {
   width: auto;
+  color: #ffb1b1;
   cursor: pointer;
   -webkit-appearance: button;
   -moz-appearance: button;
@@ -90,6 +92,14 @@ title: "Contact me"
   -webkit-appearance: radio;
   -moz-appearance: radio;
   appearance: radio;
+}
+
+textarea {
+  resize: both;
+}
+
+::-webkit-resizer {
+  display: none;
 }
 
 </style>

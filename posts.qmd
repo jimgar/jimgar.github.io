@@ -2,6 +2,7 @@
 title: "~ blog"
 listing: 
   contents: posts/**/*.qmd
+  fields: [image, title, reading-time, categories, description, date, file-modified]
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
   sort: "date desc"
   categories: true
@@ -9,4 +10,4 @@ listing:
   filter-ui: true
 ---
 
-Test text blah blah
+This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!
