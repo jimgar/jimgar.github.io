@@ -10,6 +10,12 @@ image: images/wanted.jpg
 draft: false
 ---
 
+```{r}
+#| echo: false
+#| results: 'hide'
+renv::use(lockfile = "renv.lock")
+```
+
 ## Introduction
 
 This is intended to be a constantly evolving list of R resources that I have found helpful, informative, and maybe even fun - or that I intend to check out or use in the future. If they're of benefit to you in any way that is great. But truth be told, this is supposed to be of utility for myself, or at the very least a bit of documentation to see where my interest has been caught.
@@ -20,7 +26,7 @@ I came across most of these resources on Mastodon via the creator or a reblogger
 
 ## Pretty pictures
 
-### [Data Imaginist](https://www.data-imaginist.com/) 
+### [Data Imaginist](https://www.data-imaginist.com/)
 
 Website of self-described "classic generative art weirdo" Thomas Lin Pedersen. Author of:
 
@@ -48,8 +54,68 @@ This seems to be one of the main geospatial data packages in R. Apparently it's 
 
 Leaflet is an open-source JavaScript library for making interactive maps. And of course, there is an R binding, because people are wonderful 😭. It was surprisingly straightforward once I had my spatial data in. Thankfully there are some excellent examples on the package site, and as I needed to make a [choropleth](https://rstudio.github.io/leaflet/choropleths.html) (not that I knew it was called that) for a Shiny app, I just stole the example code and tweaked it for my own purposes!
 
+```{r}
+#| code-fold: true
+library(magrittr)
+
+ward_shp <- sf::read_sf("data/WD_DEC_22_GB_BGC.shp") %>%
+  sf::st_transform('+proj=longlat +datum=WGS84')
+
+my_ward <- "City of Edinburgh"
+
+# Random numbers to represent a fictional benefit
+benefit <- tibble::tibble(
+  WD22CD = dplyr::pull(dplyr::filter(ward_shp, LAD22NM == my_ward), WD22CD),
+  benefit_value = rnorm(length(WD22CD)) * 1000
+)
+
+# Ward-specific data for the map
+ward <- dplyr::filter(ward_shp, LAD22NM == my_ward) %>%
+  dplyr::left_join(benefit, by = "WD22CD")
+
+# Format helpers
+pal <- leaflet::colorNumeric("Greens", domain = ward$benefit_value)
+thousands <- scales::label_comma()
+
+labels <- sprintf(
+  "<strong>%s</strong><br/>%s",
+  ward$WD22NM, thousands(ward$benefit_value)
+) %>% lapply(htmltools::HTML)
+
+# Map time!
+leaflet::leaflet() %>%
+  leaflet::addTiles() %>%
+  leaflet::addPolygons(
+    data = ward,
+    fillColor = ~pal(benefit_value),
+    weight = 2,
+    opacity = 0.9,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.9,
+    highlightOptions = leaflet::highlightOptions(
+      weight = 3,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.9,
+      bringToFront = TRUE),
+    label = labels,
+    labelOptions = leaflet::labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "15px",
+      direction = "auto")
+  ) %>%
+  leaflet::addLegend(
+    pal = pal,
+    values = ward$benefit_value,
+    opacity = 0.9,
+    title = NULL,
+    position = "topleft"
+  )
+```
+
 ## Teaching
 
-### [Ten quick tips for teaching with (participatory) live coding (online)](https://yabellini.netlify.app/blog/2022_teaching_en/04-teaching/) 
+### [Ten quick tips for teaching with (participatory) live coding (online)](https://yabellini.netlify.app/blog/2022_teaching_en/04-teaching/)
 
 A blog post by [Yanina Bellini Saibene](https://yabellini.netlify.app). I can't help but wonder if the internal R trainings I delivered for analysts at Policy in Practice would have benefited from a fully-fledged participatory approach. A lot to learn from this compendium of well-presented tips based on collected and personal experience, plus guidelines from several organisations.
