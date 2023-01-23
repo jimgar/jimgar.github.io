@@ -54,6 +54,8 @@ This seems to be one of the main geospatial data packages in R. Apparently it's 
 
 Leaflet is an open-source JavaScript library for making interactive maps. And of course, there is an R binding, because people are wonderful 😭. It was surprisingly straightforward once I had my spatial data in. Thankfully there are some excellent examples on the package site, and as I needed to make a [choropleth](https://rstudio.github.io/leaflet/choropleths.html) (not that I knew it was called that) for a Shiny app, I just stole the example code and tweaked it for my own purposes!
 
+#### Total Amount of Benefit per ward, City of Edinburgh (fictional data)
+
 ```{r}
 #| code-fold: true
 library(magrittr)
