@@ -22,6 +22,7 @@ website:
 
 format:
   html:
+    code-link: true
     theme: [darkly, styles.scss]
     mainfont: Atkinson Hyperlegible
     toc: true
