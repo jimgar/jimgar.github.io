@@ -4,6 +4,7 @@ project:
 
 website:
   title: "~ jim"
+  favicon: "favicon.ico"
   twitter-card: true
   navbar:
     left:
