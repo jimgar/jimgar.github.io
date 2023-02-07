@@ -16,5 +16,8 @@
   },
   "posts/resources/resources.qmd": {
     "resources.html": "f93c94c3"
+  },
+  "posts/art-from-code/art-from-code.qmd": {
+    "art-from-code.html": "9a761d3d"
   }
 }

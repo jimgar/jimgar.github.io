@@ -58,12 +58,18 @@ Leaflet is an open-source JavaScript library for making interactive maps. And of
 
 ```{r}
 #| code-fold: true
-library(magrittr)
-
-ward_shp <- sf::read_sf("data/WD_DEC_22_GB_BGC.shp") %>%
-  sf::st_transform('+proj=longlat +datum=WGS84')
-
 my_ward <- "City of Edinburgh"
+
+my_ward_api_formatted <- paste0("'", my_ward, "'")
+
+api_url <- URLencode(paste0(
+  "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Wards_December_2022_Boundaries_GB_BGC/FeatureServer/0/query?", 
+  "where=LAD22NM=",
+  my_ward_api_formatted,
+  "&‘geometryPrecision=6’&outFields=*&outSR=4326&f=geojson"
+))
+
+ward_shp <- sf::read_sf(api_url)
 
 # Random numbers to represent a fictional benefit
 benefit <- tibble::tibble(
@@ -72,7 +78,7 @@ benefit <- tibble::tibble(
 )
 
 # Ward-specific data for the map
-ward <- dplyr::filter(ward_shp, LAD22NM == my_ward) %>%
+ward <- dplyr::filter(ward_shp, LAD22NM == my_ward) |>
   dplyr::left_join(benefit, by = "WD22CD")
 
 # Format helpers
@@ -82,11 +88,11 @@ thousands <- scales::label_comma()
 labels <- sprintf(
   "<strong>%s</strong><br/>%s",
   ward$WD22NM, thousands(ward$benefit_value)
-) %>% lapply(htmltools::HTML)
+) |> lapply(htmltools::HTML)
 
 # Map time!
-leaflet::leaflet() %>%
-  leaflet::addTiles() %>%
+leaflet::leaflet() |>
+  leaflet::addTiles() |>
   leaflet::addPolygons(
     data = ward,
     fillColor = ~pal(benefit_value),
@@ -106,7 +112,7 @@ leaflet::leaflet() %>%
       style = list("font-weight" = "normal", padding = "3px 8px"),
       textsize = "15px",
       direction = "auto")
-  ) %>%
+  ) |>
   leaflet::addLegend(
     pal = pal,
     values = ward$benefit_value,
