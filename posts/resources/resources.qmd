@@ -50,6 +50,8 @@ I found the [GB ward boundaries](https://geoportal.statistics.gov.uk/maps/wards-
 
 This seems to be one of the main geospatial data packages in R. Apparently it's all about "spatial data simplified", which I guess is a play on the whole simple features thing. To be honest I could only get it working in the most absolutely simple scenario. I found the docs far, far too daunting for the speed I had to operate for work, and in the end it was (unsurprisingly) google and Stack Overflow that got me sorted. I'm a rank novice with geospatial stuff so my struggle is more a comment on my knowledge than the sf docs themselves.
 
+Update 2022-07-2: I found [this Medium post](https://medium.com/@traffordDataLab/pushing-the-boundaries-with-the-open-geography-portal-api-4d70637bddc3) by Trafford Council's [Trafford Data Lab](https://www.trafforddatalab.io/) (who do some awesome work) about using the Open Geography Portal API. You can supply an API URL directly to `sf::read_sf`, which is slick, so I updated my example map below.
+
 ### {[leaflet](https://rstudio.github.io/leaflet/)}
 
 Leaflet is an open-source JavaScript library for making interactive maps. And of course, there is an R binding, because people are wonderful 😭. It was surprisingly straightforward once I had my spatial data in. Thankfully there are some excellent examples on the package site, and as I needed to make a [choropleth](https://rstudio.github.io/leaflet/choropleths.html) (not that I knew it was called that) for a Shiny app, I just stole the example code and tweaked it for my own purposes!
