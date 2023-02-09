@@ -57,6 +57,7 @@ $code-block-bg: $purple-ish; // code block background color
 // Get rid of the vertical border from 'trestles' template
 div.quarto-about-trestles {
   .about-entity {
+    padding-top: 3em;
     .bi {
       color: $light-yellow;
       font-size: 32px;
@@ -80,6 +81,7 @@ div.quarto-about-trestles {
     }
   }
   .about-contents {
+    padding-top: 3em;
     @include media-breakpoint-up(lg) {
       border-left: solid 0px $border-color;
       padding-left: 1.5em;
@@ -91,6 +93,16 @@ div.quarto-about-trestles {
     margin-bottom: 0.5rem;
     }
   }
+}
+
+.navbar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+footer.footer .nav-footer, #quarto-header nav {
+    padding-left: 2em;
+    padding-right: 1em;
 }
 
 .navbar-title, .menu-text {
