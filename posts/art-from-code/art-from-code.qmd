@@ -14,6 +14,8 @@ draft: true
 #| echo: false
 #| results: 'hide'
 renv::use(lockfile = "renv.lock")
+library(ggplot2)
+library(tibble)
 ```
 
 ## Something new-ish
@@ -22,17 +24,40 @@ renv::use(lockfile = "renv.lock")
 
 Longgg before I was a data analyst I studied fine art animation at Edinburgh College of Art. Before that I spent a few years drawing webcomics, and earlier still made maps and sprites for a fantasy-themed MMORPG server that my friends and I hosted. 
 
-I failed out of the degree and stopped drawing. Work as a chef was so taxing that I didn't have the energy to keep sketching or making comics, so it slipped out of my life. As the years passed and life kept changing, I made music, recorded audiobooks, took microscopy photos, and eventually found creativity in gardening of all places.
+I failed out of the degree and stopped drawing. Work as a chef was so taxing that I didn't have the energy to keep sketching or making comics, so it slipped out of my life. As the years passed and life kept changing, I made music, recorded audiobooks, took microscopy photos, and eventually found creativity in gardening.
 
 ### Creative present
 
 But I've always wanted to make pictures again. I drew a lot as a child and now in my mid-30s, sober for a year and a half, it feels really important to play in that space again. Like, **really** important.
 
-Rather than try to "go back" and use pen and paper, I thought it would be easier, more freeing, to draw with the tools I'm interested in now. When I recently stumbled across the R workshop [ART FROM CODE](https://art-from-code.netlify.app/) by the incredible artist, educator, and general boon to the R community, [Danielle Navarro](https://djnavarro.net/), I just knew this was it. Something I could kind of understand and at least give a go.
+Rather than try to "go back" and use pen and paper, I thought it would be easier, more freeing, to draw with the tools I'm interested in now. When I recently stumbled across the R workshop [ART FROM CODE](https://art-from-code.netlify.app/) by artist, educator, and general boon to the R community, [Danielle Navarro](https://djnavarro.net/), I just knew this was it. Something I could (kind of) understand and at least give a go.
 
-What follows is my experience of learning how this stupid, beautiful programming language (that has changed my life so profoundly), can be used as something like a paint brush. Thank you Danielle, it means a lot!
+```{r crocus}
+#| warning: false
+#| output: false
+mpg |>
+  ggplot() + 
+  geom_jitter(aes(hwy, cty, size = year, colour = trans), shape = 16, alpha = 0.6, show.legend = FALSE) +
+  geom_jitter(aes(hwy, cty, size = year / 2.5), colour = "orange", shape = 1, show.legend = FALSE) +
+  geom_point(aes(cyl, cty, colour = model), show.legend = FALSE, size = 5) +
+  coord_polar() + 
+  scale_color_brewer(palette = 3) +
+  scale_size(range = c(0, 10)) + 
+  theme_void() +
+  theme(plot.background = element_rect(fill = "#056000", color = NA)) +
+  ggforce::facet_zoom(xy = cyl == 6, zoom.data = TRUE)
+```
 
 ```{r}
-mtcars
+#| include: false
+ggsave("images/crocus.png", width = 4, height = 4, dpi = 300)
 ```
+
+::: {layout-ncol=2}
+
+![](images/crocus.png)
+
+![](images/crocuses.jpg)
+
+:::
 
