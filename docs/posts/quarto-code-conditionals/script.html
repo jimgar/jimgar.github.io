@@ -233,15 +233,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a>
   <ul class="collapse">
-  <li><a href="#include-shortcode" id="toc-include-shortcode" class="nav-link" data-scroll-target="#include-shortcode">{{&lt; include &gt;}} shortcode</a></li>
-  <li><a href="#conditional-content" id="toc-conditional-content" class="nav-link" data-scroll-target="#conditional-content">“Conditional” content</a></li>
+  <li><a href="#the-include-shortcode" id="toc-the-include-shortcode" class="nav-link" data-scroll-target="#the-include-shortcode">The {{&lt; include &gt;}} shortcode</a></li>
+  <li><a href="#conditional-content" id="toc-conditional-content" class="nav-link" data-scroll-target="#conditional-content">Conditional content</a></li>
   </ul></li>
   <li><a href="#code-flow" id="toc-code-flow" class="nav-link" data-scroll-target="#code-flow">Code flow</a>
   <ul class="collapse">
   <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code">Inline code</a></li>
   <li><a href="#in-functions" id="toc-in-functions" class="nav-link" data-scroll-target="#in-functions">In functions</a></li>
-  <li><a href="#knitrknit_child" id="toc-knitrknit_child" class="nav-link" data-scroll-target="#knitrknit_child"><code>knitr::knit_child</code></a></li>
+  <li><a href="#knitrknit_child" id="toc-knitrknit_child" class="nav-link" data-scroll-target="#knitrknit_child">knitr::knit_child</a></li>
   </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -254,12 +255,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 
 </div>
+<div class="cell">
+<style type="text/css">
+.figure-caption {
+    text-align: center;
+}
+</style>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/damsel1.png" class="img-fluid figure-img" style="width:80.0%" alt="A cropped photograph of the eyes and surrounding fur of a cat's face. The cat is a chimera with green eyes, the left side of her face coloured black and the right side orange. The cat's name is Damsel."></p>
+<p></p><figcaption class="figure-caption">Damsel the chimera. Copyright Andy Stacey.</figcaption><p></p>
+</figure>
+</div>
 <p>In this post I will describe some of the ways I’ve found to conditionally include content in a Quarto-generate HTML document.</p>
 <p>I’m using RStudio and the knitr rendering engine. If you know of Jupyter solutions please let me know! I will happily link to them for the disappointed Pythonistas who have ended up on my blog ;)</p>
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<section id="include-shortcode" class="level3">
-<h3 class="anchored" data-anchor-id="include-shortcode">{{&lt; include &gt;}} shortcode</h3>
+<section id="quarto" class="level1">
+<h1>Quarto</h1>
+<section id="the-include-shortcode" class="level2">
+<h2 class="anchored" data-anchor-id="the-include-shortcode">The {{&lt; include &gt;}} shortcode</h2>
 <p>This isn’t conditional, but it is really useful.</p>
 <p>If you have company marketing boilerplate, or headers that start all of your reports, a neat solution is to keep these in their own qmd file and bring them into any other qmd using the <a href="https://quarto.org/docs/authoring/includes.html">include shortcode</a>.</p>
 <p>In your report you would use the code below</p>
@@ -267,15 +281,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This is akin to manually copying and pasting in the contents of <code>content.qmd</code> prior to the report getting rendered.</p>
 <p>We’ll come back to the shortcode later.</p>
 </section>
-<section id="conditional-content" class="level3">
-<h3 class="anchored" data-anchor-id="conditional-content">“Conditional” content</h3>
-<p>I put this one in quotes because to my mind it unfairly hogs the ‘conditional’ title.</p>
+<section id="conditional-content" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-content">Conditional content</h2>
+<p>To my mind this one unfairly hogs the “conditional” title.</p>
 <p>This is for when you have parts of a document that you only want rendered (or not) to a specific <strong>format</strong>, such as HTML, PDF, etc.</p>
 <p>If you’re interested in this, here’s the <a href="https://quarto.org/docs/authoring/conditional.html">Quarto guide</a>.</p>
 </section>
 </section>
-<section id="code-flow" class="level2">
-<h2 class="anchored" data-anchor-id="code-flow">Code flow</h2>
+<section id="code-flow" class="level1">
+<h1>Code flow</h1>
 <p>Most of the following examples follow the usual if/else structure.</p>
 <p>I’ll be referring to <code>params$my_boolean</code> throughout this section so let me take a moment to explain.</p>
 <p>In the YAML header of a Quarto document you can pass in parameters. These get stored in a list <code>params</code> that can be called throughout the document, just like any variables you make and keep in the global environment.</p>
@@ -284,13 +298,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">  my_boolean: FALSE</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you’re using a Quarto project it is also possible to include variables in a root directory file <code>_variables.yml</code>. I’m not doing that here, but if it sounds appropriate for you, <a href="https://quarto.org/docs/authoring/variables.html">here are the docs</a>.</p>
-<section id="inline-code" class="level3">
-<h3 class="anchored" data-anchor-id="inline-code">Inline code</h3>
+<section id="inline-code" class="level2">
+<h2 class="anchored" data-anchor-id="inline-code">Inline code</h2>
 <p>You can conditionally execute inline code. If <code>my_boolean</code> is <code>TRUE</code> the example below results in a level 2 heading that says “Plots for mtcars”.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plots `r if (params$my_boolean) "for mtcars" else "for iris"`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="in-functions" class="level3">
-<h3 class="anchored" data-anchor-id="in-functions">In functions</h3>
+<section id="in-functions" class="level2">
+<h2 class="anchored" data-anchor-id="in-functions">In functions</h2>
 <p>Sometimes you just need a bit of perspective. Rather than something convoluted, do you just need to make a function with flow control of some kind?</p>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plotting_func <span class="ot">&lt;-</span> <span class="cf">function</span>(dat, col1, col2) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -338,8 +352,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="knitrknit_child" class="level3">
-<h3 class="anchored" data-anchor-id="knitrknit_child"><code>knitr::knit_child</code></h3>
+<section id="knitrknit_child" class="level2">
+<h2 class="anchored" data-anchor-id="knitrknit_child">knitr::knit_child</h2>
 <p>Saving the best for last, because this one is really cool!</p>
 <p>Remember how I started with the <code>{{&lt; include &gt;}}</code> shortcode and said that it wasn’t conditional?</p>
 <div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{{&lt; include _content.qmd &gt;}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -364,9 +378,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The <code>output: asis</code> chunk option means Quarto treats the content as raw markdown output</li>
 </ol>
 <p>Worth a mention - though not about conditionality - is this <a href="https://mickael.canouil.fr/posts/2023-03-05-quarto-auto-table-crossref/">demo</a> by Mickaël Canouil. It shows how the <code>knit_child</code> method can be called in a for loop to create <em>n</em> code chunks, and therefore <em>n</em> outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called.</p>
-
-
 </section>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/damsel2.JPG" class="img-fluid figure-img" style="width:80.0%" alt="A blurry, close-up photograph of a cat's face, taken unflatteringly from below. Her mouth is slightly ajar and the overall look is goofy. The cat is a chimera with green eyes, the left side of her face coloured black and the right side orange. The cat's name is Damsel."></p>
+<p></p><figcaption class="figure-caption">Damsel the chimera. Copyright me!</figcaption><p></p>
+</figure>
+</div>
+<p>I hope these approaches give you a practical set of tools for including conditional content in Quarto-published HTML documents.</p>
+<p>You can use</p>
+<ol type="1">
+<li><p>The shortcode <code>{{&lt; include &gt;}}</code> to bring in a sub-document</p></li>
+<li><p>Publish content dependent on output format using “conditional content”</p></li>
+<li><p>if/else statements either inline or in code chunks. This can be combined with</p>
+<ol type="1">
+<li>Functional programming by putting code into functions - either in code blocks in the document, or in a separate sourced file</li>
+<li>With knitr’s <code>knit_child</code> to bring in entire sub-documents as required</li>
+</ol></li>
+</ol>
+<p>Thank you to <a href="brodrigues.co">Bruno Rodrigues</a> and <a href="johnmackintosh.net">John MacKintosh</a> for proofreading a draft of this post.</p>
+
+
 </section>
 
 </main> <!-- /main -->

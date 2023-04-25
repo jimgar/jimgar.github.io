@@ -60,6 +60,48 @@
     "href": "posts.html",
     "title": "~ blog",
     "section": "",
-    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n4 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n2/7/23, 11:25:53 PM\n\n\n\n\n\n\n\nNo matching items"
+    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPublishing content in Quarto using conditionals and if/else code flow\n\n\n5 min\n\n\n\nQuarto\n\n\nR\n\n\nknitr\n\n\n\nA selection of simple methods using the knitr engine and HTML output\n\n\n\nApr 24, 2023\n\n\n\n\n\n4/25/23, 2:11:46 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n4 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n4/24/23, 5:30:51 PM\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/quarto-code-conditionals/script.html",
+    "href": "posts/quarto-code-conditionals/script.html",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "",
+    "text": "In this post I will describe some of the ways I’ve found to conditionally include content in a Quarto-generate HTML document.\nI’m using RStudio and the knitr rendering engine. If you know of Jupyter solutions please let me know! I will happily link to them for the disappointed Pythonistas who have ended up on my blog ;)"
+  },
+  {
+    "objectID": "posts/quarto-code-conditionals/script.html#the-include-shortcode",
+    "href": "posts/quarto-code-conditionals/script.html#the-include-shortcode",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "The {{< include >}} shortcode",
+    "text": "The {{< include >}} shortcode\nThis isn’t conditional, but it is really useful.\nIf you have company marketing boilerplate, or headers that start all of your reports, a neat solution is to keep these in their own qmd file and bring them into any other qmd using the include shortcode.\nIn your report you would use the code below\n{{< include _content.qmd >}}\nThis is akin to manually copying and pasting in the contents of content.qmd prior to the report getting rendered.\nWe’ll come back to the shortcode later."
+  },
+  {
+    "objectID": "posts/quarto-code-conditionals/script.html#conditional-content",
+    "href": "posts/quarto-code-conditionals/script.html#conditional-content",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "Conditional content",
+    "text": "Conditional content\nTo my mind this one unfairly hogs the “conditional” title.\nThis is for when you have parts of a document that you only want rendered (or not) to a specific format, such as HTML, PDF, etc.\nIf you’re interested in this, here’s the Quarto guide."
+  },
+  {
+    "objectID": "posts/quarto-code-conditionals/script.html#inline-code",
+    "href": "posts/quarto-code-conditionals/script.html#inline-code",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "Inline code",
+    "text": "Inline code\nYou can conditionally execute inline code. If my_boolean is TRUE the example below results in a level 2 heading that says “Plots for mtcars”.\n## Plots `r if (params$my_boolean) \"for mtcars\" else \"for iris\"`"
+  },
+  {
+    "objectID": "posts/quarto-code-conditionals/script.html#in-functions",
+    "href": "posts/quarto-code-conditionals/script.html#in-functions",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "In functions",
+    "text": "In functions\nSometimes you just need a bit of perspective. Rather than something convoluted, do you just need to make a function with flow control of some kind?\nplotting_func <- function(dat, col1, col2) {\n  \n  if (params$my_boolean) {\n    \n    dat |>\n      ggplot2::ggplot() +\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  } else {\n    \n    dat |>\n      ggplot2::ggplot() +\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  }\n  \n}\nOr if the content is amenable to it, something like this\nplotting_func <- function(dat, col1, col2) {\n  \n  dat |>\n    ggplot2::ggplot() +\n    if (params$my_boolean) {\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    } else {\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    }\n  \n}\nYou could put the function into a code block. Or you could hide it away in a folder R/ and a script functions.R. That’s useful if you write long ugly functions like me (lol), but also if you have multiple functions. In this case, you could just source the functions silently along with library calls at the start of the Quarto doc.\n```{r}\n#| include: false\nlibrary(dplyr)\nlibrary(downloadthis)\nlibrary(reactable)\nsource(file.path(\"R\", \"functions.R\"))\n```\nIf your content is too complicated for flow control inside of a function, then just put the content into separate functions in functions.R, source them as above, and use flow control in the Quarto doc\n```{r}\nif (params$my_boolean) {\n  fancy_model_a(mtcars, wt, mpg) \n} else {\n  fancy_model_b(iris, Species, Sepal.Length)\n}\n```"
+  },
+  {
+    "objectID": "posts/quarto-code-conditionals/script.html#knitrknit_child",
+    "href": "posts/quarto-code-conditionals/script.html#knitrknit_child",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "knitr::knit_child",
+    "text": "knitr::knit_child\nSaving the best for last, because this one is really cool!\nRemember how I started with the {{< include >}} shortcode and said that it wasn’t conditional?\n{{< include _content.qmd >}}\nIf anyone knows how to (simply) use the shortcode in a conditional manner I’d love to hear about it. In the meantime I consider the conditional version of this is using knitr::knit_child.\nLet’s say I make interactive plots of my data using Observable code blocks and keep this code in a separate Quarto doc ojs-cells.qmd. The code can be added to the main Quarto doc under certain conditions, as dictated by a boolean param ojs_include in the YAML header\n```{r}\n#| output: asis\nif (params$ojs_include) { \n  \n  cat(sep = \"\\n\",\n      knitr::knit_child(quiet = TRUE,\n                        text = readr::read_file(\"ojs-cells.qmd\")\n      )\n  )\n  \n}\n```\nWhat’s happening here is\n\nreadr::read_file brings in ojs-cells.qmd as a string\ncat restores the line-by-line formatting and ‘prints’ the content\nThe output: asis chunk option means Quarto treats the content as raw markdown output\n\nWorth a mention - though not about conditionality - is this demo by Mickaël Canouil. It shows how the knit_child method can be called in a for loop to create n code chunks, and therefore n outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called."
   }
 ]
