@@ -22,5 +22,8 @@
   },
   "posts/quarto-code-conditionals/script.qmd": {
     "script.html": "a94ca059"
+  },
+  "posts/quarto-code-conditionals/post.qmd": {
+    "post.html": "4c7f2fa4"
   }
 }
