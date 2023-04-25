@@ -60,7 +60,7 @@
     "href": "posts.html",
     "title": "~ blog",
     "section": "",
-    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPublishing content in Quarto using conditionals and if/else code flow\n\n\n5 min\n\n\n\nQuarto\n\n\nR\n\n\nknitr\n\n\n\nA selection of simple methods using the knitr engine and HTML output\n\n\n\nApr 24, 2023\n\n\n\n\n\n4/25/23, 2:11:46 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n4 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n4/24/23, 5:30:51 PM\n\n\n\n\n\n\n\nNo matching items"
+    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPublishing content in Quarto using conditionals and if/else code flow\n\n\n5 min\n\n\n\nQuarto\n\n\nR\n\n\nknitr\n\n\n\nA selection of simple methods using the knitr engine and HTML output\n\n\n\nApr 24, 2023\n\n\n\n\n\n4/25/23, 9:56:01 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n4 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n4/24/23, 5:30:51 PM\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/quarto-code-conditionals/script.html",
@@ -145,5 +145,12 @@
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
     "section": "knitr::knit_child",
     "text": "knitr::knit_child\nSaving the best for last, because this one is really cool!\nRemember how I started with the {{< include >}} shortcode and said that it wasn’t conditional?\n{{< include _content.qmd >}}\nIf anyone knows how to (simply) use the shortcode in a conditional manner I’d love to hear about it. In the meantime I consider the conditional version of this is using knitr::knit_child.\nLet’s say I make interactive plots of my data using Observable code blocks and keep this code in a separate Quarto doc ojs-cells.qmd. The code can be added to the main Quarto doc under certain conditions, as dictated by a boolean param ojs_include in the YAML header\n```{r}\n#| output: asis\nif (params$ojs_include) { \n  \n  cat(sep = \"\\n\",\n      knitr::knit_child(quiet = TRUE,\n                        text = readr::read_file(\"ojs-cells.qmd\")\n      )\n  )\n  \n}\n```\nWhat’s happening here is\n\nreadr::read_file brings in ojs-cells.qmd as a string\ncat restores the line-by-line formatting and ‘prints’ the content\nThe output: asis chunk option means Quarto treats the content as raw markdown output\n\nWorth a mention - though not about conditionality - is this demo by Mickaël Canouil. It shows how the knit_child method can be called in a for loop to create n code chunks, and therefore n outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called."
+  },
+  {
+    "objectID": "posts/quarto-code-conditionals/post.html#project-profiles",
+    "href": "posts/quarto-code-conditionals/post.html#project-profiles",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "Project profiles",
+    "text": "Project profiles\nIn this scenario you will have content to be included (or excluded) based on the profile/s specified. The div below would only be included if the “advanced” profile is in use\n::: {.content-visible when-profile=\"advanced\"}\nThis content will only appear in the advanced version.\n:::\nYou can also specify configurations in a profile-specific YAML that can be fully, or selectively used, to override those in the default profile. Here are the docs."
   }
 ]

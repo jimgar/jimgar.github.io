@@ -55,6 +55,18 @@ This is for when you have parts of a document that you only want rendered (or no
 
 If you're interested in this, here's the [Quarto guide](https://quarto.org/docs/authoring/conditional.html).
 
+## Project profiles
+
+In this scenario you will have content to be included (or excluded) based on the profile/s specified. The div below would only be included if the "advanced" profile is in use
+
+``` {.markdown}
+::: {.content-visible when-profile="advanced"}
+This content will only appear in the advanced version.
+:::
+```
+
+You can also specify configurations in a profile-specific YAML that can be fully, or selectively used, to override those in the default profile. Here are [the docs.](https://quarto.org/docs/projects/profiles.html)
+
 # Code flow
 
 Most of the following examples follow the usual if/else structure.
@@ -69,6 +81,8 @@ params:
   my_boolean: FALSE
 ---
 ```
+
+Reports made this way are known as [parameterised reports](https://quarto.org/docs/computations/parameters.html).
 
 If you're using a Quarto project it is also possible to include variables in a root directory file `_variables.yml`. I'm not doing that here, but if it sounds appropriate for you, [here are the docs](https://quarto.org/docs/authoring/variables.html).
 
