@@ -56,21 +56,33 @@ A lot of my knowledge was gleaned through bumbling around, giving it a go, and p
 
 So, with [help](https://fosstodon.org/@jimgar/110832714377237658) from some good peeps over at mastodon, I'm happy to share just such a reference list. The aim is to help get you feeling confident, comfy, and fancy-free when coding in RStudio. It's nice to feel at home in your IDE of choice ☺️
 
-Shortcuts given here are for MacOS and RStudio 2023.06.1. I've made a start on the Windows/Linux ones and will finish them soon! A few more suggestions have also come in that will be added to the post shortly.
+I'm a Mac user currently running RStudio 2023.06.1. Please let me know if there's anything wrong with the Windows/Linux defaults listed.
 
 ## Keyboard shortcut quick reference
 
 ```{r}
 #| output: asis
 make_shortcut(
-  "`Shift` + `Option` + `K`", 
-  "`Shift` + `Alt` + `K`"
+  "`Option` + `Shift` + `K`", 
+  "`Alt` + `Shift` + `K`"
 )
 ```
 
 Brings up the keyboard shortcut quick ref.
 
-However, I can never remember the layout of the panel and get mentally overloaded seeing so many symbols and columns on screen at once. I prefer the [web version](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE) instead. 
+However, I can never remember the layout of the panel and get mentally overloaded seeing so many symbols and columns on screen at once. I prefer the [web version](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE) instead (though it is a bit out of date). 
+
+## Restart R session
+
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `Shift` + `0`", 
+  "`Ctrl` + `Shift` + `F10`"
+)
+```
+
+Generally, it's a good habit to restart the R session regularly. If your global environment is a graveyard of variables and functions - and you can't tell which are living or dead - this is what you need. 
 
 ## Executing code
 
@@ -81,7 +93,6 @@ make_shortcut(
   "`Ctrl` + `Enter`"
 )
 ```
-
 
 Executes the line, or **lines**, your cursor is on.
 
@@ -113,9 +124,13 @@ Go to `Tools`, `Modify Keyboard Shortcuts...` and search for "focus".
 
 ## Indenting code
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Command` + `I`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `I`", 
+  "`Ctrl` + `I`"
+)
+```
 
 Standardises indentation for highlighted code. 
 
@@ -125,39 +140,59 @@ You're typing, copying from the web, moving stuff about. I know it gets messy. F
 
 ## Commenting crap
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Shift` + `Command` + `C`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `Shift` + `C`", 
+  "`Ctrl` + `Shift` + `C`"
+)
+```
 
 Comment/uncomment the line your cursor is on, or highlighted lines. Trust me that this one is worth memorising. You're going to be using it **a lot**.
 
 ## Finding crap
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Command` + `F`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `F`", 
+  "`Ctrl` + `F`"
+)
+```
 
 Brings up the find/replace menu for the script currently open. The `In selection` check box is very useful.
 
 ![](images/find-replace.gif){fig-align="center"}
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Shift` + `Command` + `F`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `Shift` + `F`", 
+  "`Ctrl` + `Shift` + `F`"
+)
+```
 
 Brings up the `Find in Files` dialogue box. I use this when it's been a while since I worked on a project. For example, I might want to know which files a specific function gets used in.
 
 ## Inserting operators
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Option` + `-`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Option` + `-`", 
+  "`Alt` + `-`"
+)
+```
 
 Drops in the assignment operator `<-`
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Shift` + `Command` + `M`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `Shift` + `M`", 
+  "`Ctrl` + `Shift` + `M`"
+)
+```
 
 Drops in the pipe operator. 
 
@@ -171,15 +206,23 @@ If you want to make it the default, go to `Tools`, `Global Options`, and check t
 
 These are for when you want to do stuff like 'find and replace', but the text you're finding/adding/removing is heterogeneous in some way. You might be tidying up some lines of text after pasting them from a web page, for example.
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Control` + `Option` + `Up/Down arrow`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Control` + `Option` + `Up/Down`", 
+  "`Ctrl` + `Alt` + `Up/Down`"
+)
+```
 
 Adds carets above/below your current position.
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Option` + `Left click (and drag)`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Option` + `Click and drag`", 
+  "`Alt` + `Click and drag`"
+)
+```
 
 Highlight text or place carets in contiguous chunks.
 
@@ -189,15 +232,19 @@ Highlight text or place carets in contiguous chunks.
 
 ![In this example I add carets to multiple contiguous lines of text.](images/carets1.gif){fig-align="center"}
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Control` + `Option` + `Left click`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Control` + `Option` + `Click`", 
+  "Anyone know? Hit me up"
+)
+```
 
 This is for when things have started to get a little bit messier and you can't easily highlight text in contiguous chunks. 
 
 - Click/move your cursor into the first place you want a caret
 - Then hold down `Control` + `Option`
-- Each left-click will place another caret wherever your mouse is hovering
+- Each mouse click will place another caret wherever your mouse is hovering
 
 ![In this example I delete several lines across a few blocks of text.](images/carets2.gif){fig-align="center"}
 
@@ -207,39 +254,60 @@ In my experience the terms "caret" and "cursor" are are synonymous in programmin
 
 ## Moving the cursor
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Command` + `An arrow key`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `Up/Down/Left/Right`", 
+  "`Ctrl` + `Up/Down/Left/Right`"
+)
+```
 
-The up/down arrow keys get you to the top/bottom of a document.
+The up/down keys get you to the top/bottom of a document.
 
-The left/right arrow keys get you to the start/end of the current line.
+The left/right keys get you to the start/end of the current line.
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Option` + `Left/right arrow key`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Option` + `Left/Right`", 
+  "`Ctrl` + `Left/Right`"
+)
+```
 
 Skip over whole words. Whee!
 
 ## Highlighting and deleting text
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Shift` + `Option` + `Left/right arrow key`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Option` + `Shift` + `Left/Right`", 
+  "`Ctrl` + `Shift` + `Left/Right`"
+)
+```
 
 Highlights whole words. Oooh 😮
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Option` + `Backspace`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Option` + `Backspace`", 
+  "`Ctrl` + `Backspace`"
+)
+```
 
 Deletes the word preceding the cursor position. Cya 🙋
 
 ## Summon the command palette 👹
 
-::: {.center}
-`r fontawesome::fa("apple")` : `Shift` + `Control` + `P`
-:::
+```{r}
+#| output: asis
+make_shortcut(
+  "`Control` + `Shift` + `P`", 
+  "`Ctrl` + `Shift` + `P`"
+)
+```
+
 
 Bringing up the command palette lets you search for commands (and settings) by name. Here I bring up the palette because I can never remember the shortcut to turn some text into a function.
 
