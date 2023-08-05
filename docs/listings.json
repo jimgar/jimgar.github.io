@@ -2,6 +2,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/rstudio-keyboard-shortcuts/post.html",
       "/posts/quarto-code-conditionals/post.html",
       "/posts/resources/resources.html"
     ]

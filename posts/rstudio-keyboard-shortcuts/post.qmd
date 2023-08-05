@@ -1,0 +1,254 @@
+---
+title: "Comfy keyboard shortcuts for RStudio"
+description: "Aimed at beginner and intermediate users"
+author:
+  - name: Jim Gardner
+    url: https://jimgar.github.io/jimgar/
+date: 2023-08-04
+categories: [R, RStudio]
+execute:
+  echo: false
+draft: false
+---
+
+```{r}
+#| echo: false
+#| results: 'hide'
+renv::use(lockfile = "renv.lock")
+```
+
+```{r}
+make_shortcut <- function(apple, windows) {
+  res <- knitr::knit_child(
+    text = c(
+      "",
+      "::: {.center}\n",
+      "`r fontawesome::fa('apple')` : ", apple, "",
+      ":::",
+      "::: {.center}",
+      "`r fontawesome::fa('windows')` / `r fontawesome::fa('linux')` : ", windows, "",
+      ":::"
+    ),
+    quiet = TRUE
+  )
+  cat(res, sep = "\n")
+}
+```
+
+
+```{css}
+.figure-caption {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+```
+
+## Intro
+
+I know quite a few keyboard shortcuts in RStudio these days. 
+
+That said, such knowledge has been hard won. My background is not in programming, so a lot of the time I wasn't aware that certain shortcuts were possible. Or if I did, I may not know how to describe them/their names.
+
+A lot of my knowledge was gleaned through bumbling around, giving it a go, and pairing with colleagues. That's all good, but it is nice to have a practical list for reference.
+
+So, with [help](https://fosstodon.org/@jimgar/110832714377237658) from some good peeps over at mastodon, I'm happy to share just such a reference list. The aim is to help get you feeling confident, comfy, and fancy-free when coding in RStudio. It's nice to feel at home in your IDE of choice ☺️
+
+Shortcuts given here are for MacOS and RStudio 2023.06.1. I've made a start on the Windows/Linux ones and will finish them soon! A few more suggestions have also come in that will be added to the post shortly.
+
+## Keyboard shortcut quick reference
+
+```{r}
+#| output: asis
+make_shortcut(
+  "`Shift` + `Option` + `K`", 
+  "`Shift` + `Alt` + `K`"
+)
+```
+
+Brings up the keyboard shortcut quick ref.
+
+However, I can never remember the layout of the panel and get mentally overloaded seeing so many symbols and columns on screen at once. I prefer the [web version](https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE) instead. 
+
+## Executing code
+
+```{r}
+#| output: asis
+make_shortcut(
+  "`Command` + `Enter`", 
+  "`Ctrl` + `Enter`"
+)
+```
+
+
+Executes the line, or **lines**, your cursor is on.
+
+Do you highlight an entire series of piped functions with your mouse and then click the `Run` button?
+
+What if I told you that instead, you just put your cursor wherever the hell you like in a pipe and press `Command` + `Enter`? And it just runs the whole thing?
+
+![Behold!](images/piped-highlight.gif){fig-align="center"}
+
+You can even work your way through a script by hitting `Command` + `Enter` on repeat. Don't trust me?
+
+![Try this for size.](images/run-steps.gif){fig-align="center"}
+
+That's right: Even when the focus is in the console (which you can tell because the cursor is blinking there) you can continue hitting `Command` + `Enter` to run subsequent lines of your R script.
+
+## Switch focus between Source/Console
+
+::: {.center}
+`r fontawesome::fa("apple")` / `r fontawesome::fa("windows")` / `r fontawesome::fa("linux")`  : `Your` + `choice!`
+:::
+
+Toggle the keyboard focus between your script and the console.
+
+This is an unbound keyboard shortcut by default. While there are shortcuts to focus individually on the source and console panels, I like this one because it acts like a toggle. Easier to remember than two separate shortcuts. Also my brain small... like cute cat :)
+
+Go to `Tools`, `Modify Keyboard Shortcuts...` and search for "focus".
+
+![Click into the empty middle column for `Switch Focus Between Source/Console`. Press whatever shortcut keys you want to use, then hit enter. I used `Control` + `1`, but this was already assigned to `Move Focus to Source` so I had to delete it there too. ](images/switch-focus.gif){fig-align="center"}
+
+## Indenting code
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Command` + `I`
+:::
+
+Standardises indentation for highlighted code. 
+
+You're typing, copying from the web, moving stuff about. I know it gets messy. Forget tab/space/backspace tedium and use this shortcut.
+
+![](images/indent.gif){fig-align="center"}
+
+## Commenting crap
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Shift` + `Command` + `C`
+:::
+
+Comment/uncomment the line your cursor is on, or highlighted lines. Trust me that this one is worth memorising. You're going to be using it **a lot**.
+
+## Finding crap
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Command` + `F`
+:::
+
+Brings up the find/replace menu for the script currently open. The `In selection` check box is very useful.
+
+![](images/find-replace.gif){fig-align="center"}
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Shift` + `Command` + `F`
+:::
+
+Brings up the `Find in Files` dialogue box. I use this when it's been a while since I worked on a project. For example, I might want to know which files a specific function gets used in.
+
+## Inserting operators
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Option` + `-`
+:::
+
+Drops in the assignment operator `<-`
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Shift` + `Command` + `M`
+:::
+
+Drops in the pipe operator. 
+
+If you've had RStudio installed for a while the default might be the `magrittr` pipe `%>%`. These days, the base R pipe `|>` has got you covered for 99% of use cases, and doesn't add yet another dependency or library call to your projects, so it is my preferred pipe. 
+
+If you want to make it the default, go to `Tools`, `Global Options`, and check the box as in the image below.
+
+![](images/pipe.png){fig-align="center"}
+
+## Using multiple carets/cursors
+
+These are for when you want to do stuff like 'find and replace', but the text you're finding/adding/removing is heterogeneous in some way. You might be tidying up some lines of text after pasting them from a web page, for example.
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Control` + `Option` + `Up/Down arrow`
+:::
+
+Adds carets above/below your current position.
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Option` + `Left click (and drag)`
+:::
+
+Highlight text or place carets in contiguous chunks.
+
+- Click/move your cursor into the first place you want a caret
+- Hold down `Option`
+- Click and drag the cursor
+
+![In this example I add carets to multiple contiguous lines of text.](images/carets1.gif){fig-align="center"}
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Control` + `Option` + `Left click`
+:::
+
+This is for when things have started to get a little bit messier and you can't easily highlight text in contiguous chunks. 
+
+- Click/move your cursor into the first place you want a caret
+- Then hold down `Control` + `Option`
+- Each left-click will place another caret wherever your mouse is hovering
+
+![In this example I delete several lines across a few blocks of text.](images/carets2.gif){fig-align="center"}
+
+::: {.callout-note}
+In my experience the terms "caret" and "cursor" are are synonymous in programming IDEs like RStudio. However, some IDEs will use "caret" and others "cursor". One to be aware of.
+:::
+
+## Moving the cursor
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Command` + `An arrow key`
+:::
+
+The up/down arrow keys get you to the top/bottom of a document.
+
+The left/right arrow keys get you to the start/end of the current line.
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Option` + `Left/right arrow key`
+:::
+
+Skip over whole words. Whee!
+
+## Highlighting and deleting text
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Shift` + `Option` + `Left/right arrow key`
+:::
+
+Highlights whole words. Oooh 😮
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Option` + `Backspace`
+:::
+
+Deletes the word preceding the cursor position. Cya 🙋
+
+## Summon the command palette 👹
+
+::: {.center}
+`r fontawesome::fa("apple")` : `Shift` + `Control` + `P`
+:::
+
+Bringing up the command palette lets you search for commands (and settings) by name. Here I bring up the palette because I can never remember the shortcut to turn some text into a function.
+
+![](images/command-palette.gif){fig-align="center"}
+
+## Enclosing
+
+Highlight some text and enclose it with e.g. parentheses `()` or quotes `""`.
+
+If you highlight some text, you only need to give the opening character of the enclosing pair. RStudio will add the closing character.
+
+![Using just `"`, `(`, and `[` to enclose some text.](images/enclosing.gif){fig-align="center"}

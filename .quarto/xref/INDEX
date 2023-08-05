@@ -25,5 +25,8 @@
   },
   "posts/quarto-code-conditionals/post.qmd": {
     "post.html": "4c7f2fa4"
+  },
+  "posts/rstudio-keyboard-shortcuts/post.qmd": {
+    "post.html": "ea2c7d46"
   }
 }

@@ -60,7 +60,7 @@
     "href": "posts.html",
     "title": "~ blog",
     "section": "",
-    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPublishing content in Quarto using conditionals and if/else code flow\n\n\n5 min\n\n\n\nQuarto\n\n\nR\n\n\nknitr\n\n\n\nA selection of simple methods using the knitr engine and HTML output\n\n\n\nApr 24, 2023\n\n\n\n\n\n4/25/23, 9:56:01 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n4 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n4/24/23, 5:30:51 PM\n\n\n\n\n\n\n\nNo matching items"
+    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nComfy keyboard shortcuts for RStudio\n\n\n6 min\n\n\n\nR\n\n\nRStudio\n\n\n\nAimed at beginner and intermediate users\n\n\n\nAug 4, 2023\n\n\n\n\n\n8/5/23, 1:20:49 AM\n\n\n\n\n\n\n\n\n\n\n\nPublishing content in Quarto using conditionals and if/else code flow\n\n\n6 min\n\n\n\nQuarto\n\n\nR\n\n\nknitr\n\n\n\nA selection of simple methods using the knitr engine and HTML output\n\n\n\nApr 24, 2023\n\n\n\n\n\n8/4/23, 11:03:09 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n6 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n3/12/23, 11:08:46 AM\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/quarto-code-conditionals/script.html",
@@ -116,7 +116,7 @@
     "href": "posts/quarto-code-conditionals/post.html#the-include-shortcode",
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
     "section": "The {{< include >}} shortcode",
-    "text": "The {{< include >}} shortcode\nThis isn’t conditional, but it is really useful.\nIf you have company marketing boilerplate, or headers that start all of your reports, a neat solution is to keep these in their own qmd file and bring them into any other qmd using the include shortcode.\nIn your report you would use the code below\n{{< include _content.qmd >}}\nThis is akin to manually copying and pasting in the contents of content.qmd prior to the report getting rendered.\nWe’ll come back to the shortcode later."
+    "text": "The {{&lt; include &gt;}} shortcode\nThis isn’t conditional, but it is really useful.\nIf you have company marketing boilerplate, or headers that start all of your reports, a neat solution is to keep these in their own qmd file and bring them into any other qmd using the include shortcode.\nIn your report you would use the code below\n{{&lt; include _content.qmd &gt;}}\nThis is akin to manually copying and pasting in the contents of content.qmd prior to the report getting rendered.\nWe’ll come back to the shortcode later."
   },
   {
     "objectID": "posts/quarto-code-conditionals/post.html#conditional-content",
@@ -137,14 +137,14 @@
     "href": "posts/quarto-code-conditionals/post.html#in-functions",
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
     "section": "In functions",
-    "text": "In functions\nSometimes you just need a bit of perspective. Rather than something convoluted, do you just need to make a function with flow control of some kind?\nplotting_func <- function(dat, col1, col2) {\n  \n  if (params$my_boolean) {\n    \n    dat |>\n      ggplot2::ggplot() +\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  } else {\n    \n    dat |>\n      ggplot2::ggplot() +\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  }\n  \n}\nOr if the content is amenable to it, something like this\nplotting_func <- function(dat, col1, col2) {\n  \n  dat |>\n    ggplot2::ggplot() +\n    if (params$my_boolean) {\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    } else {\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    }\n  \n}\nYou could put the function into a code block. Or you could hide it away in a folder R/ and a script functions.R. That’s useful if you write long ugly functions like me (lol), but also if you have multiple functions. In this case, you could just source the functions silently along with library calls at the start of the Quarto doc.\n```{r}\n#| include: false\nlibrary(dplyr)\nlibrary(downloadthis)\nlibrary(reactable)\nsource(file.path(\"R\", \"functions.R\"))\n```\nIf your content is too complicated for flow control inside of a function, then just put the content into separate functions in functions.R, source them as above, and use flow control in the Quarto doc\n```{r}\nif (params$my_boolean) {\n  fancy_model_a(mtcars, wt, mpg) \n} else {\n  fancy_model_b(iris, Species, Sepal.Length)\n}\n```"
+    "text": "In functions\nSometimes you just need a bit of perspective. Rather than something convoluted, do you just need to make a function with flow control of some kind?\nplotting_func &lt;- function(dat, col1, col2) {\n  \n  if (params$my_boolean) {\n    \n    dat |&gt;\n      ggplot2::ggplot() +\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  } else {\n    \n    dat |&gt;\n      ggplot2::ggplot() +\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  }\n  \n}\nOr if the content is amenable to it, something like this\nplotting_func &lt;- function(dat, col1, col2) {\n  \n  dat |&gt;\n    ggplot2::ggplot() +\n    if (params$my_boolean) {\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    } else {\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    }\n  \n}\nYou could put the function into a code block. Or you could hide it away in a folder R/ and a script functions.R. That’s useful if you write long ugly functions like me (lol), but also if you have multiple functions. In this case, you could just source the functions silently along with library calls at the start of the Quarto doc.\n```{r}\n#| include: false\nlibrary(dplyr)\nlibrary(downloadthis)\nlibrary(reactable)\nsource(file.path(\"R\", \"functions.R\"))\n```\nIf your content is too complicated for flow control inside of a function, then just put the content into separate functions in functions.R, source them as above, and use flow control in the Quarto doc\n```{r}\nif (params$my_boolean) {\n  fancy_model_a(mtcars, wt, mpg) \n} else {\n  fancy_model_b(iris, Species, Sepal.Length)\n}\n```"
   },
   {
     "objectID": "posts/quarto-code-conditionals/post.html#knitrknit_child",
     "href": "posts/quarto-code-conditionals/post.html#knitrknit_child",
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
     "section": "knitr::knit_child",
-    "text": "knitr::knit_child\nSaving the best for last, because this one is really cool!\nRemember how I started with the {{< include >}} shortcode and said that it wasn’t conditional?\n{{< include _content.qmd >}}\nIf anyone knows how to (simply) use the shortcode in a conditional manner I’d love to hear about it. In the meantime I consider the conditional version of this is using knitr::knit_child.\nLet’s say I make interactive plots of my data using Observable code blocks and keep this code in a separate Quarto doc ojs-cells.qmd. The code can be added to the main Quarto doc under certain conditions, as dictated by a boolean param ojs_include in the YAML header\n```{r}\n#| output: asis\nif (params$ojs_include) { \n  \n  cat(sep = \"\\n\",\n      knitr::knit_child(quiet = TRUE,\n                        text = readr::read_file(\"ojs-cells.qmd\")\n      )\n  )\n  \n}\n```\nWhat’s happening here is\n\nreadr::read_file brings in ojs-cells.qmd as a string\ncat restores the line-by-line formatting and ‘prints’ the content\nThe output: asis chunk option means Quarto treats the content as raw markdown output\n\nWorth a mention - though not about conditionality - is this demo by Mickaël Canouil. It shows how the knit_child method can be called in a for loop to create n code chunks, and therefore n outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called."
+    "text": "knitr::knit_child\nSaving the best for last, because this one is really cool!\nRemember how I started with the {{&lt; include &gt;}} shortcode and said that it wasn’t conditional?\n{{&lt; include _content.qmd &gt;}}\nIf anyone knows how to (simply) use the shortcode in a conditional manner I’d love to hear about it. In the meantime I consider the conditional version of this is using knitr::knit_child.\nLet’s say I make interactive plots of my data using Observable code blocks and keep this code in a separate Quarto doc ojs-cells.qmd. The code can be added to the main Quarto doc under certain conditions, as dictated by a boolean param ojs_include in the YAML header\n```{r}\n#| output: asis\nif (params$ojs_include) { \n  \n  cat(sep = \"\\n\",\n      knitr::knit_child(quiet = TRUE,\n                        text = readr::read_file(\"ojs-cells.qmd\")\n      )\n  )\n  \n}\n```\nWhat’s happening here is\n\nreadr::read_file brings in ojs-cells.qmd as a string\ncat restores the line-by-line formatting and ‘prints’ the content\nThe output: asis chunk option means Quarto treats the content as raw markdown output\n\nWorth a mention - though not about conditionality - is this demo by Mickaël Canouil. It shows how the knit_child method can be called in a for loop to create n code chunks, and therefore n outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called."
   },
   {
     "objectID": "posts/quarto-code-conditionals/post.html#project-profiles",
@@ -152,5 +152,110 @@
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
     "section": "Project profiles",
     "text": "Project profiles\nIn this scenario you will have content to be included (or excluded) based on the profile/s specified. The div below would only be included if the “advanced” profile is in use\n::: {.content-visible when-profile=\"advanced\"}\nThis content will only appear in the advanced version.\n:::\nYou can also specify configurations in a profile-specific YAML that can be fully, or selectively used, to override those in the default profile. Here are the docs."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "",
+    "text": "Shortcuts given here are for MacOS and RStudio 2023.06.1."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#keyboard-shortcut-quick-reference",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#keyboard-shortcut-quick-reference",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Keyboard shortcut quick reference",
+    "text": "Keyboard shortcut quick reference\n\n : Shift + Option + K\n\n\n /  : Shift + Alt + K\n\nBrings up the keyboard shortcut quick ref.\nHowever, I can never remember the layout of the panel and get mentally overloaded seeing so many symbols and columns on screen at once. I prefer the web version instead."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#executing-code",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#executing-code",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Executing code",
+    "text": "Executing code\n\n : Command + Enter\n\n\n /  : Ctrl + Enter\n\nExecutes the line, or lines, your cursor is on.\nDo you highlight an entire series of piped functions with your mouse and then click the Run button?\nWhat if I told you that instead, you just put your cursor wherever the hell you like in a pipe and press Command + Enter? And it just runs the whole thing?\n\n\n\nBehold!\n\n\nYou can even work your way through a script by hitting Command + Enter on repeat. Don’t trust me?\n\n\n\nTry this for size.\n\n\nThat’s right: Even when the focus is in the console (which you can tell because the cursor is blinking there) you can continue hitting Command + Enter to run subsequent lines of your R script."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#switch-focus-between-sourceconsole",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#switch-focus-between-sourceconsole",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Switch focus between Source/Console",
+    "text": "Switch focus between Source/Console\n\n /  /  : Your + choice!\n\nToggle the keyboard focus between your script and the console.\nThis is an unbound keyboard shortcut by default. While there are shortcuts to focus individually on the source and console panels, I like this one because it acts like a toggle. Easier to remember than two separate shortcuts. Also my brain small… like cute cat :)\nGo to Tools, Modify Keyboard Shortcuts... and search for “focus”.\n\n\n\nClick into the empty middle column for Switch Focus Between Source/Console. Press whatever shortcut keys you want to use, then hit enter. I used Control + 1, but this was already assigned to Move Focus to Source so I had to delete it there too."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#indenting-code",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#indenting-code",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Indenting code",
+    "text": "Indenting code\n\n : Command + I\n\nStandardises indentation for highlighted code.\nYou’re typing, copying from the web, moving stuff about. I know it gets messy. Forget tab/space/backspace tedium and use this shortcut."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#commenting-crap",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#commenting-crap",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Commenting crap",
+    "text": "Commenting crap\n\n : Shift + Command + C\n\nComment/uncomment the line your cursor is on, or highlighted lines. Trust me that this one is worth memorising. You’re going to be using it a lot."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#finding-stuff",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#finding-stuff",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Finding stuff",
+    "text": "Finding stuff\nCommand + F\nBrings up the find/replace menu for the script currently open. The In selection check box is very useful.\n\n\n\n\n\nShift + Command + F\nBrings up the Find in Files dialogue box. I use this when it’s been a while since I worked on a project. For example, I might want to know which files a specific function gets used in."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#inserting-operators",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#inserting-operators",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Inserting operators",
+    "text": "Inserting operators\n\n : Option + -\n\nDrops in the assignment operator &lt;-\n\n : Shift + Command + M\n\nDrops in the pipe operator.\nIf you’ve had RStudio installed for a while the default might be the magrittr pipe %&gt;%. These days, the base R pipe |&gt; has got you covered for 99% of use cases, and doesn’t add yet another dependency or library call to your projects, so it is my preferred pipe.\nIf you want to make it the default, go to Tools, Global Options, and check the box as in the image below."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#using-multiple-caretscursors",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#using-multiple-caretscursors",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Using multiple carets/cursors",
+    "text": "Using multiple carets/cursors\nThese are for when you want to do stuff like ‘find and replace’, but the text you’re finding/adding/removing is heterogeneous in some way. You might be tidying up some lines of text after pasting them from a web page, for example.\n\n : Control + Option + Up/Down arrow\n\nAdds carets above/below your current position.\n\n : Option + Left click (and drag)\n\nHighlight text or place carets in contiguous chunks.\n\nClick/move your cursor into the first place you want a caret\nHold down Option\nClick and drag the cursor\n\n\n\n\nIn this example I add carets to multiple contiguous lines of text.\n\n\n\n : Control + Option + Left click\n\nThis is for when things have started to get a little bit messier and you can’t easily highlight text in contiguous chunks.\n\nClick/move your cursor into the first place you want a caret\nThen hold down Control + Option\nEach left-click will place another caret wherever your mouse is hovering\n\n\n\n\nIn this example I delete several lines across a few blocks of text.\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn my experience the terms “caret” and “cursor” are are synonymous in programming IDEs like RStudio. However, some IDEs will use “caret” and others “cursor”. One to be aware of."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#moving-the-cursor",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#moving-the-cursor",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Moving the cursor",
+    "text": "Moving the cursor\n\n : Command + An arrow key\n\nThe up/down arrow keys get you to the top/bottom of a document.\nThe left/right arrow keys get you to the start/end of the current line.\n\n : Option + Left/right arrow key\n\nSkip over whole words. Whee!"
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#highlighting-and-deleting-text",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#highlighting-and-deleting-text",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Highlighting and deleting text",
+    "text": "Highlighting and deleting text\n\n : Shift + Option + Left/right arrow key\n\nHighlights whole words. Oooh 😮\n\n : Option + Backspace\n\nDeletes the word preceding the cursor position. Cya 🙋"
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#summon-the-command-palette",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#summon-the-command-palette",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Summon the command palette 👹",
+    "text": "Summon the command palette 👹\n\n : Shift + Control + P\n\nBringing up the command palette lets you search for commands (and settings) by name. Here I bring up the palette because I can never remember the shortcut to turn some text into a function."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#enclosing",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#enclosing",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Enclosing",
+    "text": "Enclosing\nHighlight some text and enclose it with e.g. parentheses () or quotes \"\".\nIf you highlight some text, you only need to give the opening character of the enclosing pair. RStudio will add the closing character.\n\n\n\nUsing just \", (, and [ to enclose some text."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#intro",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#intro",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Intro",
+    "text": "Intro\nI know quite a few keyboard shortcuts in RStudio these days.\nThat said, such knowledge has been hard won. My background is not in programming, so a lot of the time I wasn’t aware that certain shortcuts were possible. Or if I did, I may not know how to describe them/their names.\nA lot of my knowledge was gleaned through bumbling around, giving it a go, and pairing with colleagues. That’s all good, but it is nice to have a practical list for reference.\nSo, with help from some good peeps over at mastodon, I’m happy to share just such a reference list. The aim is to help get you feeling confident, comfy, and fancy-free when coding in RStudio. It’s nice to feel at home in your IDE of choice ☺️\nShortcuts given here are for MacOS and RStudio 2023.06.1. I’ve made a start on the Windows/Linux ones and will finish them soon! A few more suggestions have also come in that will be added to the post shortly."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#finding-crap",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#finding-crap",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Finding crap",
+    "text": "Finding crap\n\n : Command + F\n\nBrings up the find/replace menu for the script currently open. The In selection check box is very useful.\n\n\n\n\n\n\n : Shift + Command + F\n\nBrings up the Find in Files dialogue box. I use this when it’s been a while since I worked on a project. For example, I might want to know which files a specific function gets used in."
   }
 ]
