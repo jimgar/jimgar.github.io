@@ -48,11 +48,13 @@ make_shortcut <- function(apple, windows) {
 
 ## Intro
 
+![Found, by [Helvetica Blanc](https://helveticablanc.com)](images/helvetica-found.png){fig-align="center"}
+
 I know quite a few keyboard shortcuts in RStudio these days. 
 
 That said, such knowledge has been hard won. My background is not in programming, so a lot of the time I wasn't aware that certain shortcuts were possible. Or if I did, I may not know how to describe them/their names.
 
-A lot of my knowledge was gleaned through bumbling around, giving it a go, and pairing with colleagues. That's all good, but it is nice to have a practical list for reference.
+Much of my learning has been done by bumbling around, giving it a go, and pairing with colleagues. That's all good, but it is nice to have a practical list for reference.
 
 So, with [help](https://fosstodon.org/@jimgar/110832714377237658) from some good peeps over at mastodon, I'm happy to share just such a reference list. The aim is to help get you feeling confident, comfy, and fancy-free when coding in RStudio. It's nice to feel at home in your IDE of choice ☺️
 
