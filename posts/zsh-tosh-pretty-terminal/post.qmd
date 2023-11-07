@@ -1,0 +1,78 @@
+---
+title: "Making the terminal zsh-tosh and pretty on macOS"
+description: "My favourite command line tools with zsh"
+author:
+  - name: Jim Gardner
+    url: https://jimgar.github.io/jimgar/
+date: 2023-10-07
+categories: [terminal, zsh, command line]
+engine: knitr
+draft: true
+---
+
+```{css}
+#| echo: false
+.figure-caption {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+```
+
+## Intro
+
+![Found, by [Helvetica Blanc](https://helveticablanc.com)](images/helvetica-found.png){fig-align="center"}
+
+In this post I'm going to put together what I think are the most basic resources for an enjoyable zsh terminal experience on macOS.
+
+When I first started to learn some programming it was through the command line, specifically using **bash**. When macOS started shipping with **zsh** as the default shell, I would make bash the default instead. I had this feeling that switching to zsh might impact some of the things I knew how to do in bash.
+
+Then I started working with some colleagues that used zsh. "Interesting," I thought 🤔. Their terminals were colourful 🌈, more readable than my green and black one. The git branch was right there in front of them! It looked more user-friendly and I started to experience different feelings: FOMO.
+
+After a little bit of research, it seemed like making the switch to zsh wouldn't actually impact my work. Besides, it's the default macOS shell, so there's tons of people using it and creating guides and troubleshooting references online. That's all I need. I'm not a shell wizard after all.
+
+But zsh **itself** isn't pretty like this. There's a few things we need to download and configure in order to make it look and feel so nice. Thankfully they're all made and maintained by fabulous open source developers and communities, and the installs are nice and straightforward.
+
+## The tools
+
+### zsh
+
+This is a guide for macOS, where zsh has comes as the default shell since October 2019 with the release of macOS Catalina. 
+
+If you're unsure you have it, run the following to check. You should see something similar to my output.
+
+```{bash}
+zsh --version
+```
+
+Also run this to check that it's your default shell. You should see the same output as I have here.
+
+```{bash}
+echo $SHELL
+```
+
+If you get `command not found` or the default shell is something else (like bash), follow the instructions [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH) to install zsh and make it your default.
+
+### Oh My Zsh
+
+Here's the deal. 
+
+I'm sorry this is boring, but, you should know that you have a config file for zsh. It's found at `~/.zshrc`. 
+
+What [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) does is essentially change your .zshrc, putting lots of defaults in and setting things up for you to further configure as you see fit.
+
+This is what does a lot of the heavy lifting for us. So first we'll install Oh My Zsh, then install and activate a couple of plugins for it.
+
+The [basic installation](https://github.com/ohmyzsh/ohmyzsh#basic-installation) is this: run the following in the terminal
+
+```{bash, eval=FALSE}
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+
+https://github.com/eza-community/eza
+https://github.com/sharkdp/bat
+https://github.com/zsh-users/zsh-syntax-highlighting
+https://github.com/zsh-users/zsh-autosuggestions
