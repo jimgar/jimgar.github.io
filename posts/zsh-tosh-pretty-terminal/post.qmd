@@ -1,13 +1,13 @@
 ---
-title: "Making the terminal zsh-tosh and pretty on macOS"
+title: "Making the terminal zsh-tosh on macOS"
 description: "My favourite command line tools with zsh"
 author:
   - name: Jim Gardner
     url: https://jimgar.github.io/jimgar/
-date: 2023-10-07
-categories: [terminal, zsh, command line]
+date: 2023-10-12
+categories: [terminal, zsh, command line, macOS, bat, eza, ohmyzsh]
 engine: knitr
-draft: true
+draft: false
 ---
 
 ```{css}
@@ -21,25 +21,70 @@ draft: true
 }
 ```
 
-## Intro
+## Overview
 
-![Found, by [Helvetica Blanc](https://helveticablanc.com)](images/helvetica-found.png){fig-align="center"}
+In this post I'm going to share a few tools that have made my zsh terminal experience on macOS a little bit nicer.
 
-In this post I'm going to put together what I think are the most basic resources for an enjoyable zsh terminal experience on macOS.
+There's two separate sets of tools. One is to [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) with a couple of plugins. The other are so-called modern versions of a couple of commonly used command line tools. The purpose of all these tools is to make the terminal colourful and easier to use.
 
-When I first started to learn some programming it was through the command line, specifically using **bash**. When macOS started shipping with **zsh** as the default shell, I would make bash the default instead. I had this feeling that switching to zsh might impact some of the things I knew how to do in bash.
+All of the changes here will also apply to terminals in VS Code. If you're an R programmer using RStudio, I'm sorry, that's not a nice thing people like us get to have :(
 
-Then I started working with some colleagues that used zsh. "Interesting," I thought 🤔. Their terminals were colourful 🌈, more readable than my green and black one. The git branch was right there in front of them! It looked more user-friendly and I started to experience different feelings: FOMO.
+## Installation quick ref
 
-After a little bit of research, it seemed like making the switch to zsh wouldn't actually impact my work. Besides, it's the default macOS shell, so there's tons of people using it and creating guides and troubleshooting references online. That's all I need. I'm not a shell wizard after all.
+Assuming you are putting installs in default locations
 
-But zsh **itself** isn't pretty like this. There's a few things we need to download and configure in order to make it look and feel so nice. Thankfully they're all made and maintained by fabulous open source developers and communities, and the installs are nice and straightforward.
+### zsh stuff
 
-## The tools
+- Install [zsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation) (if you need to)
+```{bash, eval=FALSE}
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+- Install [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+```{bash, eval=FALSE}
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+- Install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+```{bash, eval=FALSE}
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+```
+- Update zshrc
+```{bash, eval=FALSE}
+# Add the autosuggestions and highliting to the plugins variable like so
+
+plugins=(
+   git
+   zsh-autosuggestions
+   zsh-syntax-highlighting
+)
+```
+- Source
+```{bash, eval=FALSE}
+source ~/.zshrc
+```
+
+### cli tools
+
+Require [homebrew](https://brew.sh)
+
+- Install [eza](https://github.com/eza-community/eza/blob/main/INSTALL.md#brew-macos)
+```{bash, eval=FALSE}
+brew install eza
+```
+- Install [bat](https://github.com/sharkdp/bat#on-macos-or-linux-via-homebrew)
+```{bash, eval=FALSE}
+brew install bat
+```
+
+`exit` your terminal session and start a new one.
+
+## Context
 
 ### zsh
 
-This is a guide for macOS, where zsh has comes as the default shell since October 2019 with the release of macOS Catalina. 
+zsh has come as the default shell for mac's terminal since October 2019, with the release of macOS Catalina.
+
+The standard experience is perfectly fine, just like bash, but is rather bare bones. There's no syntax highlighting even for the native shell scripting. In fact, everything is black-and-white by default. I'm not down on zsh or bash as they are. I just prefer some colour to help visually parse wtf I'm looking at.
 
 If you're unsure you have it, run the following to check. You should see something similar to my output.
 
@@ -57,22 +102,46 @@ If you get `command not found` or the default shell is something else (like bash
 
 ### Oh My Zsh
 
-Here's the deal. 
+[Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) makes the terminal a bit more colourful and can show you things like which git branch you're on. I've found it quite useful for that alone, and it is really easy to install, with a great default theme. 
 
-I'm sorry this is boring, but, you should know that you have a config file for zsh. It's found at `~/.zshrc`. 
+zsh has a config file, typically found at `~/.zshrc`. What Oh My Zsh does is essentially modify your .zshrc, putting some defaults in and setting things up to further configure as you see fit.
 
-What [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) does is essentially change your .zshrc, putting lots of defaults in and setting things up for you to further configure as you see fit.
+![Once installed, you will see something like this](images/zsh.png){fig-align="center"}
 
-This is what does a lot of the heavy lifting for us. So first we'll install Oh My Zsh, then install and activate a couple of plugins for it.
+It doesn't look like a lot, true. 
 
-The [basic installation](https://github.com/ohmyzsh/ohmyzsh#basic-installation) is this: run the following in the terminal
+![But once you actually start doing something...](images/zsh2.png){fig-align="center"}
 
-```{bash, eval=FALSE}
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+You can see the shortened current directory, which git branch I'm on ("zsh", that I'm working in for this blog post), and some colour when calling `ls -l`.
 
+Oh My Zsh also has loads of [plugins](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins) to enhance functionality. Most are for working with common tools, languages and frameworks for developers. The plugins I've enabled are for syntax highlighting and autosuggestions. The syntax highlighting is nice because if I'm writing a little shell script, or piping a bunch of commands together, it helps me to more quickly visually parse the content. The autosuggestions are a bit like tab completion, but they use your execution history to autosuggest what might come next. This can be useful if you're doing a repetitive workflow like making regular git commits, or moving back and forth between a small number of directories.
 
-https://github.com/eza-community/eza
-https://github.com/sharkdp/bat
-https://github.com/zsh-users/zsh-syntax-highlighting
-https://github.com/zsh-users/zsh-autosuggestions
+![After adding the plugins to my zshrc using the `nano` editor, you can see there's now syntax highlighting in this `for` loop.](images/syntax-highlighting.png){fig-align="center"}
+
+![Here's an example of an autosuggestion. If I hit the right arrow key it would accept the suggestion.](images/autosuggestions.png){fig-align="center"}
+
+### bat and eza
+
+Both [bat](https://github.com/sharkdp/bat) and [eza](https://github.com/eza-community/eza) are "modern" versions of the classic command line tools `cat` and `ls`, respectively. The former is for printing the contents of files, and the latter is for listing files and directories.
+
+bat is particularly nice for several reasons. Let's look at the contents of my zshrc with cat first
+
+![zshrc printed with cat](images/cat.png){fig-align="center"}
+
+The output is single-colour, printed via stdout, in full. It's literally just a dump of the file contents to the screen. Compare that to bat
+
+![zshrc printed with bat](images/bat.png){fig-align="center"}
+
+That's more like it. We've got syntax highlighting, and the print is paginated a la `less`. There's more though - if you have git it shows modifications in the sidebar, it can show all non-printable characters, concatenate files together, and when used in pipes will behave as a drop-in replacement for cat. So all around pretty awesome.
+
+eza I like for two reasons. 
+
+First, yes, it's colour again. You can see in the image below that the return values for `eza -l` are colourised in comparison to `ls -l`. And I always use the `-l` flag, so that matters to me.
+
+Second is the tree flag `-T`. Sometimes a simple tree is all you need to see a project's structure. The really nice thing about `-T` is you can combine it with `-L` (level), and specify a depth. For example if I only wanted to show stuff in the root of my current directory, I can do `eza -TL=1`. You may also have noticed that the trees are colourised 👀
+
+![Examples of using eza](images/eza.png){fig-align="center"}
+
+## Conclusion
+
+Go get some colour in your terminal ;)

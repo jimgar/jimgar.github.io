@@ -28,5 +28,8 @@
   },
   "posts/rstudio-keyboard-shortcuts/post.qmd": {
     "post.html": "ea2c7d46"
+  },
+  "posts/zsh-tosh-pretty-terminal/post.qmd": {
+    "post.html": "123bf446"
   }
 }
