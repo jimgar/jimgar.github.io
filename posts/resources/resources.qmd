@@ -24,6 +24,20 @@ I came across most of these resources on Mastodon via the creator or a reblogger
 
 ![](images/bees.jpg){fig-align="center" width="70%"}
 
+## Quarto
+
+### Websites/blogs
+
+[Quarto](https://quarto.org/) is a publishing tool by Posit, for use with R, Python, Julia, and Observable.
+
+I had no experience of using R for websites before starting this one. I followed the official Quarto docs and have returned to them many times when creating materials, but got more out of the following guides for the structural aspects and primers on CSS. In no particular order
+
+-   Sam Csik - [Adding a blog to your existing Quarto website](https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/) and [Customizing Quarto Websites (Make your website stand out using Sass and CSS)](https://ucsb-meds.github.io/customizing-quarto-websites/#/title-slide)
+
+-   Bea Milz - [Creating a blog with Quarto in 10 steps](https://beamilz.com/posts/2022-06-05-creating-a-blog-with-quarto/en/)
+
+-   Albert Rapp - [The ultimate guide to starting a Quarto blog](https://albert-rapp.de/posts/13_quarto_blog_writing_guide/13_quarto_blog_writing_guide.html)
+
 ## Pretty pictures
 
 ### [Data Imaginist](https://www.data-imaginist.com/)
@@ -34,9 +48,17 @@ Website of self-described "classic generative art weirdo" Thomas Lin Pedersen. A
 
 -   {[patchwork](https://patchwork.data-imaginist.com/)} - combine separate ggplots and raster images into the same graphic. I plan to use this with a plot of Twitter employee reviews, placing an image of Elon Musk above the point at which the review scores absolutely tank in late October 2022 [![Picture of Elon Musk pursing his lips](images/musk-uh-oh.webp){width="3%"}](https://www.theverge.com/23551060/elon-musk-twitter-takeover-layoffs-workplace-salute-emoji)
 
+    Update: it [happened](https://github.com/jimgar/presentations/tree/main/pip-culture-club-january-2023)
+
+    ![](images/twitter-reviews.png)
+
 ### [ART FROM CODE](https://art-from-code.netlify.app/)
 
 Amazing-looking workshop by the incredible artist, educator, and general boon to the R community, [Danielle Navarro](https://djnavarro.net/). Originally from rstudio::conf2022, this is an R generative art workshop. Beautifully presented materials. Working my way through as a total genart newb as of late Jan '23. I hope to blog about my experience of going through the materials!
+
+## R Packages
+
+I made my first R package in Feb/March 2023. It's called {[wardboundaries](https://jimgar.github.io/wardboundaries/index.html)}
 
 ## Geospatial
 
