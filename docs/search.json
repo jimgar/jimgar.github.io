@@ -7,104 +7,6 @@
     "text": "Your email  Message"
   },
   {
-    "objectID": "posts/resources/resources.html#introduction",
-    "href": "posts/resources/resources.html#introduction",
-    "title": "rresourrces",
-    "section": "Introduction",
-    "text": "Introduction\nThis is intended to be a constantly evolving list of R resources that I have found helpful, informative, and maybe even fun - or that I intend to check out or use in the future. If they’re of benefit to you in any way that is great. But truth be told, this is supposed to be of utility for myself, or at the very least a bit of documentation to see where my interest has been caught.\nI came across most of these resources on Mastodon via the creator or a reblogger. Others I picked up from the excellent R Weekly podcast. Yet more are recommendations from my colleagues, or treasures discovered during the bouts of frantic googling that is my job as a technical analyst."
-  },
-  {
-    "objectID": "posts/resources/resources.html#pretty-pictures",
-    "href": "posts/resources/resources.html#pretty-pictures",
-    "title": "rresourrces",
-    "section": "Pretty pictures",
-    "text": "Pretty pictures\n\nData Imaginist\nWebsite of self-described “classic generative art weirdo” Thomas Lin Pedersen. Author of:\n\n{ggfx} - “a (currently experimantal) package that allows the use of various filters and shaders on ggplot2 layers”\n{patchwork} - combine separate ggplots and raster images into the same graphic. I plan to use this with a plot of Twitter employee reviews, placing an image of Elon Musk above the point at which the review scores absolutely tank in late October 2022 \n\n\n\nART FROM CODE\nAmazing-looking workshop by the incredible artist, educator, and general boon to the R community, Danielle Navarro. Originally from rstudio::conf2022, this is an R generative art workshop. Beautifully presented materials. Working my way through as a total genart newb as of late Jan ’23. I hope to blog about my experience of going through the materials!"
-  },
-  {
-    "objectID": "posts/resources/resources.html#geospatial",
-    "href": "posts/resources/resources.html#geospatial",
-    "title": "rresourrces",
-    "section": "Geospatial",
-    "text": "Geospatial\nI’ve made one interactive map and it was mainly done with boilerplate code, so please forgive any imprecision in the wording below!\n\nOpen Geography Portal (ONS)\nI found the GB ward boundaries shapefile very useful for work recently. It contains not just the spatial data for drawing polygons on maps, but also fields like LAD codes/names, which can be used as join keys with other public datasets such as those on the DWP’s Stat-Xplore.\n\n\n{sf}\nThis seems to be one of the main geospatial data packages in R. Apparently it’s all about “spatial data simplified”, which I guess is a play on the whole simple features thing. To be honest I could only get it working in the most absolutely simple scenario. I found the docs far, far too daunting for the speed I had to operate for work, and in the end it was (unsurprisingly) google and Stack Overflow that got me sorted. I’m a rank novice with geospatial stuff so my struggle is more a comment on my knowledge than the sf docs themselves.\nEdit 2022-02-07 I found this Medium post by Trafford Council’s Trafford Data Lab (GitHub profile) - who do some awesome work - about using the Open Geography Portal API. You can supply an API URL directly to sf::read_sf, which is slick, so I updated my example map below.\n\n\n{leaflet}\nLeaflet is an open-source JavaScript library for making interactive maps. And of course, there is an R binding, because people are wonderful 😭. It was surprisingly straightforward once I had my spatial data in. Thankfully there are some excellent examples on the package site, and as I needed to make a choropleth (not that I knew it was called that) for a Shiny app, I just stole the example code and tweaked it for my own purposes!\n\nTotal Amount of Benefit per ward, City of Edinburgh (fictional data)\n\n\nCode\nmy_ward <- \"City of Edinburgh\"\n\nmy_ward_api_formatted <- paste0(\"'\", my_ward, \"'\")\n\napi_url <- URLencode(paste0(\n  \"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Wards_December_2022_Boundaries_GB_BGC/FeatureServer/0/query?\", \n  \"where=LAD22NM=\",\n  my_ward_api_formatted,\n  \"&‘geometryPrecision=6’&outFields=*&outSR=4326&f=geojson\"\n))\n\nward_shp <- sf::read_sf(api_url)\n\n# Random numbers to represent a fictional benefit\nbenefit <- tibble::tibble(\n  WD22CD = dplyr::pull(dplyr::filter(ward_shp, LAD22NM == my_ward), WD22CD),\n  benefit_value = rnorm(length(WD22CD)) * 1000\n)\n\n# Ward-specific data for the map\nward <- dplyr::filter(ward_shp, LAD22NM == my_ward) |>\n  dplyr::left_join(benefit, by = \"WD22CD\")\n\n# Format helpers\npal <- leaflet::colorNumeric(\"Greens\", domain = ward$benefit_value)\nthousands <- scales::label_comma()\n\nlabels <- sprintf(\n  \"<strong>%s</strong><br/>%s\",\n  ward$WD22NM, thousands(ward$benefit_value)\n) |> lapply(htmltools::HTML)\n\n# Map time!\nleaflet::leaflet() |>\n  leaflet::addTiles() |>\n  leaflet::addPolygons(\n    data = ward,\n    fillColor = ~pal(benefit_value),\n    weight = 2,\n    opacity = 0.9,\n    color = \"white\",\n    dashArray = \"3\",\n    fillOpacity = 0.9,\n    highlightOptions = leaflet::highlightOptions(\n      weight = 3,\n      color = \"#666\",\n      dashArray = \"\",\n      fillOpacity = 0.9,\n      bringToFront = TRUE),\n    label = labels,\n    labelOptions = leaflet::labelOptions(\n      style = list(\"font-weight\" = \"normal\", padding = \"3px 8px\"),\n      textsize = \"15px\",\n      direction = \"auto\")\n  ) |>\n  leaflet::addLegend(\n    pal = pal,\n    values = ward$benefit_value,\n    opacity = 0.9,\n    title = NULL,\n    position = \"topleft\"\n  )"
-  },
-  {
-    "objectID": "posts/resources/resources.html#teaching",
-    "href": "posts/resources/resources.html#teaching",
-    "title": "rresourrces",
-    "section": "Teaching",
-    "text": "Teaching\n\nTen quick tips for teaching with (participatory) live coding (online)\nA blog post by Yanina Bellini Saibene. I can’t help but wonder if the internal R trainings I delivered for analysts at Policy in Practice would have benefited from a fully-fledged participatory approach. A lot to learn from this compendium of well-presented tips based on collected and personal experience, plus guidelines from several organisations."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Jim Gardner",
-    "section": "",
-    "text": "I am a Technical Analyst at Policy in Practice. I mainly use  to smoothen our workflows, and deliver analytics projects for clients. In my personal time I love to boulder, garden at Leith Community Croft, and hang with my wife and friends!"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Jim Gardner",
-    "section": "Experience",
-    "text": "Experience\n Technical Analyst\nPolicy in Practice\n\nSept 2021 - present\n\n Research Assistant\nIEB, University of Edinburgh\nSept 2016 - Aug 2021"
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Jim Gardner",
-    "section": "Education",
-    "text": "Education\n MSc Gastronomy (Distinction)\nQueen Margaret University\n\n2016 - 2017\n\n BSc Biological Sciences (1:1)\nHeriot-Watt University\n2012 - 2016"
-  },
-  {
-    "objectID": "posts.html",
-    "href": "posts.html",
-    "title": "~ blog",
-    "section": "",
-    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nMaking the terminal zsh-tosh on macOS\n\n\n5 min\n\n\n\nterminal\n\n\nzsh\n\n\ncommand line\n\n\nmacOS\n\n\nbat\n\n\neza\n\n\nohmyzsh\n\n\n\nMy favourite command line tools with zsh\n\n\n\nOct 12, 2023\n\n\n\n\n\n11/12/23, 10:45:08 PM\n\n\n\n\n\n\n\n\n\n\n\nComfy keyboard shortcuts for RStudio\n\n\n7 min\n\n\n\nR\n\n\nRStudio\n\n\n\nAimed at beginner and intermediate users\n\n\n\nAug 4, 2023\n\n\n\n\n\n8/8/23, 8:56:51 PM\n\n\n\n\n\n\n\n\n\n\n\nPublishing content in Quarto using conditionals and if/else code flow\n\n\n6 min\n\n\n\nQuarto\n\n\nR\n\n\nknitr\n\n\n\nA selection of simple methods using the knitr engine and HTML output\n\n\n\nApr 24, 2023\n\n\n\n\n\n8/4/23, 11:03:09 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n6 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n3/12/23, 11:08:46 AM\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/quarto-code-conditionals/script.html",
-    "href": "posts/quarto-code-conditionals/script.html",
-    "title": "Publishing content in Quarto using conditionals and if/else code flow",
-    "section": "",
-    "text": "In this post I will describe some of the ways I’ve found to conditionally include content in a Quarto-generate HTML document.\nI’m using RStudio and the knitr rendering engine. If you know of Jupyter solutions please let me know! I will happily link to them for the disappointed Pythonistas who have ended up on my blog ;)"
-  },
-  {
-    "objectID": "posts/quarto-code-conditionals/script.html#the-include-shortcode",
-    "href": "posts/quarto-code-conditionals/script.html#the-include-shortcode",
-    "title": "Publishing content in Quarto using conditionals and if/else code flow",
-    "section": "The {{< include >}} shortcode",
-    "text": "The {{< include >}} shortcode\nThis isn’t conditional, but it is really useful.\nIf you have company marketing boilerplate, or headers that start all of your reports, a neat solution is to keep these in their own qmd file and bring them into any other qmd using the include shortcode.\nIn your report you would use the code below\n{{< include _content.qmd >}}\nThis is akin to manually copying and pasting in the contents of content.qmd prior to the report getting rendered.\nWe’ll come back to the shortcode later."
-  },
-  {
-    "objectID": "posts/quarto-code-conditionals/script.html#conditional-content",
-    "href": "posts/quarto-code-conditionals/script.html#conditional-content",
-    "title": "Publishing content in Quarto using conditionals and if/else code flow",
-    "section": "Conditional content",
-    "text": "Conditional content\nTo my mind this one unfairly hogs the “conditional” title.\nThis is for when you have parts of a document that you only want rendered (or not) to a specific format, such as HTML, PDF, etc.\nIf you’re interested in this, here’s the Quarto guide."
-  },
-  {
-    "objectID": "posts/quarto-code-conditionals/script.html#inline-code",
-    "href": "posts/quarto-code-conditionals/script.html#inline-code",
-    "title": "Publishing content in Quarto using conditionals and if/else code flow",
-    "section": "Inline code",
-    "text": "Inline code\nYou can conditionally execute inline code. If my_boolean is TRUE the example below results in a level 2 heading that says “Plots for mtcars”.\n## Plots `r if (params$my_boolean) \"for mtcars\" else \"for iris\"`"
-  },
-  {
-    "objectID": "posts/quarto-code-conditionals/script.html#in-functions",
-    "href": "posts/quarto-code-conditionals/script.html#in-functions",
-    "title": "Publishing content in Quarto using conditionals and if/else code flow",
-    "section": "In functions",
-    "text": "In functions\nSometimes you just need a bit of perspective. Rather than something convoluted, do you just need to make a function with flow control of some kind?\nplotting_func <- function(dat, col1, col2) {\n  \n  if (params$my_boolean) {\n    \n    dat |>\n      ggplot2::ggplot() +\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  } else {\n    \n    dat |>\n      ggplot2::ggplot() +\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    \n  }\n  \n}\nOr if the content is amenable to it, something like this\nplotting_func <- function(dat, col1, col2) {\n  \n  dat |>\n    ggplot2::ggplot() +\n    if (params$my_boolean) {\n      ggplot2::geom_point(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    } else {\n      ggplot2::geom_boxplot(ggplot2::aes({{ col1 }}, {{ col2 }}))\n    }\n  \n}\nYou could put the function into a code block. Or you could hide it away in a folder R/ and a script functions.R. That’s useful if you write long ugly functions like me (lol), but also if you have multiple functions. In this case, you could just source the functions silently along with library calls at the start of the Quarto doc.\n```{r}\n#| include: false\nlibrary(dplyr)\nlibrary(downloadthis)\nlibrary(reactable)\nsource(file.path(\"R\", \"functions.R\"))\n```\nIf your content is too complicated for flow control inside of a function, then just put the content into separate functions in functions.R, source them as above, and use flow control in the Quarto doc\n```{r}\nif (params$my_boolean) {\n  fancy_model_a(mtcars, wt, mpg) \n} else {\n  fancy_model_b(iris, Species, Sepal.Length)\n}\n```"
-  },
-  {
-    "objectID": "posts/quarto-code-conditionals/script.html#knitrknit_child",
-    "href": "posts/quarto-code-conditionals/script.html#knitrknit_child",
-    "title": "Publishing content in Quarto using conditionals and if/else code flow",
-    "section": "knitr::knit_child",
-    "text": "knitr::knit_child\nSaving the best for last, because this one is really cool!\nRemember how I started with the {{< include >}} shortcode and said that it wasn’t conditional?\n{{< include _content.qmd >}}\nIf anyone knows how to (simply) use the shortcode in a conditional manner I’d love to hear about it. In the meantime I consider the conditional version of this is using knitr::knit_child.\nLet’s say I make interactive plots of my data using Observable code blocks and keep this code in a separate Quarto doc ojs-cells.qmd. The code can be added to the main Quarto doc under certain conditions, as dictated by a boolean param ojs_include in the YAML header\n```{r}\n#| output: asis\nif (params$ojs_include) { \n  \n  cat(sep = \"\\n\",\n      knitr::knit_child(quiet = TRUE,\n                        text = readr::read_file(\"ojs-cells.qmd\")\n      )\n  )\n  \n}\n```\nWhat’s happening here is\n\nreadr::read_file brings in ojs-cells.qmd as a string\ncat restores the line-by-line formatting and ‘prints’ the content\nThe output: asis chunk option means Quarto treats the content as raw markdown output\n\nWorth a mention - though not about conditionality - is this demo by Mickaël Canouil. It shows how the knit_child method can be called in a for loop to create n code chunks, and therefore n outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called."
-  },
-  {
     "objectID": "posts/quarto-code-conditionals/post.html",
     "href": "posts/quarto-code-conditionals/post.html",
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
@@ -126,6 +28,13 @@
     "text": "Conditional content\nTo my mind this one unfairly hogs the “conditional” title.\nThis is for when you have parts of a document that you only want rendered (or not) to a specific format, such as HTML, PDF, etc.\nIf you’re interested in this, here’s the Quarto guide."
   },
   {
+    "objectID": "posts/quarto-code-conditionals/post.html#project-profiles",
+    "href": "posts/quarto-code-conditionals/post.html#project-profiles",
+    "title": "Publishing content in Quarto using conditionals and if/else code flow",
+    "section": "Project profiles",
+    "text": "Project profiles\nIn this scenario you will have content to be included (or excluded) based on the profile/s specified. The div below would only be included if the “advanced” profile is in use\n::: {.content-visible when-profile=\"advanced\"}\nThis content will only appear in the advanced version.\n:::\nYou can also specify configurations in a profile-specific YAML that can be fully, or selectively used, to override those in the default profile. Here are the docs."
+  },
+  {
     "objectID": "posts/quarto-code-conditionals/post.html#inline-code",
     "href": "posts/quarto-code-conditionals/post.html#inline-code",
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
@@ -144,21 +53,49 @@
     "href": "posts/quarto-code-conditionals/post.html#knitrknit_child",
     "title": "Publishing content in Quarto using conditionals and if/else code flow",
     "section": "knitr::knit_child",
-    "text": "knitr::knit_child\nSaving the best for last, because this one is really cool!\nRemember how I started with the {{&lt; include &gt;}} shortcode and said that it wasn’t conditional?\n{{&lt; include _content.qmd &gt;}}\nIf anyone knows how to (simply) use the shortcode in a conditional manner I’d love to hear about it. In the meantime I consider the conditional version of this is using knitr::knit_child.\nLet’s say I make interactive plots of my data using Observable code blocks and keep this code in a separate Quarto doc ojs-cells.qmd. The code can be added to the main Quarto doc under certain conditions, as dictated by a boolean param ojs_include in the YAML header\n```{r}\n#| output: asis\nif (params$ojs_include) { \n  \n  cat(sep = \"\\n\",\n      knitr::knit_child(quiet = TRUE,\n                        text = readr::read_file(\"ojs-cells.qmd\")\n      )\n  )\n  \n}\n```\nWhat’s happening here is\n\nreadr::read_file brings in ojs-cells.qmd as a string\ncat restores the line-by-line formatting and ‘prints’ the content\nThe output: asis chunk option means Quarto treats the content as raw markdown output\n\nWorth a mention - though not about conditionality - is this demo by Mickaël Canouil. It shows how the knit_child method can be called in a for loop to create n code chunks, and therefore n outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called."
+    "text": "knitr::knit_child\nSaving the best for last, because this one is really cool!\nRemember how I started with the {{&lt; include &gt;}} shortcode and said that it wasn’t conditional?\n{{&lt; include _content.qmd &gt;}}\nIf anyone knows how to (simply) use the shortcode in a conditional manner I’d love to hear about it. In the meantime I consider the conditional version of this is using knitr::knit_child.\nLet’s say I make interactive plots of my data using Observable code blocks and keep this code in a separate Quarto doc ojs-cells.qmd. The code can be added to the main Quarto doc under certain conditions, as dictated by a boolean param ojs_include in the YAML header\n```{r}\n#| output: asis\nif (params$ojs_include) { \n  \n  cat(sep = \"\\n\",\n      knitr::knit_child(quiet = TRUE,\n                        text = readr::read_file(\"ojs-cells.qmd\")\n      )\n  )\n  \n}\n```\nWhat’s happening here is\n\n\nreadr::read_file brings in ojs-cells.qmd as a string\n\ncat restores the line-by-line formatting and ‘prints’ the content\nThe output: asis chunk option means Quarto treats the content as raw markdown output\n\nWorth a mention - though not about conditionality - is this demo by Mickaël Canouil. It shows how the knit_child method can be called in a for loop to create n code chunks, and therefore n outputs (like tables and plots). This is great when you don’t know how many plots there will be or even what they are called."
   },
   {
-    "objectID": "posts/quarto-code-conditionals/post.html#project-profiles",
-    "href": "posts/quarto-code-conditionals/post.html#project-profiles",
-    "title": "Publishing content in Quarto using conditionals and if/else code flow",
-    "section": "Project profiles",
-    "text": "Project profiles\nIn this scenario you will have content to be included (or excluded) based on the profile/s specified. The div below would only be included if the “advanced” profile is in use\n::: {.content-visible when-profile=\"advanced\"}\nThis content will only appear in the advanced version.\n:::\nYou can also specify configurations in a profile-specific YAML that can be fully, or selectively used, to override those in the default profile. Here are the docs."
-  },
-  {
-    "objectID": "posts/rstudio-keyboard-shortcuts/post.html",
-    "href": "posts/rstudio-keyboard-shortcuts/post.html",
-    "title": "Comfy keyboard shortcuts for RStudio",
+    "objectID": "posts/resources/resources.html",
+    "href": "posts/resources/resources.html",
+    "title": "rresourrces",
     "section": "",
-    "text": "Shortcuts given here are for MacOS and RStudio 2023.06.1."
+    "text": "This is intended to be a constantly evolving list of R resources that I have found helpful, informative, and maybe even fun - or that I intend to check out or use in the future. If they’re of benefit to you in any way that is great. But truth be told, this is supposed to be of utility for myself, or at the very least a bit of documentation to see where my interest has been caught.\nI came across most of these resources on Mastodon via the creator or a reblogger. Others I picked up from the excellent R Weekly podcast. Yet more are recommendations from my colleagues, or treasures discovered during the bouts of frantic googling that is my job as a technical analyst."
+  },
+  {
+    "objectID": "posts/resources/resources.html#introduction",
+    "href": "posts/resources/resources.html#introduction",
+    "title": "rresourrces",
+    "section": "",
+    "text": "This is intended to be a constantly evolving list of R resources that I have found helpful, informative, and maybe even fun - or that I intend to check out or use in the future. If they’re of benefit to you in any way that is great. But truth be told, this is supposed to be of utility for myself, or at the very least a bit of documentation to see where my interest has been caught.\nI came across most of these resources on Mastodon via the creator or a reblogger. Others I picked up from the excellent R Weekly podcast. Yet more are recommendations from my colleagues, or treasures discovered during the bouts of frantic googling that is my job as a technical analyst."
+  },
+  {
+    "objectID": "posts/resources/resources.html#pretty-pictures",
+    "href": "posts/resources/resources.html#pretty-pictures",
+    "title": "rresourrces",
+    "section": "Pretty pictures",
+    "text": "Pretty pictures\nData Imaginist\nWebsite of self-described “classic generative art weirdo” Thomas Lin Pedersen. Author of:\n\n{ggfx} - “a (currently experimantal) package that allows the use of various filters and shaders on ggplot2 layers”\n{patchwork} - combine separate ggplots and raster images into the same graphic. I plan to use this with a plot of Twitter employee reviews, placing an image of Elon Musk above the point at which the review scores absolutely tank in late October 2022 \nART FROM CODE\nAmazing-looking workshop by the incredible artist, educator, and general boon to the R community, Danielle Navarro. Originally from rstudio::conf2022, this is an R generative art workshop. Beautifully presented materials. Working my way through as a total genart newb as of late Jan ’23. I hope to blog about my experience of going through the materials!"
+  },
+  {
+    "objectID": "posts/resources/resources.html#geospatial",
+    "href": "posts/resources/resources.html#geospatial",
+    "title": "rresourrces",
+    "section": "Geospatial",
+    "text": "Geospatial\nI’ve made one interactive map and it was mainly done with boilerplate code, so please forgive any imprecision in the wording below!\n\nOpen Geography Portal (ONS)\nI found the GB ward boundaries shapefile very useful for work recently. It contains not just the spatial data for drawing polygons on maps, but also fields like LAD codes/names, which can be used as join keys with other public datasets such as those on the DWP’s Stat-Xplore.\n{sf}\nThis seems to be one of the main geospatial data packages in R. Apparently it’s all about “spatial data simplified”, which I guess is a play on the whole simple features thing. To be honest I could only get it working in the most absolutely simple scenario. I found the docs far, far too daunting for the speed I had to operate for work, and in the end it was (unsurprisingly) google and Stack Overflow that got me sorted. I’m a rank novice with geospatial stuff so my struggle is more a comment on my knowledge than the sf docs themselves.\nEdit 2022-02-07 I found this Medium post by Trafford Council’s Trafford Data Lab (GitHub profile) - who do some awesome work - about using the Open Geography Portal API. You can supply an API URL directly to sf::read_sf, which is slick, so I updated my example map below.\n{leaflet}\nLeaflet is an open-source JavaScript library for making interactive maps. And of course, there is an R binding, because people are wonderful 😭. It was surprisingly straightforward once I had my spatial data in. Thankfully there are some excellent examples on the package site, and as I needed to make a choropleth (not that I knew it was called that) for a Shiny app, I just stole the example code and tweaked it for my own purposes!\nTotal Amount of Benefit per ward, City of Edinburgh (fictional data)\n\nCodemy_ward &lt;- \"City of Edinburgh\"\n\nmy_ward_api_formatted &lt;- paste0(\"'\", my_ward, \"'\")\n\napi_url &lt;- URLencode(paste0(\n  \"https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Wards_December_2022_Boundaries_GB_BGC/FeatureServer/0/query?\", \n  \"where=LAD22NM=\",\n  my_ward_api_formatted,\n  \"&‘geometryPrecision=6’&outFields=*&outSR=4326&f=geojson\"\n))\n\nward_shp &lt;- sf::read_sf(api_url)\n\n# Random numbers to represent a fictional benefit\nbenefit &lt;- tibble::tibble(\n  WD22CD = dplyr::pull(dplyr::filter(ward_shp, LAD22NM == my_ward), WD22CD),\n  benefit_value = rnorm(length(WD22CD)) * 1000\n)\n\n# Ward-specific data for the map\nward &lt;- dplyr::filter(ward_shp, LAD22NM == my_ward) |&gt;\n  dplyr::left_join(benefit, by = \"WD22CD\")\n\n# Format helpers\npal &lt;- leaflet::colorNumeric(\"Greens\", domain = ward$benefit_value)\nthousands &lt;- scales::label_comma()\n\nlabels &lt;- sprintf(\n  \"&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%s\",\n  ward$WD22NM, thousands(ward$benefit_value)\n) |&gt; lapply(htmltools::HTML)\n\n# Map time!\nleaflet::leaflet() |&gt;\n  leaflet::addTiles() |&gt;\n  leaflet::addPolygons(\n    data = ward,\n    fillColor = ~pal(benefit_value),\n    weight = 2,\n    opacity = 0.9,\n    color = \"white\",\n    dashArray = \"3\",\n    fillOpacity = 0.9,\n    highlightOptions = leaflet::highlightOptions(\n      weight = 3,\n      color = \"#666\",\n      dashArray = \"\",\n      fillOpacity = 0.9,\n      bringToFront = TRUE),\n    label = labels,\n    labelOptions = leaflet::labelOptions(\n      style = list(\"font-weight\" = \"normal\", padding = \"3px 8px\"),\n      textsize = \"15px\",\n      direction = \"auto\")\n  ) |&gt;\n  leaflet::addLegend(\n    pal = pal,\n    values = ward$benefit_value,\n    opacity = 0.9,\n    title = NULL,\n    position = \"topleft\"\n  )"
+  },
+  {
+    "objectID": "posts/resources/resources.html#teaching",
+    "href": "posts/resources/resources.html#teaching",
+    "title": "rresourrces",
+    "section": "Teaching",
+    "text": "Teaching\nTen quick tips for teaching with (participatory) live coding (online)\nA blog post by Yanina Bellini Saibene. I can’t help but wonder if the internal R trainings I delivered for analysts at Policy in Practice would have benefited from a fully-fledged participatory approach. A lot to learn from this compendium of well-presented tips based on collected and personal experience, plus guidelines from several organisations."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#intro",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#intro",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Intro",
+    "text": "Intro\n\n\n\nFound, by Helvetica Blanc\n\n\nI know quite a few keyboard shortcuts in RStudio these days.\nThat said, such knowledge has been hard won. My background is not in programming, so a lot of the time I wasn’t aware that certain shortcuts were possible. Or if I did, I may not know how to describe them/their names.\nMuch of my learning has been done by bumbling around, giving it a go, and pairing with colleagues. That’s all good, but it is nice to have a practical list for reference.\nSo, with help from some good peeps over at mastodon, I’m happy to share just such a reference list. The aim is to help get you feeling confident, comfy, and fancy-free when coding in RStudio. It’s nice to feel at home in your IDE of choice ☺️\nI’m a Mac user currently running RStudio 2023.06.1. Please let me know if there’s anything wrong with the Windows/Linux defaults listed."
   },
   {
     "objectID": "posts/rstudio-keyboard-shortcuts/post.html#keyboard-shortcut-quick-reference",
@@ -166,6 +103,13 @@
     "title": "Comfy keyboard shortcuts for RStudio",
     "section": "Keyboard shortcut quick reference",
     "text": "Keyboard shortcut quick reference\n\n : Option + Shift + K\n\n\n /  : Alt + Shift + K\n\nBrings up the keyboard shortcut quick ref.\nHowever, I can never remember the layout of the panel and get mentally overloaded seeing so many symbols and columns on screen at once. I prefer the web version instead (though it is a bit out of date)."
+  },
+  {
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#restart-r-session",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#restart-r-session",
+    "title": "Comfy keyboard shortcuts for RStudio",
+    "section": "Restart R session",
+    "text": "Restart R session\n\n : Command + Shift + 0\n\n\n /  : Ctrl + Shift + F10\n\nGenerally, it’s a good habit to restart the R session regularly. If your global environment is a graveyard of variables and functions - and you can’t tell which are living or dead - this is what you need."
   },
   {
     "objectID": "posts/rstudio-keyboard-shortcuts/post.html#executing-code",
@@ -196,11 +140,11 @@
     "text": "Commenting crap\n\n : Command + Shift + C\n\n\n /  : Ctrl + Shift + C\n\nComment/uncomment the line your cursor is on, or highlighted lines. Trust me that this one is worth memorising. You’re going to be using it a lot."
   },
   {
-    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#finding-stuff",
-    "href": "posts/rstudio-keyboard-shortcuts/post.html#finding-stuff",
+    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#finding-crap",
+    "href": "posts/rstudio-keyboard-shortcuts/post.html#finding-crap",
     "title": "Comfy keyboard shortcuts for RStudio",
-    "section": "Finding stuff",
-    "text": "Finding stuff\nCommand + F\nBrings up the find/replace menu for the script currently open. The In selection check box is very useful.\n\n\n\n\n\nShift + Command + F\nBrings up the Find in Files dialogue box. I use this when it’s been a while since I worked on a project. For example, I might want to know which files a specific function gets used in."
+    "section": "Finding crap",
+    "text": "Finding crap\n\n : Command + F\n\n\n /  : Ctrl + F\n\nBrings up the find/replace menu for the script currently open. The In selection check box is very useful.\n\n\n\n\n\n\n : Command + Shift + F\n\n\n /  : Ctrl + Shift + F\n\nBrings up the Find in Files dialogue box. I use this when it’s been a while since I worked on a project. For example, I might want to know which files a specific function gets used in."
   },
   {
     "objectID": "posts/rstudio-keyboard-shortcuts/post.html#inserting-operators",
@@ -214,7 +158,7 @@
     "href": "posts/rstudio-keyboard-shortcuts/post.html#using-multiple-caretscursors",
     "title": "Comfy keyboard shortcuts for RStudio",
     "section": "Using multiple carets/cursors",
-    "text": "Using multiple carets/cursors\nThese are for when you want to do stuff like ‘find and replace’, but the text you’re finding/adding/removing is heterogeneous in some way. You might be tidying up some lines of text after pasting them from a web page, for example.\n\n : Control + Option + Up/Down\n\n\n /  : Ctrl + Alt + Up/Down\n\nAdds carets above/below your current position.\n\n : Option + Click and drag\n\n\n /  : Alt + Click and drag\n\nHighlight text or place carets in contiguous chunks.\n\nClick/move your cursor into the first place you want a caret\nHold down Option\nClick and drag the cursor\n\n\n\n\nIn this example I add carets to multiple contiguous lines of text.\n\n\n\n : Control + Option + Click\n\n\n /  : Anyone know? Hit me up\n\nThis is for when things have started to get a little bit messier and you can’t easily highlight text in contiguous chunks.\n\nClick/move your cursor into the first place you want a caret\nThen hold down Control + Option\nEach mouse click will place another caret wherever your mouse is hovering\n\n\n\n\nIn this example I delete several lines across a few blocks of text.\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn my experience the terms “caret” and “cursor” are are synonymous in programming IDEs like RStudio. However, some IDEs will use “caret” and others “cursor”. One to be aware of."
+    "text": "Using multiple carets/cursors\nThese are for when you want to do stuff like ‘find and replace’, but the text you’re finding/adding/removing is heterogeneous in some way. You might be tidying up some lines of text after pasting them from a web page, for example.\n\n : Control + Option + Up/Down\n\n\n /  : Ctrl + Alt + Up/Down\n\nAdds carets above/below your current position.\n\n : Option + Click and drag\n\n\n /  : Alt + Click and drag\n\nHighlight text or place carets in contiguous chunks.\n\nClick/move your cursor into the first place you want a caret\nHold down Option\nClick and drag the cursor\n\n\n\n\nIn this example I add carets to multiple contiguous lines of text.\n\n\n\n : Control + Option + Click\n\n\n /  : Control + Alt + Click\n\nThis is for when things have started to get a little bit messier and you can’t easily highlight text in contiguous chunks.\n\nClick/move your cursor into the first place you want a caret\nThen hold down Control + Option\nEach mouse click will place another caret wherever your mouse is hovering\n\n\n\n\nIn this example I delete several lines across a few blocks of text.\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn my experience the terms “caret” and “cursor” are are synonymous in programming IDEs like RStudio. However, some IDEs will use “caret” and others “cursor”. One to be aware of."
   },
   {
     "objectID": "posts/rstudio-keyboard-shortcuts/post.html#moving-the-cursor",
@@ -245,52 +189,66 @@
     "text": "Enclosing\nHighlight some text and enclose it with e.g. parentheses () or quotes \"\".\nIf you highlight some text, you only need to give the opening character of the enclosing pair. RStudio will add the closing character.\n\n\n\nUsing just \", (, and [ to enclose some text."
   },
   {
-    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#intro",
-    "href": "posts/rstudio-keyboard-shortcuts/post.html#intro",
-    "title": "Comfy keyboard shortcuts for RStudio",
-    "section": "Intro",
-    "text": "Intro\n\n\n\nFound, by Helvetica Blanc\n\n\nI know quite a few keyboard shortcuts in RStudio these days.\nThat said, such knowledge has been hard won. My background is not in programming, so a lot of the time I wasn’t aware that certain shortcuts were possible. Or if I did, I may not know how to describe them/their names.\nMuch of my learning has been done by bumbling around, giving it a go, and pairing with colleagues. That’s all good, but it is nice to have a practical list for reference.\nSo, with help from some good peeps over at mastodon, I’m happy to share just such a reference list. The aim is to help get you feeling confident, comfy, and fancy-free when coding in RStudio. It’s nice to feel at home in your IDE of choice ☺️\nI’m a Mac user currently running RStudio 2023.06.1. Please let me know if there’s anything wrong with the Windows/Linux defaults listed."
-  },
-  {
-    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#finding-crap",
-    "href": "posts/rstudio-keyboard-shortcuts/post.html#finding-crap",
-    "title": "Comfy keyboard shortcuts for RStudio",
-    "section": "Finding crap",
-    "text": "Finding crap\n\n : Command + F\n\n\n /  : Ctrl + F\n\nBrings up the find/replace menu for the script currently open. The In selection check box is very useful.\n\n\n\n\n\n\n : Command + Shift + F\n\n\n /  : Ctrl + Shift + F\n\nBrings up the Find in Files dialogue box. I use this when it’s been a while since I worked on a project. For example, I might want to know which files a specific function gets used in."
-  },
-  {
-    "objectID": "posts/rstudio-keyboard-shortcuts/post.html#restart-r-session",
-    "href": "posts/rstudio-keyboard-shortcuts/post.html#restart-r-session",
-    "title": "Comfy keyboard shortcuts for RStudio",
-    "section": "Restart R session",
-    "text": "Restart R session\n\n : Command + Shift + 0\n\n\n /  : Ctrl + Shift + F10\n\nGenerally, it’s a good habit to restart the R session regularly. If your global environment is a graveyard of variables and functions - and you can’t tell which are living or dead - this is what you need."
-  },
-  {
     "objectID": "posts/zsh-tosh-pretty-terminal/post.html#overview",
     "href": "posts/zsh-tosh-pretty-terminal/post.html#overview",
     "title": "Making the terminal zsh-tosh on macOS",
-    "section": "Overview",
-    "text": "Overview\nIn this post I’m going to share a few tools that have made my zsh terminal experience on macOS a little bit nicer.\nThere’s two separate sets of tools. One is to Oh My Zsh with a couple of plugins. The other are so-called modern versions of a couple of commonly used command line tools. The purpose of all these tools is to make the terminal colourful and easier to use.\nAll of the changes here will also apply to terminals in VS Code. If you’re an R programmer using RStudio, I’m sorry, that’s not a nice thing people like us get to have :("
+    "section": "\n1 Overview",
+    "text": "1 Overview\nIn this post I’m going to share a few tools that have made my zsh terminal experience on macOS a little bit nicer.\nThere’s two separate sets of tools. One is to Oh My Zsh with a couple of plugins. The other are so-called modern versions of a couple of commonly used command line tools. The purpose of all these tools is to make the terminal colourful and easier to use.\nAll of the changes here will also apply to terminals in VS Code. If you’re an R programmer using RStudio, I’m sorry, that’s not a nice thing people like us get to have :( a fool! Of course this is possible - though not the default. See Section 4 to see how to make it so."
   },
   {
     "objectID": "posts/zsh-tosh-pretty-terminal/post.html#installation-quick-ref",
     "href": "posts/zsh-tosh-pretty-terminal/post.html#installation-quick-ref",
     "title": "Making the terminal zsh-tosh on macOS",
-    "section": "Installation quick ref",
-    "text": "Installation quick ref\nAssuming you are putting installs in default locations\n\nzsh stuff\n\nInstall zsh (if you need to)\n\n\nsh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"\n\n\nInstall zsh-autosuggestions\n\n\ngit clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\n\n\nInstall zsh-syntax-highlighting\n\n\ngit clone https://github.com/zsh-users/zsh-syntax-highlighting.git\necho \"source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" &gt;&gt; ${ZDOTDIR:-$HOME}/.zshrc\n\n\nUpdate zshrc\n\n\n# Add the autosuggestions and highliting to the plugins variable like so\n\nplugins=(\n   git\n   zsh-autosuggestions\n   zsh-syntax-highlighting\n)\n\n\nSource\n\n\nsource ~/.zshrc\n\n\n\ncli tools\nRequire homebrew\n\nInstall eza\n\n\nbrew install eza\n\n\nInstall bat\n\n\nbrew install bat\n\nexit your terminal session and start a new one."
+    "section": "\n2 Installation quick ref",
+    "text": "2 Installation quick ref\nAssuming you are putting installs in default locations\n\n2.1 zsh stuff\n\nInstall zsh (if you need to)\n\n\nsh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"\n\n\nInstall zsh-autosuggestions\n\n\n\ngit clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions\n\n\nInstall zsh-syntax-highlighting\n\n\n\ngit clone https://github.com/zsh-users/zsh-syntax-highlighting.git\necho \"source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" &gt;&gt; ${ZDOTDIR:-$HOME}/.zshrc\n\n\nUpdate zshrc\n\n\n# Add the autosuggestions and highliting to the plugins variable like so\n\nplugins=(\n   git\n   zsh-autosuggestions\n   zsh-syntax-highlighting\n)\n\n\nSource\n\n\nsource ~/.zshrc\n\n\n2.2 cli tools\nRequire homebrew\n\nInstall eza\n\n\n\nbrew install eza\n\n\nInstall bat\n\n\n\nbrew install bat\n\nexit your terminal session and start a new one."
   },
   {
     "objectID": "posts/zsh-tosh-pretty-terminal/post.html#context",
     "href": "posts/zsh-tosh-pretty-terminal/post.html#context",
     "title": "Making the terminal zsh-tosh on macOS",
-    "section": "Context",
-    "text": "Context\n\nzsh\nzsh has come as the default shell for mac’s terminal since October 2019, with the release of macOS Catalina.\nThe standard experience is perfectly fine, just like bash, but is rather bare bones. There’s no syntax highlighting even for the native shell scripting. In fact, everything is black-and-white by default. I’m not down on zsh or bash as they are. I just prefer some colour to help visually parse wtf I’m looking at.\nIf you’re unsure you have it, run the following to check. You should see something similar to my output.\n\nzsh --version\n\nzsh 5.9 (x86_64-apple-darwin23.0)\n\n\nAlso run this to check that it’s your default shell. You should see the same output as I have here.\n\necho $SHELL\n\n/bin/zsh\n\n\nIf you get command not found or the default shell is something else (like bash), follow the instructions here to install zsh and make it your default.\n\n\nOh My Zsh\nOh My Zsh makes the terminal a bit more colourful and can show you things like which git branch you’re on. I’ve found it quite useful for that alone, and it is really easy to install, with a great default theme.\nzsh has a config file, typically found at ~/.zshrc. What Oh My Zsh does is essentially modify your .zshrc, putting some defaults in and setting things up to further configure as you see fit.\n\n\n\nOnce installed, you will see something like this\n\n\nIt doesn’t look like a lot, true.\n\n\n\nBut once you actually start doing something…\n\n\nYou can see the shortened current directory, which git branch I’m on (“zsh”, that I’m working in for this blog post), and some colour when calling ls -l.\nOh My Zsh also has loads of plugins to enhance functionality. Most are for working with common tools, languages and frameworks for developers. The plugins I’ve enabled are for syntax highlighting and autosuggestions. The syntax highlighting is nice because if I’m writing a little shell script, or piping a bunch of commands together, it helps me to more quickly visually parse the content. The autosuggestions are a bit like tab completion, but they use your execution history to autosuggest what might come next. This can be useful if you’re doing a repetitive workflow like making regular git commits, or moving back and forth between a small number of directories.\n\n\n\nAfter adding the plugins to my zshrc using the nano editor, you can see there’s now syntax highlighting in this for loop.\n\n\n\n\n\nHere’s an example of an autosuggestion. If I hit the right arrow key it would accept the suggestion.\n\n\n\n\nbat and eza\nBoth bat and eza are “modern” versions of the classic command line tools cat and ls, respectively. The former is for printing the contents of files, and the latter is for listing files and directories.\nbat is particularly nice for several reasons. Let’s look at the contents of my zshrc with cat first\n\n\n\nzshrc printed with cat\n\n\nThe output is single-colour, printed via stdout, in full. It’s literally just a dump of the file contents to the screen. Compare that to bat\n\n\n\nzshrc printed with bat\n\n\nThat’s more like it. We’ve got syntax highlighting, and the print is paginated a la less. There’s more though - if you have git it shows modifications in the sidebar, it can show all non-printable characters, concatenate files together, and when used in pipes will behave as a drop-in replacement for cat. So all around pretty awesome.\neza I like for two reasons.\nFirst, yes, it’s colour again. You can see in the image below that the return values for eza -l are colourised in comparison to ls -l. And I always use the -l flag, so that matters to me.\nSecond is the tree flag -T. Sometimes a simple tree is all you need to see a project’s structure. The really nice thing about -T is you can combine it with -L (level), and specify a depth. For example if I only wanted to show stuff in the root of my current directory, I can do eza -TL=1. You may also have noticed that the trees are colourised 👀\n\n\n\nExamples of using eza"
+    "section": "\n3 Context",
+    "text": "3 Context\n\n3.1 zsh\nzsh has come as the default shell for mac’s terminal since October 2019, with the release of macOS Catalina.\nThe standard experience is perfectly fine, just like bash, but is rather bare bones. There’s no syntax highlighting even for the native shell scripting. In fact, everything is black-and-white by default. I’m not down on zsh or bash as they are. I just prefer some colour to help visually parse wtf I’m looking at.\nIf you’re unsure you have it, run the following to check. You should see something similar to my output.\n\nzsh --version\n\nzsh 5.9 (x86_64-apple-darwin23.0)\n\n\nAlso run this to check that it’s your default shell. You should see the same output as I have here.\n\necho $SHELL\n\n/bin/zsh\n\n\nIf you get command not found or the default shell is something else (like bash), follow the instructions here to install zsh and make it your default.\n\n3.2 Oh My Zsh\nOh My Zsh makes the terminal a bit more colourful and can show you things like which git branch you’re on. I’ve found it quite useful for that alone, and it is really easy to install, with a great default theme.\nzsh has a config file, typically found at ~/.zshrc. What Oh My Zsh does is essentially modify your .zshrc, putting some defaults in and setting things up to further configure as you see fit.\n\n\nOnce installed, you will see something like this\n\nIt doesn’t look like a lot, true.\n\n\nBut once you actually start doing something…\n\nYou can see the shortened current directory, which git branch I’m on (“zsh”, that I’m working in for this blog post), and some colour when calling ls -l.\nOh My Zsh also has loads of plugins to enhance functionality. Most are for working with common tools, languages and frameworks for developers. The plugins I’ve enabled are for syntax highlighting and autosuggestions. The syntax highlighting is nice because if I’m writing a little shell script, or piping a bunch of commands together, it helps me to more quickly visually parse the content. The autosuggestions are a bit like tab completion, but they use your execution history to autosuggest what might come next. This can be useful if you’re doing a repetitive workflow like making regular git commits, or moving back and forth between a small number of directories.\n\n\nAfter adding the plugins to my zshrc using the nano editor, you can see there’s now syntax highlighting in this for loop.\n\n\n\nHere’s an example of an autosuggestion. If I hit the right arrow key it would accept the suggestion.\n\n\n3.3 bat and eza\nBoth bat and eza are “modern” versions of the classic command line tools cat and ls, respectively. The former is for printing the contents of files, and the latter is for listing files and directories.\nbat is particularly nice for several reasons. Let’s look at the contents of my zshrc with cat first\n\n\nzshrc printed with cat\n\nThe output is single-colour, printed via stdout, in full. It’s literally just a dump of the file contents to the screen. Compare that to bat\n\n\nzshrc printed with bat\n\nThat’s more like it. We’ve got syntax highlighting, and the print is paginated a la less. There’s more though - if you have git it shows modifications in the sidebar, it can show all non-printable characters, concatenate files together, and when used in pipes will behave as a drop-in replacement for cat. So all around pretty awesome.\neza I like for two reasons.\nFirst, yes, it’s colour again. You can see in the image below that the return values for eza -l are colourised in comparison to ls -l. And I always use the -l flag, so that matters to me.\nSecond is the tree flag -T. Sometimes a simple tree is all you need to see a project’s structure. The really nice thing about -T is you can combine it with -L (level), and specify a depth. For example if I only wanted to show stuff in the root of my current directory, I can do eza -TL=1. You may also have noticed that the trees are colourised 👀\n\n\nExamples of using eza"
+  },
+  {
+    "objectID": "posts/zsh-tosh-pretty-terminal/post.html#sec-rstudio",
+    "href": "posts/zsh-tosh-pretty-terminal/post.html#sec-rstudio",
+    "title": "Making the terminal zsh-tosh on macOS",
+    "section": "\n4 RStudio settings",
+    "text": "4 RStudio settings\nIt’s really simple to make zsh the default terminal in RStudio.\n\n\nIn the Terminal tab, click the down arrow next to Terminal n. Then click Terminal Options\n\n\n\nNew terminals open with: zsh. Then click Apply, and OK\n\n\n\nStart a new terminal and there you go!"
   },
   {
     "objectID": "posts/zsh-tosh-pretty-terminal/post.html#conclusion",
     "href": "posts/zsh-tosh-pretty-terminal/post.html#conclusion",
     "title": "Making the terminal zsh-tosh on macOS",
-    "section": "Conclusion",
-    "text": "Conclusion\nGo get some colour in your terminal ;)"
+    "section": "\n5 Conclusion",
+    "text": "5 Conclusion\nGo get some colour in your terminal ;)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Jim Gardner",
+    "section": "",
+    "text": "I am a Technical Analyst at Policy in Practice. I mainly use  to smoothen our workflows, and deliver analytics projects for clients. In my personal time I love to boulder, garden at Leith Community Croft, and hang with my wife and friends!"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Jim Gardner",
+    "section": "Experience",
+    "text": "Experience\n Technical Analyst\nPolicy in Practice\n\nSept 2021 - present\n\n Research Assistant\nIEB, University of Edinburgh\nSept 2016 - Aug 2021"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Jim Gardner",
+    "section": "Education",
+    "text": "Education\n MSc Gastronomy (Distinction)\nQueen Margaret University\n\n2016 - 2017\n\n BSc Biological Sciences (1:1)\nHeriot-Watt University\n2012 - 2016"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "~ blog",
+    "section": "",
+    "text": "This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nMaking the terminal zsh-tosh on macOS\n\n\n5 min\n\n\n\nterminal\n\n\nzsh\n\n\ncommand line\n\n\nmacOS\n\n\nbat\n\n\neza\n\n\nohmyzsh\n\n\n\nMy favourite command line tools with zsh\n\n\n\nOct 12, 2023\n\n\n\n\n\n11/15/23, 6:00:51 PM\n\n\n\n\n\n\n\n\n\n\n\nComfy keyboard shortcuts for RStudio\n\n\n7 min\n\n\n\nR\n\n\nRStudio\n\n\n\nAimed at beginner and intermediate users\n\n\n\nAug 4, 2023\n\n\n\n\n\n11/15/23, 6:00:08 PM\n\n\n\n\n\n\n\n\n\n\n\nPublishing content in Quarto using conditionals and if/else code flow\n\n\n6 min\n\n\n\nQuarto\n\n\nR\n\n\nknitr\n\n\n\nA selection of simple methods using the knitr engine and HTML output\n\n\n\nApr 24, 2023\n\n\n\n\n\n8/4/23, 11:03:09 PM\n\n\n\n\n\n\n\n\n\n\n\n\n\nrresourrces\n\n\n6 min\n\n\n\nresources\n\n\nR\n\n\n\nR resources I want to/have used\n\n\n\nJan 20, 2023\n\n\n\n\n\n11/15/23, 6:00:08 PM\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -7,6 +7,7 @@ author:
 date: 2023-10-12
 categories: [terminal, zsh, command line, macOS, bat, eza, ohmyzsh]
 engine: knitr
+number-sections: true
 draft: false
 ---
 
@@ -27,7 +28,7 @@ In this post I'm going to share a few tools that have made my zsh terminal exper
 
 There's two separate sets of tools. One is to [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) with a couple of plugins. The other are so-called modern versions of a couple of commonly used command line tools. The purpose of all these tools is to make the terminal colourful and easier to use.
 
-All of the changes here will also apply to terminals in VS Code. If you're an R programmer using RStudio, I'm sorry, that's not a nice thing people like us get to have :(
+All of the changes here will also apply to terminals in VS Code. If you're an R programmer using RStudio, I'm ~~sorry, that's not a nice thing people like us get to have :(~~ a fool! Of course this is possible - though not the default. See @sec-rstudio to see how to make it so.
 
 ## Installation quick ref
 
@@ -141,6 +142,18 @@ First, yes, it's colour again. You can see in the image below that the return va
 Second is the tree flag `-T`. Sometimes a simple tree is all you need to see a project's structure. The really nice thing about `-T` is you can combine it with `-L` (level), and specify a depth. For example if I only wanted to show stuff in the root of my current directory, I can do `eza -TL=1`. You may also have noticed that the trees are colourised 👀
 
 ![Examples of using eza](images/eza.png){fig-align="center"}
+
+## RStudio settings {#sec-rstudio}
+
+It's really simple to make zsh the default terminal in RStudio.
+
+![In the Terminal tab, click the down arrow next to `Terminal n`. Then click `Terminal Options`](images/rstudio1.png){fig-align="center"}
+
+
+![New terminals open with: zsh. Then click `Apply`, and `OK`](images/rstudio2.png){fig-align="center"}
+
+
+![Start a new terminal and there you go!](images/rstudio3.png){fig-align="center"}
 
 ## Conclusion
 
