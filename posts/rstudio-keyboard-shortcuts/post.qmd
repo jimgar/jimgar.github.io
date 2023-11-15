@@ -238,7 +238,7 @@ Highlight text or place carets in contiguous chunks.
 #| output: asis
 make_shortcut(
   "`Control` + `Option` + `Click`", 
-  "Anyone know? Hit me up"
+  "`Control` + `Alt` + `Click`"
 )
 ```
 
