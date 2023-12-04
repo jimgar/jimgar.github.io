@@ -31,5 +31,8 @@
   },
   "posts/zsh-tosh-pretty-terminal/post.qmd": {
     "post.html": "123bf446"
+  },
+  "posts/advent-of-code-2023/post.qmd": {
+    "post.html": "0cb41025"
   }
 }
