@@ -2,6 +2,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/advent-of-code-2023/post.html",
       "/posts/zsh-tosh-pretty-terminal/post.html",
       "/posts/rstudio-keyboard-shortcuts/post.html",
       "/posts/quarto-code-conditionals/post.html",
