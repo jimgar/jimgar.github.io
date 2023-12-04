@@ -1,6 +1,6 @@
 ---
 title: "Day 1 - Advent of Code 2023"
-description: "..."
+description: "Harder than I thought it would be. Much harder."
 author:
   - name: Jim Gardner
     url: https://jimgar.github.io/jimgar/
@@ -11,7 +11,7 @@ execute:
 draft: true
 ---
 
-I did AoC using base R.
+I did AoC day 1 using base R.
 
 Spoilers ahead. Also, while this code works, I don't know how elegant it is or if there are better ways to do parts of it in base. If you have any tips or pointers I'd love to hear them!
 
