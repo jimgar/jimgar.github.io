@@ -27,3 +27,6 @@ format:
     theme: [darkly, styles.scss]
     mainfont: Atkinson Hyperlegible
     toc: true
+
+execute:
+  freeze: true
