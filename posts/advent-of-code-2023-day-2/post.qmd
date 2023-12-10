@@ -1,0 +1,488 @@
+---
+title: "Day 2 - Advent of Code 2023"
+description: "In which we compare multiple solutions."
+author:
+  - name: Jim Gardner
+    url: https://jimgar.github.io/jimgar/
+date: 2023-12-10
+categories: [R, base R, Advent of Code, Advent of Code 2023]
+execute:
+  echo: true
+draft: false
+engine: knitr
+---
+
+AoC day 2 using base R.
+
+I spent multiple evenings working on this and trying to understand three other programmer's solutions. 
+
+If you're interested in the comparative piece - which you should be because it's the best part - go to the last section of this post.
+
+Spoilers ahead.
+
+# Solution without commentary
+
+```{r solution}
+#| code-fold: true
+#| eval: false
+games_raw <- readLines("input.txt")
+games_raw <- setNames(games_raw, 1:100)
+
+matches <- gregexpr(pattern = "\\d+ ((red)|(blue)|(green))", text = games_raw)
+games <- regmatches(games_raw, m = matches)
+
+games_with_counts_for_colours <- lapply(games, \(game) {
+  colours <- c(red = "red", blue = "blue", green = "green")
+  lapply(colours, \(colour) {
+    grep(colour, game, value = TRUE) |>
+      gsub(" [a-z]+", "", x = _) |>
+      as.integer()
+  })
+})
+
+possible_games <- sapply(games_with_counts_for_colours, \(game_rbg_counts) {
+  limits <- c(red = 12, blue = 14, green = 13)
+  Map(
+    \(count, limit) all(count <= limit),
+    game_rbg_counts,
+    limits
+  ) |>
+    unlist() |>
+    all()
+})
+
+possible_games[possible_games == TRUE] |>
+  names() |>
+  as.integer() |>
+  sum()
+```
+
+# Part 1
+
+## The problem
+--- Day 2: Cube Conundrum ---
+
+You're launched high into the atmosphere! The apex of your trajectory just barely reaches the surface of a large island floating in the sky. You gently land in a fluffy pile of leaves. It's quite cold, but you don't see much snow. An Elf runs over to greet you.
+
+The Elf explains that you've arrived at Snow Island and apologizes for the lack of snow. He'll be happy to explain the situation, but it's a bit of a walk, so you have some time. They don't get many visitors up here; would you like to play a game in the meantime?
+
+As you walk, the Elf shows you a small bag and some cubes which are either red, green, or blue. Each time you play this game, he will hide a secret number of cubes of each color in the bag, and your goal is to figure out information about the number of cubes.
+
+To get information, once a bag has been loaded with cubes, the Elf will reach into the bag, grab a handful of random cubes, show them to you, and then put them back in the bag. He'll do this a few times per game.
+
+You play several games and record the information from each game (your puzzle input). Each game is listed with its ID number (like the 11 in Game 11: ...) followed by a semicolon-separated list of subsets of cubes that were revealed from the bag (like 3 red, 5 green, 4 blue).
+
+For example, the record of a few games might look like this:
+
+```
+Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
+```
+
+In game 1, three sets of cubes are revealed from the bag (and then put back again). The first set is 3 blue cubes and 4 red cubes; the second set is 1 red cube, 2 green cubes, and 6 blue cubes; the third set is only 2 green cubes.
+
+The Elf would first like to know which games would have been possible if the bag contained only 12 red cubes, 13 green cubes, and 14 blue cubes?
+
+In the example above, games 1, 2, and 5 would have been possible if the bag had been loaded with that configuration. However, game 3 would have been impossible because at one point the Elf showed you 20 red cubes at once; similarly, game 4 would also have been impossible because the Elf showed you 15 blue cubes at once. If you add up the IDs of the games that would have been possible, you get 8.
+
+Determine which games would have been possible if the bag had been loaded with only 12 red cubes, 13 green cubes, and 14 blue cubes. What is the sum of the IDs of those games?
+
+## Solution
+
+For each game, I just need to know if **any** of the counts for a colour exceed the possible limits. The subsets of the games are irrelevant, though maybe they'll be important for part 2 - we'll see!
+
+```{r read}
+games_raw <- readLines("input.txt")
+games_raw <- setNames(games_raw, 1:100)
+
+games_raw[1:3]
+```
+
+```{r extract-all-colours-and-counts}
+matches <- gregexpr(pattern = "\\d+ ((red)|(blue)|(green))", text = games_raw)
+games <- regmatches(games_raw, m = matches)
+
+games[1:3]
+```
+
+```{r counts-for-each-colour}
+games_with_counts_for_colours <- lapply(games, \(game) {
+  colours <- c(red = "red", blue = "blue", green = "green")
+  lapply(colours, \(colour) {
+    grep(colour, game, value = TRUE) |>
+      gsub(" [a-z]+", "", x = _) |>
+      as.integer()
+  })
+})
+
+games_with_counts_for_colours[1:3]
+```
+
+```{r determine-which-games-are-possible}
+possible_games <- sapply(games_with_counts_for_colours, \(game_rbg_counts) {
+  limits <- c(red = 12, blue = 14, green = 13)
+  Map(
+    \(count, limit) all(count <= limit),
+    game_rbg_counts,
+    limits
+  ) |>
+    unlist() |>
+    all()
+})
+
+possible_games[1:10]
+```
+
+```{r sum-possible-game-ids}
+possible_games[possible_games == TRUE] |>
+  names() |>
+  as.integer() |>
+  sum()
+```
+
+# Part 2
+
+## The problem
+
+--- Part Two ---
+
+The Elf says they've stopped producing snow because they aren't getting any water! He isn't sure why the water stopped; however, he can show you how to get to the water source to check it out for yourself. It's just up ahead!
+
+As you continue your walk, the Elf poses a second question: in each game you played, what is the fewest number of cubes of each color that could have been in the bag to make the game possible?
+
+Again consider the example games from earlier:
+
+```
+Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
+```
+
+- In game 1, the game could have been played with as few as 4 red, 2 green, and 6 blue cubes. If any color had even one fewer cube, the game would have been impossible.
+- Game 2 could have been played with a minimum of 1 red, 3 green, and 4 blue cubes.
+- Game 3 must have been played with at least 20 red, 13 green, and 6 blue cubes.
+- Game 4 required at least 14 red, 3 green, and 15 blue cubes.
+- Game 5 needed no fewer than 6 red, 3 green, and 2 blue cubes in the bag.
+
+The power of a set of cubes is equal to the numbers of red, green, and blue cubes multiplied together. The power of the minimum set of cubes in game 1 is 48. In games 2-5 it was 12, 1560, 630, and 36, respectively. Adding up these five powers produces the sum 2286.
+
+For each game, find the minimum set of cubes that must have been present. What is the sum of the power of these sets?
+
+## Solution
+
+This part is straightforward. For each game I just need to take the maximum value for each colour and multiply them together. Then add those multiplied values up.
+
+I've already done most of the leg work by creating lists of values for each colour, per game.
+
+```{r reminder}
+games_with_counts_for_colours[1]
+```
+
+```{r fewest}
+fewest_cubes_per_game <- lapply(games_with_counts_for_colours, \(game) {
+  sapply(game, \(colour_values) max(colour_values))
+})
+
+fewest_cubes_per_game[1:3]
+```
+
+```{r power-and-sum}
+sapply(fewest_cubes_per_game, \(x) x[["red"]] * x[["blue"]] * x[["green"]]) |>
+  sum()
+```
+
+# Other base R solutions
+
+I thought it was super interesting comparing with other people's base R solutions. I'd summarise my own approach as 
+
+- Keep stuff in lists
+- Iterate through those lists
+- Write 'procedurally'
+- Err on the side of verbose for variable names 
+
+Below you can find my thoughts on three other solutions, which taken together showcase how diverse problem-solving can be amongst programmer-types. 
+
+Please note that I don't know what the author motivations were when it comes to style, aesthetics, readability, testability, etc., or indeed how much time they spent on the code or how happy with it they are. Everything I have written below is my ignorant interpretation of their work.
+
+Thanks to [John Mackintosh](https://johnmackintosh.net) for making me aware of the authors.
+
+::: {.panel-tabset}
+## jonocarroll
+
+```{r jonocarroll}
+#| eval: false
+f02a <- function(x) {
+  checked <- sapply(x, f02_helper, USE.NAMES = FALSE)
+  sum(which(checked[2, ] == 1))
+}
+
+
+f02b <- function(x) {
+  sum(sapply(x, f02b_helper))
+}
+
+
+f02_helper <- function(x) {
+  game <- as.integer(sub("Game ([0-9]*).*", "\\1", x))
+  x <- sub(".*: ", "", x)
+  sets <- unlist(sapply(strsplit(x, "; "), \(y) sapply(strsplit(y, ","), trimws), simplify = F))
+  possible <- function(s) {
+    vals <- strsplit(s, " ")[[1]]
+    (vals[2] == "red" && as.integer(vals[1]) <= 12) ||
+      (vals[2] == "green" && as.integer(vals[1]) <= 13) || 
+        (vals[2] == "blue" && as.integer(vals[1]) <= 14)
+  }
+  c(game, all(sapply(sets, possible)))
+}
+
+
+f02b_helper <- function(x) {
+  game <- as.integer(sub("Game ([0-9]*).*", "\\1", x))
+  x <- sub(".*: ", "", x)
+  sets <- sapply(strsplit(x, "; "), \(y) lapply(strsplit(y, ","), trimws))
+  totals <- lapply(sets, \(z) unglue::unglue_data(z, "{n=\\d+} {c}"))
+  check_max <- function(d1, d2) {
+    r1 <- as.integer(d1[d1$c == "red", "n"])
+    r2 <- as.integer(d2[d2$c == "red", "n"])
+    b1 <- as.integer(d1[d1$c == "blue", "n"])
+    b2 <- as.integer(d2[d2$c == "blue", "n"])
+    g1 <- as.integer(d1[d1$c == "green", "n"])
+    g2 <- as.integer(d2[d2$c == "green", "n"])
+    
+    maxr <- max(0, max(r1, r2))
+    maxb <- max(0, max(b1, b2))
+    maxg <- max(0, max(g1, g2))
+    
+    d3 <- data.frame(n = integer(), c = character())
+    d3 <- rbind(d3, data.frame(n = maxr, c = "red"))
+    d3 <- rbind(d3, data.frame(n = maxb, c = "blue"))
+    d3 <- rbind(d3, data.frame(n = maxg, c = "green"))    
+  }
+  prod(Reduce(check_max, totals)$n)
+}
+```
+
+Note: I have excluded the roxygen tags from this solution.
+
+Jonathan has gone for a **very** functional style, with tightly named variables. Looking at this I can imagine that, if you wanted to, you could write tests for all the pieces. 
+
+Ample use of the `apply` family is on show, and `strsplit`, which is not something I went for at all but makes perfect sense for the problem at hand. 
+
+He also did something that crossed my mind - whereas I looked at the data and chose to simply name my vector items from 1 to 100, Jonathan has used the actual values in the data `sub("Game ([0-9]*).*", "\\1", x)`. I like that. And I enjoy seeing the value from a regex capture group actually being utilised!
+
+I get into a frenzy sometimes keeping objects in lists and `apply`ing / `purrr::map`ping over them. Sometimes I wonder if it obfuscates what is happening. I like the explicitness of code like this. It is repetitive but not overly so
+```{r jono-bits}
+#| eval: false
+    r1 <- as.integer(d1[d1$c == "red", "n"])
+    r2 <- as.integer(d2[d2$c == "red", "n"])
+    b1 <- as.integer(d1[d1$c == "blue", "n"])
+    b2 <- as.integer(d2[d2$c == "blue", "n"])
+    g1 <- as.integer(d1[d1$c == "green", "n"])
+    g2 <- as.integer(d2[d2$c == "green", "n"])
+```
+
+At the same time, I find the terse naming and highly functional approach more difficult to parse than procedural scripting.
+
+Source [{{< fa brands github >}}](https://github.com/jonocarroll/advent-of-code/blob/main/2023/R/R/day02.R)
+
+## ataustin
+
+```{r ataustin}
+#| eval: false
+input <- readLines("input.txt")
+
+# for each game, create a data frame structure
+structure_game <- function(sets) {
+  count <- regmatches(sets, gregexpr("\\d+", sets))
+  color <- regmatches(sets, gregexpr("[a-z]+", sets))
+  set   <- rep(1:length(sets), times = lengths(count))
+  data.frame(set   = set,
+             color = unlist(color),
+             count = as.integer(unlist(count)))
+}
+
+# combine all games and find the max cubes of each color per game
+sets    <- strsplit(gsub("Game \\d+: ", "", input), split = "; ")
+games   <- setNames(lapply(sets, structure_game), 1:length(sets))
+game_df <- do.call(rbind, games)
+game_df$game <- gsub("\\..*$", "", rownames(game_df))
+
+max_cubes <- aggregate(count ~ color + game, game_df, max)
+
+# part 1
+limit <- data.frame(color = c("red", "green", "blue"),
+                    max   = c(12, 13, 14))
+
+merged <- merge(max_cubes, limit, by = "color")
+merged$possible <- merged$count <= merged$max
+
+outcome <- aggregate(possible ~ game, merged, all)
+sum(as.integer(outcome$game[outcome$possible]))
+
+# part 2
+powers <- aggregate(count ~ game, max_cubes, prod)
+sum(powers$count)
+```
+
+Adam is procedurally scripting, and also has a named function whereas I went for anonymous.
+
+The data structure of choice is the dataframe. Probably the most notable parts for me are `merge` and `aggregate`. I'm trying to improve my base R and there's tons of stuff I've never used, including these two functions. 
+
+`merge` is a join between two dataframes, with control for keeping rows in the x/y dataset/s.
+
+`aggregate` is super cool! It's a bit like doing a group_by and summarise with dplyr.
+```{r iris-dplyr}
+iris |>
+  dplyr::summarise(
+    dplyr::across(tidyselect::where(is.numeric), mean),
+    .by = Species
+  )
+```
+
+```{r iris-aggregate}
+aggregate(iris[, sapply(iris, is.numeric)], list(Species = iris$Species), mean)
+```
+
+You can also use formula notation, which is also not something I'm familiar with so will convert here as an example. Where Adam has this dataframe
+
+```{r game-df-head}
+#| echo: false
+game_df <- structure(list(set = c(1L, 1L, 1L, 2L, 2L, 3L), color = c("red", 
+"blue", "green", "blue", "red", "blue"), count = c(1L, 3L, 11L, 
+1L, 5L, 3L), game = c("1", "1", "1", "1", "1", "1")), row.names = c("1.1", 
+"1.2", "1.3", "1.4", "1.5", "1.6"), class = "data.frame")
+
+max_cubes <- structure(list(color = c("blue", "green", "red", "blue", "green", 
+"red"), game = c("1", "1", "1", "10", "10", "10"), count = c(3L, 
+12L, 16L, 1L, 7L, 10L)), row.names = c(NA, 6L), class = "data.frame")
+```
+
+```{r print-game-df}
+head(game_df)
+```
+
+And does
+
+```{r game-df-aggregate}
+#| eval: false
+max_cubes <- aggregate(count ~ color + game, game_df, max)
+```
+
+It makes this
+
+```{r adam-max-cubes}
+head(max_cubes)
+```
+
+Which is the equivalent of doing this
+
+```{r game-df-dplyr}
+#| eval: false
+game_df |>
+  dplyr::summarise(
+    count = max(count),
+    .by = c(game, color)
+  )
+```
+
+In part 2 of his answer Adam also uses the `prod` function, which multiplies together elements of a vector. It's way better than something I considered doing, ``Reduce(`*`, max_cubes)`` 😅
+
+Source [{{< fa brands github >}}](https://github.com/ataustin/advent-of-code/blob/main/y2023/d02/solution.R)
+
+## ursulams
+
+```{r ursulams}
+#| eval: false
+# part 1
+df <- read.table(text = puzzle_input, header = FALSE, sep = "\n")
+df$game <- as.numeric(row(df))
+
+get_max <- function(string, pattern) {
+  cubes <- gsub("[^0-9,]", "", regmatches(string, gregexpr(pattern, string)))
+  sapply(cubes, function(x) max(as.numeric(unlist(strsplit(as.character(x), split = ",")))))
+}
+
+df$red_max <- get_max(df$V1, "\\d+\\s+red\\b")
+df$green_max <- get_max(df$V1, "\\d+\\s+green\\b")
+df$blue_max <- get_max(df$V1, "\\d+\\s+blue\\b")
+sum(df[(df$red_max <= 12 & df$green_max <= 13 & df$blue_max <= 14), "game"])
+
+# part 2
+df$product <- df$red_max*df$green_max*df$blue_max
+sum(df$product)
+```
+
+I really like this solution! Concise enough to be on the right side of golfed, and with just two objects created, this is still (to me) a very readable solution.
+
+Like Austin, Ursula has a function but the code is otherwise procedural. And the data structure is a dataframe. So basically I'm the odd one out for having used vanilla lists 🙃
+
+Again, I quite like the straightforward approach of defining a function and  calling it three times, in contrast to my inclination of `apply`ing. You read the code and just know what is happening.
+
+The `get_max` function taught me that `gsub` can operate on a list. I really didn't expect that! It deserves an explanation. Here's the line in question
+
+```{r gsub-line}
+#| eval: false
+cubes <- gsub("[^0-9,]", "", regmatches(string, gregexpr(pattern, string)))
+```
+
+For the red cubes, this is what `regmatches(string, gregexpr(pattern, string))` returns
+
+```{r regmatch-return}
+#| eval: false
+# Just the first three items in the list...
+list(
+  c("1 red", "5 red", "13 red", "6 red", "16 red"),
+  c("3 red", "3 red", "3 red", "2 red"),
+  c("5 red", "3 red", "1 red", "1 red", "10 red", "12 red")
+)
+```
+
+Then `gsub`, which is stripping out anything not a digit or comma, operates directly on the list and returns this
+
+```{r gsub-return}
+#| eval: false
+c("1,5,13,6,16", "3,3,3,2", "5,3,1,1,10,12")
+```
+
+Allow me to explain, because to me it wasn't obvious where these commas were coming from in the first place. The answer is actually pretty simple: `gsub` converts non-string arguments to strings. It looks to me like it does so with `as.character`, so the regmatches return ends up looking like this before the subbing happens
+
+```{r regmatch-return-as-character}
+as.character(list(
+  c("1 red", "5 red", "13 red", "6 red", "16 red"),
+  c("3 red", "3 red", "3 red", "2 red"),
+  c("5 red", "3 red", "1 red", "1 red", "10 red", "12 red")
+))
+```
+
+I love it. Ursula is really showing how well she knows her R data types and their coercion!
+
+Another thing to highlight for me is a difference between dataframes and tibbles. I'm used to the tidyverse, where subsetting a tibble with square brackets still returns a tibble
+
+```{r iris-tibble}
+iris_tibbilicus <- tibble::as_tibble(iris)
+
+iris_tibbilicus[iris_tibbilicus$Species == "setosa", "Sepal.Length"]
+```
+
+If I want that filtered Sepal.Length column as a vector I might do it like this
+
+```{r iris-tibble-pull}
+iris_tibbilicus |>
+  dplyr::filter(Species == "setosa") |>
+  dplyr::pull(Sepal.Length)
+```
+
+But with a vanilla dataframe you get a vector simply by specifying the column of interest. Like so
+
+```{r iris-sepallength-vector}
+iris[iris$Species == "setosa", "Sepal.Length"]
+```
+
+Source [{{< fa brands github >}}](https://gist.github.com/ursulams/34f51c4120fad10e38c21891a47fb612)
+
+:::

@@ -34,5 +34,11 @@
   },
   "posts/advent-of-code-2023/post.qmd": {
     "post.html": "0cb41025"
+  },
+  "posts/advent-of-code-2023-day-2/post.qmd": {
+    "post.html": "09c45f74"
+  },
+  "posts/advent-of-code-2023-day-3/post.qmd": {
+    "post.html": "3d045076"
   }
 }
