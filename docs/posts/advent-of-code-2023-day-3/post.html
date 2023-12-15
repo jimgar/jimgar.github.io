@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.340">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Jim Gardner">
-<meta name="dcterms.date" content="2023-12-08">
-<meta name="description" content="…">
-
+<meta name="dcterms.date" content="2023-12-15">
+<meta name="description" content="Commitment to a data structure">
 <title>~ jim - Day 3 - Advent of Code 2023</title>
 <style>
 code{white-space: pre-wrap;}
@@ -23,8 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
@@ -42,8 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -62,19 +91,15 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-
-
 <meta name="twitter:title" content="~ jim - Day 3 - Advent of Code 2023">
-<meta name="twitter:description" content="…">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Commitment to a data structure">
+<meta name="twitter:image" content="matrix.jpeg">
+<meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">~ jim</span>
@@ -86,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">~ home</span></a>
   </li>  
@@ -95,8 +120,8 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">~ blog</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/jimgar" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
@@ -117,20 +142,16 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+<div class="quarto-navbar-tools">
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Day 3 - Advent of Code 2023</h1>
                   <div>
         <div class="description">
-          …
+          Commitment to a data structure
         </div>
       </div>
                           <div class="quarto-categories">
@@ -155,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">December 8, 2023</p>
+        <p class="date">December 15, 2023</p>
       </div>
     </div>
     
@@ -167,35 +188,109 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1" id="toc-part-1" class="nav-link active" data-scroll-target="#part-1">Part 1</a>
+<li><a href="#solution-without-commentary" id="toc-solution-without-commentary" class="nav-link active" data-scroll-target="#solution-without-commentary">Solution without commentary</a></li>
+  <li>
+<a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a>
   <ul class="collapse">
-  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+<li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
   <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
-  </ul></li>
-  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
-  <ul class="collapse">
-  <li><a href="#the-problem-1" id="toc-the-problem-1" class="nav-link" data-scroll-target="#the-problem-1">The problem</a></li>
-  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1">Solution</a></li>
-  </ul></li>
   </ul>
-</nav>
+</li>
+  <li>
+<a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
+  <ul class="collapse">
+<li><a href="#the-problem-1" id="toc-the-problem-1" class="nav-link" data-scroll-target="#the-problem-1">The problem</a></li>
+  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1">Solution</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-<p>AoC day 3 using base R.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>AoC day 3 using base R. I got caught in the matrix 🥲</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="matrix.jpeg" class="img-fluid figure-img" style="width:60.0%" alt="Green text streaming vertically down a black background. It looks like the code seen in The Matrix movies."></p>
+</figure>
+</div>
 <p>Spoilers ahead.</p>
-<section id="part-1" class="level1">
-<h1>Part 1</h1>
-<section id="the-problem" class="level2">
-<h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
+<section id="solution-without-commentary" class="level1"><h1>Solution without commentary</h1>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"input.txt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">schematic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">input</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">140</span>,</span>
+<span>  nrow <span class="op">=</span> <span class="fl">140</span>,</span>
+<span>  byrow <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">input_as_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">input</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">number_locations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gregexpr</a></span><span class="op">(</span><span class="st">"\\d+"</span>, <span class="va">input_as_string</span><span class="op">)</span></span>
+<span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/regmatches.html">regmatches</a></span><span class="op">(</span><span class="va">input_as_string</span>, <span class="va">number_locations</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">symbols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/regmatches.html">regmatches</a></span><span class="op">(</span></span>
+<span>  <span class="va">input_as_string</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gregexpr</a></span><span class="op">(</span><span class="st">"[^0-9.]"</span>, <span class="va">input_as_string</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">parts_and_stars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Map</a></span><span class="op">(</span></span>
+<span>  \<span class="op">(</span><span class="va">number_location</span>, <span class="va">number</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># Convert the first digit's index from the stringified input to its</span></span>
+<span>    <span class="co"># equivalent position in the schematic/matrix</span></span>
+<span>    <span class="va">row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">number_location</span> <span class="op">/</span> <span class="fl">140</span><span class="op">)</span></span>
+<span>    <span class="va">column</span> <span class="op">&lt;-</span> <span class="va">number_location</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="va">row</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fl">140</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="co"># Bounding box. Account for boxes falling outside matrix edges</span></span>
+<span>    <span class="va">left</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">column</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="fl">1</span> <span class="kw">else</span> <span class="va">column</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span>    <span class="va">right</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">column</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">number</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">141</span><span class="op">)</span> <span class="fl">140</span> <span class="kw">else</span> <span class="va">column</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">number</span><span class="op">)</span></span>
+<span>    <span class="va">top</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">row</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">row</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span>    <span class="va">bottom</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">row</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="fl">141</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">row</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span></span>
+<span>    <span class="co"># Collect up characters in the box</span></span>
+<span>    <span class="va">above</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">top</span><span class="op">)</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">schematic</span><span class="op">[</span><span class="va">top</span>, <span class="va">left</span><span class="op">:</span><span class="va">right</span><span class="op">]</span></span>
+<span>    <span class="va">middle</span> <span class="op">&lt;-</span> <span class="va">schematic</span><span class="op">[</span><span class="va">row</span>, <span class="va">left</span><span class="op">:</span><span class="va">right</span><span class="op">]</span></span>
+<span>    <span class="va">below</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">bottom</span><span class="op">)</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">schematic</span><span class="op">[</span><span class="va">bottom</span>, <span class="va">left</span><span class="op">:</span><span class="va">right</span><span class="op">]</span></span>
+<span></span>
+<span>    <span class="va">chars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">above</span>, <span class="va">middle</span>, <span class="va">below</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">part</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">symbols</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">chars</span><span class="op">)</span><span class="op">)</span> <span class="va">number</span> <span class="kw">else</span> <span class="cn">NA</span></span>
+<span></span>
+<span>    <span class="co"># Find index of *, if it exists</span></span>
+<span>    <span class="va">star</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="st">"*"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">above</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">top</span>, <span class="va">left</span> <span class="op">+</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">==</span> <span class="va">above</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="st">"*"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">middle</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">row</span>, <span class="va">left</span> <span class="op">+</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">==</span> <span class="va">middle</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="st">"*"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">below</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">bottom</span>, <span class="va">left</span> <span class="op">+</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">==</span> <span class="va">below</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>parts <span class="op">=</span> <span class="va">part</span>, stars <span class="op">=</span> <span class="va">star</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>,</span>
+<span>  <span class="va">number_locations</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>  <span class="va">numbers</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, args <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Part 1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">parts_and_stars</span><span class="op">$</span><span class="va">parts</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Part 2</span></span>
+<span><span class="va">dupes</span> <span class="op">&lt;-</span> <span class="va">parts_and_stars</span><span class="op">$</span><span class="va">stars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">parts_and_stars</span><span class="op">$</span><span class="va">stars</span>, incomparables <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">gears</span> <span class="op">&lt;-</span> <span class="va">parts_and_stars</span><span class="op">[</span><span class="va">parts_and_stars</span><span class="op">$</span><span class="va">stars</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">dupes</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">gears</span><span class="op">$</span><span class="va">parts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Stars <span class="op">=</span> <span class="va">gears</span><span class="op">$</span><span class="va">stars</span><span class="op">)</span>, <span class="va">prod</span><span class="op">)</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="part-1" class="level1"><h1>Part 1</h1>
+<section id="the-problem" class="level2"><h2 class="anchored" data-anchor-id="the-problem">The problem</h2>
 <p>— Day 3: Gear Ratios —</p>
 <p>You and the Elf eventually reach a gondola lift station; he says the gondola lift will take you up to the <strong>water source</strong>, but this is as far as he can bring you. You go inside.</p>
 <p>It doesn’t take long to find the gondolas, but there seems to be a problem: they’re not moving.</p>
@@ -216,28 +311,207 @@ ul.task-list li input[type="checkbox"] {
 .664.598..</code></pre>
 <p>In this schematic, two numbers are not part numbers because they are not adjacent to a symbol: 114 (top right) and 58 (middle right). Every other number is adjacent to a symbol and so is a part number; their sum is <strong>4361</strong>.</p>
 <p>Of course, the actual engine schematic is much larger. <strong>What is the sum of all of the part numbers in the engine schematic?</strong></p>
-</section>
-<section id="solution" class="level2">
-<h2 class="anchored" data-anchor-id="solution">Solution</h2>
-<p>Solution goes here</p>
-</section>
-</section>
-<section id="part-2" class="level1">
-<h1>Part 2</h1>
-<section id="the-problem-1" class="level2">
-<h2 class="anchored" data-anchor-id="the-problem-1">The problem</h2>
-<p>Probbo</p>
-</section>
-<section id="solution-1" class="level2">
-<h2 class="anchored" data-anchor-id="solution-1">Solution</h2>
-<p>Goes here</p>
+</section><section id="solution" class="level2"><h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<p>Right, so in AoC day 1 I saw my first ever matrix. That means I now see matrices everywhere. reading the problem, I envision the schematic as a matrix, and there’s a bounding box drawn around each cluster of digits. The box encompasses all of the characters surrounding the digits, too. All I have to do is get the indices of the digits and it should be pretty simple maths from there.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"input.txt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">input</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "............................................411.....................363..134.........463.775..........................506..................."
+[2] "......429...836..$............../..960........*.............+..........*...=....381.....*........67......426.....=..../...304..............."
+[3] ".........*...&amp;...641..........924..*.........855....492..495.......476.927.......*.........680...../.&amp;....*.....713......*.................."</code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">input</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 140</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">input</span><span class="op">)</span> <span class="op">==</span> <span class="fl">140</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Yeah, so this thing is 140 x 140 characters. I’m now absolutely committed to the idea of it being a matrix.</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">schematic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">input</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">140</span>,</span>
+<span>  nrow <span class="op">=</span> <span class="fl">140</span>,</span>
+<span>  byrow <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">schematic</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12]
+[1,] "."  "."  "."  "."  "."  "."  "."  "."  "."  "."   "."   "."  
+[2,] "."  "."  "."  "."  "."  "."  "4"  "2"  "9"  "."   "."   "."  
+[3,] "."  "."  "."  "."  "."  "."  "."  "."  "."  "*"   "."   "."  
+[4,] "."  "."  "."  "."  "."  "."  "."  "."  "."  "9"   "0"   "0"  
+[5,] "."  "."  "."  "."  "."  "."  "."  "."  "."  "."   "."   "."  
+[6,] "."  "."  "."  "."  "."  "."  "."  "."  "7"  "2"   "1"   "."  </code></pre>
+</div>
+</div>
+<p>And this is where my brain ground to a halt. I completely boxed myself in - pun not intended but very much appropriate - because I became fixated on the matrix. I didn’t want to do another list extravaganza. I kept printing the data and thinking, “It’s a fucking cube. A cube! MATRIX IS THE ANSWER!!!”</p>
+<p>So yeah after a couple of hours trying to figure out how I would capture the digits, which reached a low point when I considered lapplying through every index in the matrix 💀, I knew it was time to look for “inspiration.”</p>
+<p>Which came in the form of Adam Austin <a href="https://github.com/ataustin/advent-of-code/blob/main/y2023/d03/solution.R">again</a>. Did he use a matrix? No.&nbsp;But our ideas for how to solve were actually very similar. I used his approach of turning the input into a single string to unlock everything else that would make the matrix work.</p>
+<p>That’s right. I still kept on with the matrix idea. We learn by doing hard things, right? Or by making things hard? Something like that… 😅</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">input_as_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">input</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># The first position for each group of numbers</span></span>
+<span><span class="va">number_locations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gregexpr</a></span><span class="op">(</span><span class="st">"\\d+"</span>, <span class="va">input_as_string</span><span class="op">)</span></span>
+<span><span class="va">number_locations</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  45  69  74  86  90 119 147 153 176 221</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The actual numbers in each group</span></span>
+<span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/regmatches.html">regmatches</a></span><span class="op">(</span><span class="va">input_as_string</span>, <span class="va">number_locations</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">numbers</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 411 363 134 463 775 506 429 836 960 381</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">symbols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/regmatches.html">regmatches</a></span><span class="op">(</span></span>
+<span>  <span class="va">input_as_string</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gregexpr</a></span><span class="op">(</span><span class="st">"[^0-9.]"</span>, <span class="va">input_as_string</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">symbols</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "$" "/" "*" "+" "=" "&amp;" "%" "#" "@" "-"</code></pre>
+</div>
+</div>
+<p>Once I’ve got access to all the characters in a bounding box, I’ll need to check if at least one of them is in this vector of symbols. If so, the numbers are a “part”.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">parts_and_stars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Map</a></span><span class="op">(</span></span>
+<span>  \<span class="op">(</span><span class="va">number_location</span>, <span class="va">number</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># Convert the first digit's index from the stringified input to its</span></span>
+<span>    <span class="co"># equivalent position in the schematic/matrix</span></span>
+<span>    <span class="va">row</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">number_location</span> <span class="op">/</span> <span class="fl">140</span><span class="op">)</span></span>
+<span>    <span class="va">column</span> <span class="op">&lt;-</span> <span class="va">number_location</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="va">row</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fl">140</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="co"># Bounding box. Account for boxes falling outside matrix edges</span></span>
+<span>    <span class="va">left</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">column</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="fl">1</span> <span class="kw">else</span> <span class="va">column</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span>    <span class="va">right</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">column</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">number</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">141</span><span class="op">)</span> <span class="fl">140</span> <span class="kw">else</span> <span class="va">column</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">number</span><span class="op">)</span></span>
+<span>    <span class="va">top</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">row</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">row</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span>    <span class="va">bottom</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="va">row</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="fl">141</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">row</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span></span>
+<span>    <span class="co"># Collect up characters in the box</span></span>
+<span>    <span class="va">above</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">top</span><span class="op">)</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">schematic</span><span class="op">[</span><span class="va">top</span>, <span class="va">left</span><span class="op">:</span><span class="va">right</span><span class="op">]</span></span>
+<span>    <span class="va">middle</span> <span class="op">&lt;-</span> <span class="va">schematic</span><span class="op">[</span><span class="va">row</span>, <span class="va">left</span><span class="op">:</span><span class="va">right</span><span class="op">]</span></span>
+<span>    <span class="va">below</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">bottom</span><span class="op">)</span><span class="op">)</span> <span class="cn">NULL</span> <span class="kw">else</span> <span class="va">schematic</span><span class="op">[</span><span class="va">bottom</span>, <span class="va">left</span><span class="op">:</span><span class="va">right</span><span class="op">]</span></span>
+<span></span>
+<span>    <span class="va">chars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">above</span>, <span class="va">middle</span>, <span class="va">below</span><span class="op">)</span></span>
+<span></span>
+<span>    <span class="va">part</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">symbols</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">chars</span><span class="op">)</span><span class="op">)</span> <span class="va">number</span> <span class="kw">else</span> <span class="cn">NA</span></span>
+<span></span>
+<span>    <span class="co"># For part 2. Find index of *, if it exists</span></span>
+<span>    <span class="va">star</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="st">"*"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">above</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">top</span>, <span class="va">left</span> <span class="op">+</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">==</span> <span class="va">above</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="st">"*"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">middle</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">row</span>, <span class="va">left</span> <span class="op">+</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">==</span> <span class="va">middle</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="st">"*"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">below</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">star</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">bottom</span>, <span class="va">left</span> <span class="op">+</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">==</span> <span class="va">below</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>parts <span class="op">=</span> <span class="va">part</span>, stars <span class="op">=</span> <span class="va">star</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>,</span>
+<span>  <span class="va">number_locations</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>  <span class="va">numbers</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, args <span class="op">=</span> <span class="va">_</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">parts_and_stars</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  parts stars
+1   411  2 47
+2   363  2 72
+3   134  &lt;NA&gt;
+4   463  2 89
+5   775  2 89
+6   506  &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>To be fair, I think this code is actually fine. It works and makes logical sense. I wasn’t too happy about including the star bit, which is for part 2 of the problem. Originally it wasn’t a part of the <code>Map</code> and I had to go back and add it. I’ll explain more in a moment.</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">parts_and_stars</span><span class="op">$</span><span class="va">parts</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 536202</code></pre>
+</div>
+</div>
+</section></section><section id="part-2" class="level1"><h1>Part 2</h1>
+<section id="the-problem-1" class="level2"><h2 class="anchored" data-anchor-id="the-problem-1">The problem</h2>
+<p>— Part Two —</p>
+<p>The engineer finds the missing part and installs it in the engine! As the engine springs to life, you jump in the closest gondola, finally ready to ascend to the water source.</p>
+<p>You don’t seem to be going very fast, though. Maybe something is still wrong? Fortunately, the gondola has a phone labeled “help”, so you pick it up and the engineer answers.</p>
+<p>Before you can explain the situation, she suggests that you look out the window. There stands the engineer, holding a phone in one hand and waving with the other. You’re going so slowly that you haven’t even left the station. You exit the gondola.</p>
+<p>The missing part wasn’t the only issue - one of the gears in the engine is wrong. A <strong>gear</strong> is any <code>*</code> symbol that is adjacent to <strong>exactly two part numbers</strong>. Its <strong>gear ratio</strong> is the result of multiplying those two numbers together.</p>
+<p>This time, you need to find the gear ratio of every gear and add them all up so that the engineer can figure out which gear needs to be replaced.</p>
+<p>Consider the same engine schematic again:</p>
+<pre><code>467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598..</code></pre>
+<p>In this schematic, there are <strong>two</strong> gears. The first is in the top left; it has part numbers <code>467</code> and <code>35</code>, so its gear ratio is <code>16345</code>. The second gear is in the lower right; its gear ratio is <code>451490</code>. (The <code>*</code> adjacent to <code>617</code> is not a gear because it is only adjacent to one part number.) Adding up all of the gear ratios produces <strong><code>467835</code></strong>.</p>
+<p><strong>What is the sum of all of the gear ratios in your engine schematic?</strong></p>
+</section><section id="solution-1" class="level2"><h2 class="anchored" data-anchor-id="solution-1">Solution</h2>
+<p>A gear is a star that’s in the bounding box of two parts. I was already tracking the potential parts in the <code>Map</code>, so I also grabbed the indices of any star that appeared. As a reminder, here’s the dataframe I’m working with</p>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">parts_and_stars</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  parts stars
+1   411  2 47
+2   363  2 72
+3   134  &lt;NA&gt;
+4   463  2 89
+5   775  2 89
+6   506  &lt;NA&gt;</code></pre>
+</div>
+</div>
+<p>The index of a star is unique. It’s basically an ID. So if a star’s ID appears more than once next to a part, it is a gear.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dupes</span> <span class="op">&lt;-</span> <span class="va">parts_and_stars</span><span class="op">$</span><span class="va">stars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">parts_and_stars</span><span class="op">$</span><span class="va">stars</span>, incomparables <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">dupes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "2 89"  "2 47"  "2 72"  "3 10"  "3 36"  "3 82"  "3 107" "3 122" "4 56" 
+[10] "4 70" </code></pre>
+</div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gears</span> <span class="op">&lt;-</span> <span class="va">parts_and_stars</span><span class="op">[</span><span class="va">parts_and_stars</span><span class="op">$</span><span class="va">stars</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">dupes</span>, <span class="op">]</span></span>
+<span><span class="va">gears</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   parts stars
+1    411  2 47
+2    363  2 72
+4    463  2 89
+5    775  2 89
+7    429  3 10
+9    960  3 36
+10   381  3 82
+12   426 3 107
+13   304 3 122
+16   855  2 47</code></pre>
+</div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">gears</span><span class="op">$</span><span class="va">parts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Stars <span class="op">=</span> <span class="va">gears</span><span class="op">$</span><span class="va">stars</span><span class="op">)</span>, <span class="va">prod</span><span class="op">)</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 78272573</code></pre>
+</div>
+</div>
+<p>Ending on an Adam Austin double-whammy: <code>aggregate</code> with <code>prod</code> inside.</p>
 
 
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -469,8 +743,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<script src="https://giscus.app/client.js" data-repo="jimgar/jimgar.github.io" data-repo-id="R_kgDOIrtj7A" data-category="General" data-category-id="DIC_kwDOIrtj7M4CTWB3" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="dark_protanopia" data-lang="en" crossorigin="anonymous" async="">
+</script><script src="https://giscus.app/client.js" data-repo="jimgar/jimgar.github.io" data-repo-id="R_kgDOIrtj7A" data-category="General" data-category-id="DIC_kwDOIrtj7M4CTWB3" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="dark_protanopia" data-lang="en" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 
