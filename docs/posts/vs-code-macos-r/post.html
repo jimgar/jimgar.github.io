@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Jim Gardner">
+<meta name="dcterms.date" content="2023-12-20">
+<meta name="description" content="More or less everything you need to know to get started">
+<title>~ jim - VS Code for R on macOS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="twitter:title" content="~ jim - VS Code for R on macOS">
+<meta name="twitter:description" content="More or less everything you need to know to get started">
+<meta name="twitter:image" content="images/rainbow-csv.png">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">~ jim</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">~ home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
+ <span class="menu-text">~ blog</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jimgar" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://stackoverflow.com/users/20624624/jimgar" rel="" target=""><i class="bi bi-stack-overflow" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/jim-gardner-330368ab/" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://fosstodon.org/@jimgar" rel="" target=""><i class="bi bi-mastodon" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">VS Code for R on macOS</h1>
+                  <div>
+        <div class="description">
+          More or less everything you need to know to get started
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">VS Code</div>
+                <div class="quarto-category">Visual Studio Code</div>
+                <div class="quarto-category">R</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://jimgar.github.io/jimgar/">Jim Gardner</a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 20, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#rproj-vs-folderdirectoryworkspace" id="toc-rproj-vs-folderdirectoryworkspace" class="nav-link active" data-scroll-target="#rproj-vs-folderdirectoryworkspace">Rproj vs Folder/Directory/Workspace</a></li>
+  <li><a href="#radian" id="toc-radian" class="nav-link" data-scroll-target="#radian">Radian</a></li>
+  <li><a href="#format-on-save" id="toc-format-on-save" class="nav-link" data-scroll-target="#format-on-save">Format on save</a></li>
+  <li>
+<a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
+  <ul class="collapse">
+<li><a href="#rainbow-csv" id="toc-rainbow-csv" class="nav-link" data-scroll-target="#rainbow-csv">Rainbow CSV</a></li>
+  <li><a href="#gitlens" id="toc-gitlens" class="nav-link" data-scroll-target="#gitlens">GitLens</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#peacock" id="toc-peacock" class="nav-link" data-scroll-target="#peacock">Peacock</a></li>
+  <li><a href="#r-debugger" id="toc-r-debugger" class="nav-link" data-scroll-target="#r-debugger">R Debugger</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#keyboard-shortcuts" id="toc-keyboard-shortcuts" class="nav-link" data-scroll-target="#keyboard-shortcuts">Keyboard shortcuts</a>
+  <ul class="collapse">
+<li><a href="#general" id="toc-general" class="nav-link" data-scroll-target="#general">General</a></li>
+  <li><a href="#r-specific" id="toc-r-specific" class="nav-link" data-scroll-target="#r-specific">R specific</a></li>
+  <li><a href="#custom-keybindings" id="toc-custom-keybindings" class="nav-link" data-scroll-target="#custom-keybindings">Custom keybindings</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>I never thought I’d say this, but… I’m enjoying Visual Studio Code (VS Code) as an IDE for R. I’d even recommend it as an alternative to RStudio for the average R user. This is particularly true if you - like me - are getting interested in languages other than R, such as python.</p>
+<p>Setting it all up isn’t super hard. The <strong>essential</strong> thing to know is that VS Code is primarily a customisable IDE that relies on extensions to add in support for most languages. For R, there’s a nice, simple guide on the VS Code website <a href="https://code.visualstudio.com/docs/languages/r">specifically for us</a>. Install VS Code, follow the linked guide, and you should be ready to code. There’s also a <a href="https://github.com/REditorSupport/vscode-R/wiki">wiki</a> for the extension that is worth looking at.</p>
+<p>What’s more esoteric are the bits and bobs of context you need to start getting the most out of VS Code, particularly if you come from the RStudio world - like I do! So this post contains some of the extra context that I think is worth knowing during/after setup.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>This post is <strong>specifically for mac users</strong>
+</li>
+<li>I haven’t done any package development in VS Code yet</li>
+<li>I don’t claim to be an advanced R <strong>or</strong> VS Code user</li>
+<li>Use any of my suggestions/instructions at your own risk!</li>
+</ol>
+</div>
+</div>
+<section id="rproj-vs-folderdirectoryworkspace" class="level1"><h1>Rproj vs Folder/Directory/Workspace</h1>
+<p>You’re likely familiar with the <code>.Rproj</code> file generated by RStudio when you create a new project. We like the Rproj because: double-clicking it opens the project in its own RStudio session, with the working directory already set. That’s good.</p>
+<p>With VS Code you just open the project folder/directory (also known as a workspace). All terminals, including the R one, will have the working directory set. No Rproj required.</p>
+<p>Like RStudio you can have multiple windows open, each for a separate project. It’s worth knowing that if you open another folder with File &gt; Open Folder…, it will close the currently open folder. One window, one folder. If you want to have multiple windows each with their own folder, you first have to open a window with Cmd + Shift + N, and <strong>then</strong> open a folder.</p>
+<p>In the <a href="#radian">radian section</a> you will learn about the settings json, and in the <a href="#custom-keybindings">custom keybindings section</a> about keybindings.json. It’s worth knowing that these can be set at the workspace level and will override any user-level settings when anyone works in the folder.</p>
+</section><section id="radian" class="level1"><h1>Radian</h1>
+<p>While it <strong>is</strong> recommended to install and use <a href="https://github.com/randy3k/radian">radian</a> as the R console for VS Code, a word of warning. This became the biggest pain point during my setup. I would try to run R code and get errors about not being able to find R and/or radian. If the same happens to you, try the following.</p>
+<p>First, install radian however the site suggests. Then open VS Code’s <code>settings.json</code>. To do that, hit Cmd + Shift + P (this will open the command palette) and start typing in “open user settings (json)”. When the option is visible to you, click it and <code>settings.json</code> will open.</p>
+<p>The settings json is a file of customisable settings for controlling the behaviour of VS Code. In this case, we want to tell it where to look for R and radian. Copy the following into your settings file and then replace the file paths for your machine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.bracketedPaste"</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.rpath.mac"</span><span class="op">:</span> <span class="st">"/usr/local/bin/R"</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.rterm.mac"</span><span class="op">:</span> <span class="st">"/Library/Frameworks/Python.framework/Versions/3.11/bin/radian"</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"r.rterm.option"</span><span class="op">:</span> [</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--no-save"</span><span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--no-restore"</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--r-binary=/usr/local/bin/R"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>r.rpath.mac</code> and <code>--r-binary</code> point to your R. To find out where that is, run <code>which R</code> in the terminal.</p>
+<p><code>r.rterm.mac</code> points to your radian. You can find that with <code>which radian</code>.</p>
+<p>Save the settings file. Now if you open an R file and attempt to run some code it should open a terminal and just “do the thing”.</p>
+</section><section id="format-on-save" class="level1"><h1>Format on save</h1>
+<p>Did you know that there’s such a thing as “format on save”? It sounds terrible, right? Someone else’s idea of what looks good absolutely destroying your inspiring, elegant, unique code?</p>
+<p>Well for me… It’s actually been kind of liberating. I would never have tried this, but recently at work I’ve been collaborating with colleagues on a python codebase. For consistency’s sake we all have the same settings for python, including use of a formatter with format on save enable. Whenever we save files the code gets formatted.</p>
+<p>Yeah, it means your personal style disappears somewhat. But the truth is that most of us code similarly anyways. At work it has been great, because I don’t know all of the python idioms and apparently my code stinks of R.</p>
+<p>Once we switched to the formatter? No more stinky typey. Idioms are largely upheld and we get to focus on solving the actual problems, not fretting over formatting and indentation. I’ve spent quite a bit of time with R in VS Code over the past month, and I have found the same sense of freedom.</p>
+<p>There is a linter for R (<a href="https://lintr.r-lib.org">lintr</a>) and it is automatically set up when you install the R extension<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. VS Code can pick this linter up and use it to format your code on save. You’re going to get shouted at a lot by the linter anyway, so if you’re curious about trying format on save, this is all you need to do:</p>
+<p>In <code>settings.json</code> add the following items</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"[r]"</span><span class="op">:</span> {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"editor.formatOnSave"</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"editor.tabSize"</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"editor.detectIndentation"</span><span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The tab size and detect indentation items are there to stop lintr acting goofy with format on save. If you’re going to change lintr’s indentation settings (e.g.&nbsp;you prefer 4-space indentation), remove the <code>tabsize</code> one (or change it to 4).</p>
+<p>With RStudio people use lintr in combination with <a href="https://github.com/r-lib/styler">styler</a>, and sometimes GitHub actions, to apply style to their code. That’s fine. But it’s not for me, I prefer format on save. I literally just press Cmd + S and the formatting is taken care of, no matter what the issue is. It’s simple and immediate.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you hate the idea of format on save, or even a linter, and see them as an affront to the craft of programming: It’s ok. I get it. Everything you have to say is valid - you do you!</p>
+</div>
+</div>
+</section><section id="extensions" class="level1"><h1>Extensions</h1>
+<p>These are the notable extensions that I have been using. You can find them by searching the extension marketplace with their name - they’re all rather distinct.</p>
+<p>None of them are inherently needed if you’re working with plain R scripts.</p>
+<section id="rainbow-csv" class="level2"><h2 class="anchored" data-anchor-id="rainbow-csv">Rainbow CSV</h2>
+<p>I work with a lot of csv and dat files for work, and they require regular inspection. If I needed to look at them outside of R, usually I’d open the file in TextEdit or TextMate if small/simple, or Excel if not.</p>
+<p>But that’s been massively reduced thanks to this extension, which is very fast and simple. It works on csv, tsv, and dat, with good instructions in the readme for customising behaviour.</p>
+<p><img src="images/rainbow-csv.png" class="img-fluid" style="width:80.0%" alt="A VS Code window showing the R dataset 'mtcars' open as a standalone csv file. The Rainbow CSV extension is installed and enabled, applying a series of alternating colours to the columns of mtcars.csv"></p>
+<p>Yay! That’s nice, right? 🌈</p>
+<p>There’s a few non-obvious tools available as well. First, when hovering over values it tells you the column name.</p>
+<p>Second, in the toolbar at the bottom of VS Code, you can see “Query”, and “Align”. These are awesome.</p>
+<p><strong>Query</strong> will open a table-viewer and access to RBQL (rainbow query language), which is basically SQL.</p>
+<p><strong>Align</strong> will align all of the colums by inserting whitespace, and you can then click the same button to shrink the table back. If you are going to do this the docs (and I!) recommend that you put the following in your settings json: It will create a temp file where the alignment and shrinking happens, leaving the original file untouched.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rainbow_csv.align_in_scratch_file"</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you work with AWS there’s an extension for that, too. You can interact with all your usual services, including S3. Unlike the GUI, you don’t have to download (smaller) files from S3 just to view them. So if you have some csv that needs checking, you can literally just use the file explorer, click the filename, it will open in preview here in VS Code, <strong>and it will get the rainbow csv treatment!</strong> I think this is very cool!!!</p>
+</div>
+</div>
+</section><section id="gitlens" class="level2"><h2 class="anchored" data-anchor-id="gitlens">GitLens</h2>
+<p>If you work with git this is nice. When you click on a line of code in the editor you get to see the git blame (ugh why is it called that) and commit message. There’s also a GitLens tab with history and graph in the bottom panel.</p>
+</section><section id="quarto" class="level2"><h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
+<p>Pretty self-explanatory. There’s great support for Quarto in VS Code. That’s how I’m writing this blog post :)</p>
+</section><section id="peacock" class="level2"><h2 class="anchored" data-anchor-id="peacock">Peacock</h2>
+<p>Peacock adds colour to various parts of the VS Code window.</p>
+<p>The real use for it is in colouring different workspaces. The settings get added to the workspace-specific settings json so they persist over time. If you have a couple of projects that you tend to flick between, the colour can help to orient you by differentiating between the windows.</p>
+</section><section id="r-debugger" class="level2"><h2 class="anchored" data-anchor-id="r-debugger">R Debugger</h2>
+<p>To be honest I’ve not played with this much yet, or used it at all in earnest. I usually use the native debugger in the REPL. But it does have one enticing feature, which is a variable viewer.</p>
+</section></section><section id="keyboard-shortcuts" class="level1"><h1>Keyboard shortcuts</h1>
+<section id="general" class="level2"><h2 class="anchored" data-anchor-id="general">General</h2>
+<p>These are the ones that I find notable.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="ojauqmaztg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ojauqmaztg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ojauqmaztg thead, #ojauqmaztg tbody, #ojauqmaztg tfoot, #ojauqmaztg tr, #ojauqmaztg td, #ojauqmaztg th {
+  border-style: none;
+}
+
+#ojauqmaztg p {
+  margin: 0;
+  padding: 0;
+}
+
+#ojauqmaztg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #07193B;
+  width: auto;
+  border-top-style: hidden;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: hidden;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ojauqmaztg .gt_title {
+  color: #FFFFFF;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #07193B;
+  border-bottom-width: 0;
+}
+
+#ojauqmaztg .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #07193B;
+  border-top-width: 0;
+}
+
+#ojauqmaztg .gt_heading {
+  background-color: #07193B;
+  text-align: center;
+  border-bottom-color: #07193B;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ojauqmaztg .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ojauqmaztg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ojauqmaztg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ojauqmaztg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ojauqmaztg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ojauqmaztg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ojauqmaztg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ojauqmaztg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ojauqmaztg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ojauqmaztg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ojauqmaztg .gt_stub {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ojauqmaztg .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ojauqmaztg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ojauqmaztg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ojauqmaztg .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #07193B;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ojauqmaztg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ojauqmaztg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #07193B;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ojauqmaztg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ojauqmaztg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #07193B;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ojauqmaztg .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #07193B;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ojauqmaztg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ojauqmaztg .gt_left {
+  text-align: left;
+}
+
+#ojauqmaztg .gt_center {
+  text-align: center;
+}
+
+#ojauqmaztg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ojauqmaztg .gt_font_normal {
+  font-weight: normal;
+}
+
+#ojauqmaztg .gt_font_bold {
+  font-weight: bold;
+}
+
+#ojauqmaztg .gt_font_italic {
+  font-style: italic;
+}
+
+#ojauqmaztg .gt_super {
+  font-size: 65%;
+}
+
+#ojauqmaztg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ojauqmaztg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ojauqmaztg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ojauqmaztg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ojauqmaztg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ojauqmaztg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ojauqmaztg .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><tbody class="gt_table_body">
+<tr class="gt_group_heading_row">
+<th colspan="2" class="gt_group_heading" style="border-top-width: 2px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #103884; color: #FFD977; font-weight: bold;" scope="colgroup" id="Show/hide">Show/hide</th>
+    </tr>
+<tr class="gt_row_group_first">
+<td headers="Show/hide  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + J</td>
+<td headers="Show/hide  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Show/hide the terminal</td>
+</tr>
+<tr>
+<td headers="Show/hide  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + B</td>
+<td headers="Show/hide  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Show/hide the sidebar</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="2" class="gt_group_heading" style="border-top-width: 2px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #103884; color: #FFD977; font-weight: bold;" scope="colgroup" id="Editor">Editor</th>
+    </tr>
+<tr class="gt_row_group_first">
+<td headers="Editor  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Ctrl + 1</td>
+<td headers="Editor  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Focus on editor</td>
+</tr>
+<tr>
+<td headers="Editor  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + [ / ]</td>
+<td headers="Editor  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cycle left / right through editor windows</td>
+</tr>
+<tr>
+<td headers="Editor  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + W</td>
+<td headers="Editor  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Close current editor window</td>
+</tr>
+<tr>
+<td headers="Editor  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Option + ↑ / ↓</td>
+<td headers="Editor  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Move current line (or highlighted block) of text up/down</td>
+</tr>
+<tr>
+<td headers="Editor  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Option + ↑ / ↓</td>
+<td headers="Editor  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Insert cursor above or below current position</td>
+</tr>
+<tr>
+<td headers="Editor  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + V</td>
+<td headers="Editor  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Preview markdown file</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="2" class="gt_group_heading" style="border-top-width: 2px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #103884; color: #FFD977; font-weight: bold;" scope="colgroup" id="Explorer">Explorer</th>
+    </tr>
+<tr class="gt_row_group_first">
+<td headers="Explorer  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + E</td>
+<td headers="Explorer  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Focus on explorer</td>
+</tr>
+<tr>
+<td headers="Explorer  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + ↓</td>
+<td headers="Explorer  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Open highlighted file from explorer</td>
+</tr>
+<tr>
+<td headers="Explorer  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Ctrl + Enter</td>
+<td headers="Explorer  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Open highlighted file from explorer (to the side)</td>
+</tr>
+<tr>
+<td headers="Explorer  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + ←</td>
+<td headers="Explorer  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Collapse all folders</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="2" class="gt_group_heading" style="border-top-width: 2px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #103884; color: #FFD977; font-weight: bold;" scope="colgroup" id="Terminal">Terminal</th>
+    </tr>
+<tr class="gt_row_group_first">
+<td headers="Terminal  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Ctrl + ↑ / ↓</td>
+<td headers="Terminal  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Grow/shrink the terminal pane</td>
+</tr>
+<tr>
+<td headers="Terminal  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + [ / ]</td>
+<td headers="Terminal  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cycle left / right through terminals</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="2" class="gt_group_heading" style="border-top-width: 2px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #103884; color: #FFD977; font-weight: bold;" scope="colgroup" id="Workspace">Workspace</th>
+    </tr>
+<tr class="gt_row_group_first">
+<td headers="Workspace  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + N</td>
+<td headers="Workspace  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Open a new window</td>
+</tr>
+<tr>
+<td headers="Workspace  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + O</td>
+<td headers="Workspace  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Open a file or folder</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Shrinking the terminal will <a href="https://kevinyank.com/posts/fix-system-beep-vscode/#:~:text=The%20issue%20seems%20to%20be,warn%20you%20that%20your%20keystrokes">cause the macOS system beep to kick in</a>, which is annoying as hell. I think this shortcut is so useful that it’s actually worth deactivating the beep. It’s simple to do. First check if you have a file at <code>~/Library/KeyBindings/DefaultKeyBinding.dict</code></p>
+<p>If you do, add the line from the code block below. If you don’t:</p>
+<ol type="1">
+<li>Create the directory <code>~/Library/KeyBindings</code>
+</li>
+<li>Create the file <code>DefaultKeyBinding.dict</code> in the new directory</li>
+<li>Add the below to the file</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"^@</span><span class="sc">\U</span><span class="st">F701"</span> <span class="op">=</span> <span class="st">"noop"</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alternatively, you can make custom keybindings in VS Code (see below for examples of how to do that).</p>
+</div>
+</div>
+</section><section id="r-specific" class="level2"><h2 class="anchored" data-anchor-id="r-specific">R specific</h2>
+<p>These should all be familiar if you’re used to RStudio. The Quarto ones come with the Quarto extension.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="mqemgtamau" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mqemgtamau table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mqemgtamau thead, #mqemgtamau tbody, #mqemgtamau tfoot, #mqemgtamau tr, #mqemgtamau td, #mqemgtamau th {
+  border-style: none;
+}
+
+#mqemgtamau p {
+  margin: 0;
+  padding: 0;
+}
+
+#mqemgtamau .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #07193B;
+  width: auto;
+  border-top-style: hidden;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: hidden;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mqemgtamau .gt_title {
+  color: #FFFFFF;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #07193B;
+  border-bottom-width: 0;
+}
+
+#mqemgtamau .gt_subtitle {
+  color: #FFFFFF;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #07193B;
+  border-top-width: 0;
+}
+
+#mqemgtamau .gt_heading {
+  background-color: #07193B;
+  text-align: center;
+  border-bottom-color: #07193B;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mqemgtamau .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mqemgtamau .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mqemgtamau .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mqemgtamau .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mqemgtamau .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mqemgtamau .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mqemgtamau .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mqemgtamau .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mqemgtamau .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mqemgtamau .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mqemgtamau .gt_stub {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqemgtamau .gt_stub_row_group {
+  color: #FFFFFF;
+  background-color: #07193B;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mqemgtamau .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mqemgtamau .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mqemgtamau .gt_summary_row {
+  color: #FFFFFF;
+  background-color: #07193B;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqemgtamau .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mqemgtamau .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_grand_summary_row {
+  color: #FFFFFF;
+  background-color: #07193B;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqemgtamau .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mqemgtamau .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #07193B;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqemgtamau .gt_sourcenotes {
+  color: #FFFFFF;
+  background-color: #07193B;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mqemgtamau .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mqemgtamau .gt_left {
+  text-align: left;
+}
+
+#mqemgtamau .gt_center {
+  text-align: center;
+}
+
+#mqemgtamau .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mqemgtamau .gt_font_normal {
+  font-weight: normal;
+}
+
+#mqemgtamau .gt_font_bold {
+  font-weight: bold;
+}
+
+#mqemgtamau .gt_font_italic {
+  font-style: italic;
+}
+
+#mqemgtamau .gt_super {
+  font-size: 65%;
+}
+
+#mqemgtamau .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mqemgtamau .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mqemgtamau .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mqemgtamau .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mqemgtamau .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mqemgtamau .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mqemgtamau .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false"><tbody class="gt_table_body">
+<tr class="gt_group_heading_row">
+<th colspan="2" class="gt_group_heading" style="border-top-width: 2px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #103884; color: #FFD977; font-weight: bold;" scope="colgroup" id="Run code">Run code</th>
+    </tr>
+<tr class="gt_row_group_first">
+<td headers="Run code  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Enter</td>
+<td headers="Run code  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Run the current line or highlighted code</td>
+</tr>
+<tr>
+<td headers="Run code  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + Enter</td>
+<td headers="Run code  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Run the entire script</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="2" class="gt_group_heading" style="border-top-width: 2px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #103884; color: #FFD977; font-weight: bold;" scope="colgroup" id="Quarto">Quarto</th>
+    </tr>
+<tr class="gt_row_group_first">
+<td headers="Quarto  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + K</td>
+<td headers="Quarto  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Render and show preview</td>
+</tr>
+<tr>
+<td headers="Quarto  Keys" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Cmd + Shift + I</td>
+<td headers="Quarto  Description" class="gt_row gt_left" style="border-top-width: 1px; border-top-style: solid; border-top-color: #103884; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #103884;">Insert code chunk</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</section><section id="custom-keybindings" class="level2"><h2 class="anchored" data-anchor-id="custom-keybindings">Custom keybindings</h2>
+<p>Like the settings file, there’s a <code>keybindings.json</code> for any bespoke keyboard shortcuts that you want to make. Open the command palette as before, but this time you’re looking for “Open Keyboard Shortcuts (JSON)”.</p>
+<p>It is super useful to have something that can toggle between the terminal and editor. You can choose whatever keystrokes you like but Ctrl + ` is a common choice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// toggle between the terminal and editor</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span><span class="op">:</span> <span class="st">"ctrl+`"</span><span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"command"</span><span class="op">:</span> <span class="st">"workbench.action.terminal.focus"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span><span class="op">:</span> <span class="st">"ctrl+`"</span><span class="op">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"command"</span><span class="op">:</span> <span class="st">"workbench.action.focusActiveEditorGroup"</span><span class="op">,</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"when"</span><span class="op">:</span> <span class="st">"terminalFocus"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For R, most of us have used RStudio extensively and are familiar with three shortcuts, namely</p>
+<ul>
+<li>
+<strong>Insert pipe</strong> (Cmd + Shift + M)</li>
+<li>
+<strong>Insert assignment operator</strong> (Option + -)</li>
+<li>
+<strong>Restart R session</strong> (Cmd + Shift + 0)</li>
+</ul>
+<p>The keybindings below will add all of these to VS Code. It might look like there’s some duplication here for the pipe and assignment operator, and there kind of is. It’s just that you need to make the keybindings available to the editor and terminal separately (I tried to combine them but it didn’t work - if anyone knows how please get in touch!).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// keybindings for r/rmd/qmd</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span><span class="op">:</span> <span class="st">"Cmd+Shift+m"</span><span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"command"</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"args"</span><span class="op">:</span> {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"text"</span><span class="op">:</span> <span class="st">" |&gt;"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId =~ /r|rmd|quarto/"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span><span class="op">:</span> <span class="st">"Alt+-"</span><span class="op">,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"command"</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"args"</span><span class="op">:</span> {</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"text"</span><span class="op">:</span> <span class="st">" &lt;- "</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId =~ /r|rmd|quarto/"</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">// keybindings for R terminal (radian included)</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span><span class="op">:</span> <span class="st">"Cmd+Shift+m"</span><span class="op">,</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"command"</span><span class="op">:</span> <span class="st">"workbench.action.terminal.sendSequence"</span><span class="op">,</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"args"</span><span class="op">:</span> {</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>      <span class="st">"text"</span><span class="op">:</span> <span class="st">" |&gt;"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"when"</span><span class="op">:</span> <span class="st">"terminalFocus"</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span><span class="op">:</span> <span class="st">"Alt+-"</span><span class="op">,</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"command"</span><span class="op">:</span> <span class="st">"workbench.action.terminal.sendSequence"</span><span class="op">,</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"args"</span><span class="op">:</span> {</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">"text"</span><span class="op">:</span> <span class="st">" &lt;- "</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"when"</span><span class="op">:</span> <span class="st">"terminalFocus"</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">// restart R session</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span><span class="op">:</span> <span class="st">"Cmd+Shift+0"</span><span class="op">,</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"command"</span><span class="op">:</span> <span class="st">"runCommands"</span><span class="op">,</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"args"</span><span class="op">:</span> {</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>      <span class="st">"commands"</span><span class="op">:</span> [</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">"workbench.action.terminal.kill"</span><span class="op">,</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"r.createRTerm"</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>If you want to change default lintr settings see https://github.com/REditorSupport/vscode-R/wiki/Code-linting<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><script src="https://giscus.app/client.js" data-repo="jimgar/jimgar.github.io" data-repo-id="R_kgDOIrtj7A" data-category="General" data-category-id="DIC_kwDOIrtj7M4CTWB3" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="dark_protanopia" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

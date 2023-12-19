@@ -50,7 +50,10 @@ $code-color: $dark-navy-blue; // inline code text color
 
 // Code blocks
 $code-block-bg: $purple-ish; // code block background color
+$btn-code-copy-color: $light-yellow;	// The color used for the copy button at the top right of code blocks
 
+// Callouts
+$callout-color-note: $light-salmon;
 
 /*-- scss:rules --*/
 
@@ -152,4 +155,27 @@ h5, .listing-title {
 // Meta headings at the top of posts
 .quarto-title-meta-heading {
   color: $light-yellow;
+}
+
+// Callout blocks
+.callout.callout-style-default {
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px
+}
+
+div.callout-note {
+  .callout-header {
+    .callout-title-container {
+        color: $light-yellow;
+    }
+  }
+}
+
+div.callout-warning {
+  .callout-header {
+    .callout-title-container {
+        color: $light-yellow;
+    }
+  }
 }
