@@ -5,6 +5,7 @@ author:
   - name: Jim Gardner
     url: https://jimgar.github.io/jimgar/
 date: 2023-12-20
+date-modified: 2024-04-02
 categories: [VS Code, Visual Studio Code, R]
 execute:
   echo: true
@@ -62,6 +63,35 @@ The settings json is a file of customisable settings for controlling the behavio
 `r.rterm.mac` points to your radian. You can find that with `which radian`.
 
 Save the settings file. Now if you open an R file and attempt to run some code it should open a terminal and just "do the thing".
+
+# Interactive viewer pane
+
+You should have installed the R package [httpgd](https://github.com/nx10/httpgd) during the initial setup. This package is a pre-requisite for using the interactive viewer pane. In VS Code the viewer works much the same way as in RStudio, but it has a couple of benefits like opening a new tab each time you view something, and better interactive filtering for tables. When running through this setup with a few people I've noticed that the interactive viewer is often a place where we encounter errors. 
+
+The solution every time is to add the code block below to `~/.Rprofile`.
+
+First of all, check if you have an `~/.Rprofile`. If you don't, make one. If you do, add the contents of this code block.
+
+```{r}
+if (interactive() && Sys.getenv("RSTUDIO") == "") {
+  source(file.path(Sys.getenv(if (.Platform$OS.type == "windows") "USERPROFILE" else "HOME"), ".vscode-R", "init.R"))
+}
+
+if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
+  if ("httpgd" %in% .packages(all.available = TRUE)) {
+    options(vsc.plot = FALSE)
+    options(device = function(...) {
+      httpgd::hgd(silent = TRUE)
+      .vsc.browser(httpgd::hgd_url(history = FALSE), viewer = "Beside")
+    })
+  }
+}
+
+options(vsc.rstudioapi = TRUE)
+```
+
+Strictly speaking the `options(vsc.rstudioapi = TRUE)` line is not needed for this step. But it is a [prerequisite for using RStudio addins](https://github.com/REditorSupport/vscode-R/wiki/RStudio-addin-support#enabling-rstudio-addin-support), including awesome ones like [codegrip](https://github.com/lionel-/codegrip), so you may as well include it. 
+
 
 # Format on save
 
@@ -156,38 +186,38 @@ To be honest I've not played with this much yet, or used it at all in earnest. I
 #| echo: false
 gittify <- function(dat) {
   dat |>
-  gt::gt(
-    groupname_col = "heading"
-  ) |>
-  gt::tab_style(
-    locations = gt::cells_row_groups(),
-    style = gt::cell_borders(
-      sides = c("top", "bottom"),
-      color = "#103884",
-      weight = gt::px(2)
-    )
-  ) |>
-  gt::tab_style(
-    locations = gt::cells_body(),
-    style = gt::cell_borders(
-      sides = c("top", "bottom"),
-      color = "#103884",
-      weight = gt::px(1)
-    )
-  ) |>
-  gt::tab_style(
-    locations = gt::cells_row_groups(),
-    style = gt::cell_text(
-      weight = "bold",
-      color = "#ffd977"
+    gt::gt(
+      groupname_col = "heading"
+    ) |>
+    gt::tab_style(
+      locations = gt::cells_row_groups(),
+      style = gt::cell_borders(
+        sides = c("top", "bottom"),
+        color = "#103884",
+        weight = gt::px(2)
       )
-  ) |>
-  gt::tab_options(
-    table.border.top.style = "hidden",
-    table.border.bottom.style = "hidden",
-    column_labels.hidden = TRUE,
-    table.background.color = "#07193b"
-  )
+    ) |>
+    gt::tab_style(
+      locations = gt::cells_body(),
+      style = gt::cell_borders(
+        sides = c("top", "bottom"),
+        color = "#103884",
+        weight = gt::px(1)
+      )
+    ) |>
+    gt::tab_style(
+      locations = gt::cells_row_groups(),
+      style = gt::cell_text(
+        weight = "bold",
+        color = "#ffd977"
+      )
+    ) |>
+    gt::tab_options(
+      table.border.top.style = "hidden",
+      table.border.bottom.style = "hidden",
+      column_labels.hidden = TRUE,
+      table.background.color = "#07193b"
+    )
 }
 ```
 
@@ -223,21 +253,25 @@ gittify(tib)
 ```
 
 ::: {.callout-note}
+
 Shrinking the terminal will [cause the macOS system beep to kick in](https://kevinyank.com/posts/fix-system-beep-vscode/#:~:text=The%20issue%20seems%20to%20be,warn%20you%20that%20your%20keystrokes), which is annoying as hell. I think this shortcut is so useful that it's actually worth deactivating the beep. It's simple to do. First check if you have a file at `~/Library/KeyBindings/DefaultKeyBinding.dict` 
 
 If you do, add the line from the code block below. If you don't:
 
 1. Create the directory `~/Library/KeyBindings`
 2. Create the file `DefaultKeyBinding.dict` in the new directory
-3. Add the below to the file
+3. Add the below to the file[^2]
 
 ```{js}
 {
-  "^@\UF701" = "noop";
+  "^@\UF701" = "noop:";
 }
 ```
 
 Alternatively, you can make custom keybindings in VS Code (see below for examples of how to do that).
+
+[^2]: If you're on a version of macOS Sonoma < 14.4, the line should read `"^@\UF701" = "noop";`
+
 :::
 
 ## R specific
