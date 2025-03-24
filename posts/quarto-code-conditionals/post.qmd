@@ -39,7 +39,7 @@ If you have company marketing boilerplate, or headers that start all of your rep
 
 In your report you would use the code below
 
-``` {.markdown shortcodes="false"}
+```{shortcodes=false}
 {{< include _content.qmd >}}
 ```
 
@@ -164,7 +164,7 @@ Saving the best for last, because this one is really cool!
 
 Remember how I started with the `{{{< include >}}}` shortcode and said that it wasn't conditional?
 
-``` {.markdown shortcodes="false"}
+```{shortcodes=false}
 {{< include _content.qmd >}}
 ```
 

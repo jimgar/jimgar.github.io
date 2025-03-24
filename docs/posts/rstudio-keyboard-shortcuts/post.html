@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Jim Gardner">
 <meta name="dcterms.date" content="2023-08-04">
 <meta name="description" content="Aimed at beginner and intermediate users">
-<title>~ jim - Comfy keyboard shortcuts for RStudio</title>
+<title>Comfy keyboard shortcuts for RStudio – ~ jim</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -44,7 +44,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -53,65 +59,65 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
-<meta name="twitter:title" content="~ jim - Comfy keyboard shortcuts for RStudio">
+<meta name="twitter:title" content="Comfy keyboard shortcuts for RStudio – ~ jim">
 <meta name="twitter:description" content="Aimed at beginner and intermediate users">
-<meta name="twitter:image" content="images/helvetica-found.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">~ jim</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">~ home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">~ home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts.html" rel="" target="">
- <span class="menu-text">~ blog</span></a>
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">~ blog</span></a>
   </li>  
 </ul>
 <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jimgar" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/jimgar"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://stackoverflow.com/users/20624624/jimgar" rel="" target=""><i class="bi bi-stack-overflow" role="img">
+    <a class="nav-link" href="https://stackoverflow.com/users/20624624/jimgar"> <i class="bi bi-stack-overflow" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/jim-gardner-330368ab/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/jim-gardner-330368ab/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://fosstodon.org/@jimgar" rel="" target=""><i class="bi bi-mastodon" role="img">
+    <a class="nav-link" href="https://fosstodon.org/@jimgar"> <i class="bi bi-mastodon" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
@@ -187,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="intro" class="level2"><h2 class="anchored" data-anchor-id="intro">Intro</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/helvetica-found.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Found, by <a href="https://helveticablanc.com">Helvetica Blanc</a></figcaption></figure>
+<figcaption>Found, by <a href="https://helveticablanc.com">Helvetica Blanc</a></figcaption></figure>
 </div>
 <p>I know quite a few keyboard shortcuts in RStudio these days.</p>
 <p>That said, such knowledge has been hard won. My background is not in programming, so a lot of the time I wasn’t aware that certain shortcuts were possible. Or if I did, I may not know how to describe them/their names.</p>
@@ -223,12 +229,12 @@ ul.task-list li input[type="checkbox"] {
 <p>What if I told you that instead, you just put your cursor wherever the hell you like in a pipe and press <code>Command</code> + <code>Enter</code>? And it just runs the whole thing?</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/piped-highlight.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Behold!</figcaption></figure>
+<figcaption>Behold!</figcaption></figure>
 </div>
 <p>You can even work your way through a script by hitting <code>Command</code> + <code>Enter</code> on repeat. Don’t trust me?</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/run-steps.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Try this for size.</figcaption></figure>
+<figcaption>Try this for size.</figcaption></figure>
 </div>
 <p>That’s right: Even when the focus is in the console (which you can tell because the cursor is blinking there) you can continue hitting <code>Command</code> + <code>Enter</code> to run subsequent lines of your R script.</p>
 </section><section id="switch-focus-between-sourceconsole" class="level2"><h2 class="anchored" data-anchor-id="switch-focus-between-sourceconsole">Switch focus between Source/Console</h2>
@@ -240,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Go to <code>Tools</code>, <code>Modify Keyboard Shortcuts...</code> and search for “focus”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/switch-focus.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Click into the empty middle column for <code>Switch Focus Between Source/Console</code>. Press whatever shortcut keys you want to use, then hit enter. I used <code>Control</code> + <code>1</code>, but this was already assigned to <code>Move Focus to Source</code> so I had to delete it there too.</figcaption></figure>
+<figcaption>Click into the empty middle column for <code>Switch Focus Between Source/Console</code>. Press whatever shortcut keys you want to use, then hit enter. I used <code>Control</code> + <code>1</code>, but this was already assigned to <code>Move Focus to Source</code> so I had to delete it there too.</figcaption></figure>
 </div>
 </section><section id="indenting-code" class="level2"><h2 class="anchored" data-anchor-id="indenting-code">Indenting code</h2>
 <div class="center">
@@ -252,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Standardises indentation for highlighted code.</p>
 <p>You’re typing, copying from the web, moving stuff about. I know it gets messy. Forget tab/space/backspace tedium and use this shortcut.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/indent.gif" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="images/indent.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section><section id="commenting-crap" class="level2"><h2 class="anchored" data-anchor-id="commenting-crap">Commenting crap</h2>
@@ -272,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>Brings up the find/replace menu for the script currently open. The <code>In selection</code> check box is very useful.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/find-replace.gif" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="images/find-replace.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <div class="center">
@@ -300,7 +306,7 @@ ul.task-list li input[type="checkbox"] {
 <p>If you’ve had RStudio installed for a while the default might be the <code>magrittr</code> pipe <code>%&gt;%</code>. These days, the base R pipe <code>|&gt;</code> has got you covered for 99% of use cases, and doesn’t add yet another dependency or library call to your projects, so it is my preferred pipe.</p>
 <p>If you want to make it the default, go to <code>Tools</code>, <code>Global Options</code>, and check the box as in the image below.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/pipe.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="images/pipe.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section><section id="using-multiple-caretscursors" class="level2"><h2 class="anchored" data-anchor-id="using-multiple-caretscursors">Using multiple carets/cursors</h2>
@@ -327,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/carets1.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">In this example I add carets to multiple contiguous lines of text.</figcaption></figure>
+<figcaption>In this example I add carets to multiple contiguous lines of text.</figcaption></figure>
 </div>
 <div class="center">
 <p><svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg> : <code>Control</code> + <code>Option</code> + <code>Click</code></p>
@@ -344,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/carets2.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">In this example I delete several lines across a few blocks of text.</figcaption></figure>
+<figcaption>In this example I delete several lines across a few blocks of text.</figcaption></figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -399,7 +405,7 @@ Note
 </div>
 <p>Bringing up the command palette lets you search for commands (and settings) by name. Here I bring up the palette because I can never remember the shortcut to turn some text into a function.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/command-palette.gif" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="images/command-palette.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section><section id="enclosing" class="level2"><h2 class="anchored" data-anchor-id="enclosing">Enclosing</h2>
@@ -407,7 +413,7 @@ Note
 <p>If you highlight some text, you only need to give the opening character of the enclosing pair. RStudio will add the closing character.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="images/enclosing.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Using just <code>"</code>, <code>(</code>, and <code>[</code> to enclose some text.</figcaption></figure>
+<figcaption>Using just <code>"</code>, <code>(</code>, and <code>[</code> to enclose some text.</figcaption></figure>
 </div>
 
 
@@ -446,18 +452,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -489,11 +484,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -503,8 +537,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -516,7 +559,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -560,6 +726,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -585,6 +752,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -644,7 +837,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><script src="https://giscus.app/client.js" data-repo="jimgar/jimgar.github.io" data-repo-id="R_kgDOIrtj7A" data-category="General" data-category-id="DIC_kwDOIrtj7M4CTWB3" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="dark_protanopia" data-lang="en" crossorigin="anonymous" async="">
-</script>
+</script><input type="hidden" id="giscus-base-theme" value="dark_protanopia"><input type="hidden" id="giscus-alt-theme" value="dark_protanopia">
 </div> <!-- /content -->
 
 

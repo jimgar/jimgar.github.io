@@ -7,7 +7,7 @@ author:
 date: 2023-01-20
 categories: [resources, R] # self-defined categories
 image: images/wanted.jpg
-draft: false
+draft: true
 ---
 
 ```{r}
@@ -15,6 +15,10 @@ draft: false
 #| results: 'hide'
 renv::use(lockfile = "renv.lock")
 ```
+
+## Note
+
+Turned this into a draft because I have no intention of revisiting at all. Maybe I should just delete, but this makes it super easy to look back on if I ever want to whilst removing the listing from the blog.
 
 ## Introduction
 
