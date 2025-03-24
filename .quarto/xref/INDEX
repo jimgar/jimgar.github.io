@@ -46,5 +46,11 @@
   },
   "posts/vs-code-macos-r/post.qmd": {
     "post.html": "72800604"
+  },
+  "posts/learning-neovim-is-hard/post.qmd": {
+    "post.html": "6c313a62"
+  },
+  "posts/go-lesson-1/post.qmd": {
+    "post.html": "b30e89fb"
   }
 }

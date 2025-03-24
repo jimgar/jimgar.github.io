@@ -2,6 +2,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/learning-neovim-is-hard/post.html",
       "/posts/vs-code-macos-r/post.html",
       "/posts/advent-of-code-2023-day-3/post.html",
       "/posts/advent-of-code-2023-day-2/post.html",

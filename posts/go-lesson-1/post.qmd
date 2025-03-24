@@ -1,0 +1,208 @@
+---
+title: "Touring Go: Lesson 1"
+description: "Blah"
+author:
+  - name: Jim Gardner
+    url: https://jimgar.github.io/jimgar/
+date: 2024-05-17
+categories: []
+execute:
+  eval: true
+engine: knitr
+draft: true
+---
+
+```{css}
+#| echo: false
+#| label: css
+.figure-caption {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+```
+
+# Overview
+
+Some small intro crap goes here.
+
+# Examples
+
+## Packages, Imports, Exported names
+
+```{go}
+#| label: packages 
+package main
+
+import (
+    "fmt"
+    "math/rand"
+)
+
+func main() {
+    fmt.Println("My favourite number is", rand.Intn(123))
+}
+```
+
+- The file starting with package `main` is going to be the entrypoint for your program
+- To use a function from an imported package you do `package.Function()`
+- Exported functions start with a capital letter, e.g. `Intn()`
+- The style of enclosing multiple package imports in a single parens is called a "factored import" statement
+
+## Functions
+
+```{go}
+#| label: functions
+package main
+
+import "fmt"
+
+func add(x int, y int) int {
+    return x + y
+}
+
+func main() {
+    fmt.Println(add(42, 13))
+}
+```
+
+- Types come **after** variable names
+- If the args for a function have the same type you can specify it once, for both
+ 
+```{go}
+#| label: functions-continued
+#| eval: false
+func add(x, y int) int {
+	return x + y
+}
+```
+
+## Multiple results
+
+```{go}
+#| label: multiple-results
+package main
+
+import "fmt"
+
+func swap(x, y string) (string, string) {
+	return y, x
+}
+
+func main() {
+	a, b := swap("hello", "world")
+	fmt.Println(a, b)
+}
+```
+
+- Functions can return multiple values, like `return y, x` in `swap()`
+
+## Named results
+
+```{go}
+#| label: named-results
+package main
+
+import "fmt"
+
+func split(sum int) (x, y int) {
+	x = sum * 4 / 9
+	y = sum - x
+	return
+}
+
+func main() {
+	fmt.Println(split(17))
+}
+```
+
+- This is a horrific practice known as a "naked return"
+- I expect this is controversial. Only ever recommended in *A Tour of Go* for short functions
+- The plain `return` will return the formals/args provided where the function is created. It's supposed to be a form of self-documentation
+
+## Variables
+
+```{go}
+#| label: variables
+package main
+
+import "fmt"
+
+var c, python, java bool
+
+func main() {
+	var i int
+	fmt.Println(i, c, python, java)
+}
+```
+
+- You can declare lists of variables both at the package and function level
+- Variables declared without initial values are given the "zero value"
+- Zero values are
+  - `0` for numerics
+  - `false` for boolean
+  - `""` (empty string) for strings
+
+```{go}
+#| label: factored-variables
+#| eval: false
+var (
+    ABoolean bool   = true
+    AString  string = "a string"
+)
+```
+
+- Variables can be "factored", just like imports
+
+
+```{go}
+#| label: variables-with-initialisers
+package main
+
+import "fmt"
+
+var i, j int = 1, 2
+
+func main() {
+	var c, python, java = true, false, "no!"
+	fmt.Println(i, j, c, python, java)
+}
+```
+
+- If you declare with initialiser values (one per variable), then the type is passed from the initialiser to the variable
+
+## Short assignment :=
+
+```{go}
+#| label: short-assignment
+package main
+
+import "fmt"
+
+func main() {
+	var i, j int = 1, 2
+	k := 3
+	c, python, java := true, false, "no!"
+
+	fmt.Println(i, j, k, c, python, java)
+}
+```
+
+- Inside functions the short assignment statement `:=` can be used for assigning implicitly typed variables. Either do `var hi = 11` or `hi := 11` 
+
+## Constants
+
+- Declared just like variables, but using `const`
+- Can be char, string, bool, or numeric
+- Can't use := to assign
+
+
+## Sub-title
+
+```{go}
+#| label: nameOfChunk
+#| eval: false
+-- Some go code
+```
