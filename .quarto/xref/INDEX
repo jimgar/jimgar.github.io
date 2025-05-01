@@ -52,5 +52,8 @@
   },
   "posts/go-lesson-1/post.qmd": {
     "post.html": "b30e89fb"
+  },
+  "posts/interactive-neovim-development-container-r-quarto/post.qmd": {
+    "post.html": "69015637"
   }
 }
