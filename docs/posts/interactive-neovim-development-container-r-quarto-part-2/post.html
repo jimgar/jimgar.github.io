@@ -5,9 +5,9 @@
 <meta name="generator" content="quarto-1.7.29">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Jim Gardner">
-<meta name="dcterms.date" content="2025-03-24">
-<meta name="description" content="Trying to orient myself in the Neovim landscape proved harder than I anticipated">
-<title>Learning Neovim is Hard – ~ jim</title>
+<meta name="dcterms.date" content="2025-05-09">
+<meta name="description" content="Solved by an R legend (not me)">
+<title>Accessing R HTML help pages from outside a container – ~ jim</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -66,9 +101,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta name="twitter:title" content="Learning Neovim is Hard – ~ jim">
-<meta name="twitter:description" content="Trying to orient myself in the Neovim landscape proved harder than I anticipated">
-<meta name="twitter:image" content="nvim.png">
+<meta name="twitter:title" content="Accessing R HTML help pages from outside a container – ~ jim">
+<meta name="twitter:description" content="Solved by an R legend (not me)">
+<meta name="twitter:image" content="r-html-help.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="nav-fixed quarto-light">
@@ -123,17 +158,20 @@ ul.task-list li input[type="checkbox"] {
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Learning Neovim is Hard</h1>
+      <h1 class="title">Accessing R HTML help pages from outside a container</h1>
                   <div>
         <div class="description">
-          Trying to orient myself in the Neovim landscape proved harder than I anticipated
+          Solved by an R legend (not me)
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">R</div>
+                <div class="quarto-category">Quarto</div>
                 <div class="quarto-category">Python</div>
                 <div class="quarto-category">Neovim</div>
-                <div class="quarto-category">VS Code</div>
+                <div class="quarto-category">Container</div>
+                <div class="quarto-category">Docker</div>
+                <div class="quarto-category">Podman</div>
               </div>
                   </div>
   </div>
@@ -151,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 24, 2025</p>
+        <p class="date">May 9, 2025</p>
       </div>
     </div>
     
@@ -166,10 +204,9 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#wouldnt-it-be-nice" id="toc-wouldnt-it-be-nice" class="nav-link active" data-scroll-target="#wouldnt-it-be-nice">Wouldn’t it be nice?</a></li>
-  <li><a href="#obliterated" id="toc-obliterated" class="nav-link" data-scroll-target="#obliterated">Obliterated</a></li>
-  <li><a href="#neovim" id="toc-neovim" class="nav-link" data-scroll-target="#neovim">Neovim</a></li>
-  <li><a href="#not-all-wasted" id="toc-not-all-wasted" class="nav-link" data-scroll-target="#not-all-wasted">Not all wasted</a></li>
+<li><a href="#another-challenge" id="toc-another-challenge" class="nav-link active" data-scroll-target="#another-challenge">Another challenge!</a></li>
+  <li><a href="#problem-solution" id="toc-problem-solution" class="nav-link" data-scroll-target="#problem-solution">Problem / solution</a></li>
+  <li><a href="#how-its-going" id="toc-how-its-going" class="nav-link" data-scroll-target="#how-its-going">How it’s going</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -184,71 +221,74 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is NOT a place for you to learn anything. It is NOT a guide. It’s a “traditional” blog post where I waffle on and indulge myself. There may be some accidental nuggets of wisdom… but I cannot be held liable for any strain you experience trying to find them.</p>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="nvim.png" class="img-fluid figure-img"></p>
-<figcaption>R script in Neovim running in Wezterm</figcaption></figure>
+<figure class="figure"><p><img src="r-html-help.png" class="img-fluid figure-img"></p>
+<figcaption>The radian R terminal running from inside a container, showing a custom startup message. To the side is a browser with the R HTML help page loaded, which is being served from the container.</figcaption></figure>
 </div>
-<section id="wouldnt-it-be-nice" class="level2"><h2 class="anchored" data-anchor-id="wouldnt-it-be-nice">Wouldn’t it be nice?</h2>
-<p>I wonder if this resonates with you? Ever read people’s LinkedIn profiles, or their blogs/websites/CVs, and think:</p>
+<section id="another-challenge" class="level2"><h2 class="anchored" data-anchor-id="another-challenge">Another challenge!</h2>
+<p>This is a follow-on about my <a href="https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto/post.html">attempt to make</a> a container that can be used as an interactive Neovim development environment with R and Quarto.</p>
+<p><a href="https://hcommons.social/@petejones">Pete</a>, who started me dancing down the devil’s road in the first place, had a follow-up request:</p>
 <blockquote class="blockquote">
-<p>Wow. This person is absolutely incredible. They have achieved/know so much.</p>
+<p>[…] is there a way to run R’s HTML help server in the container and view it in a browser on the host?</p>
 </blockquote>
-<p>Wouldn’t it be nice if that person posted on their LinkedIn about the shitty fucking week they had trying to learn about containers for the first time? Or how that one time they had to work a weekend because they re-ran their Jupyter notebook from top to bottom and the results were completely different to what they showed their boss?</p>
-<p>How about if they tried something and spent many days – weeks, months! – only to realise they just couldn’t understand it, and kinda like, gave up?</p>
-<p>Well that’s me with Neovim.</p>
-<p>I’m a mid-level programmer/Data Scientist. I’m now way beyond a total beginner, and there are actually people who look up to me as a professional. It feels unbelievable at times, but, that’s what happens when you work hard, learn, and care about the craft (and other people).</p>
-<p>Read on to hear the struggle.</p>
-</section><section id="obliterated" class="level2"><h2 class="anchored" data-anchor-id="obliterated">Obliterated</h2>
-<p>When I started programming in March 2020 I was working in evolutionary biology. I don’t know how it is now, but back then we were using a mix of proprietary GUI-based programs and command line tools written and published by academics. That meant my introduction to programming was the command line (specifically using bash), then Python, and then R. If I needed to write a script I’d come up with a little toy dataset, open the terminal, invoke Python/R, and write every line of code myself using the vanilla REPL.</p>
-<p>That’s right. There was no</p>
-<ul>
-<li>Syntax highlighting</li>
-<li>Linting</li>
-<li>Hovers</li>
-<li>Keyboard shortcuts</li>
-<li>Formatting</li>
-</ul>
-<p>There wasn’t even ‘bracketed paste’, which as I understand it just means ‘multi-line code pasting into the terminal’. It was a literal line-by-line workflow where even a for-loop had to be input and sent to the interpreter in parts.</p>
-<p>At first I did it because I really didn’t know any better. As I became more aware of the options, I inevitably switched to using Spyder for Python and RStudio for R, and eventually RStudio for Python for a while (yes, really o_O).</p>
-<p>I’ve always been grateful for starting in the terminal though. I’ve never been afraid to fire up an R/Python REPL and do quick checks on language behaviour.</p>
-<p>In fact, at times I’ve felt a little smug: I’ve had colleagues who don’t know the difference between R and RStudio. Meanwhile, I “graduated” last year to using VS Code as my main IDE. Yeehaw, I’m a cowboy riding out there in the wild west of Microsoft’s Extension Marketplace. I dazzled colleagues by rummaging around in the <code>settings.json</code>, pointing to an R binary for the Radian terminal. I even <a href="https://github.com/lionel-/codegrip/pull/17">exposed addin_reshape()</a> from <a href="https://github.com/lionel-/codegrip">codegrip</a> and contributed to the docs..! Ok, I admit to being genuinely proud of that one, even if it was easy.</p>
-<p>Then came the vim extension for VS Code. Wow. So cool. Even though the productivity gains from vim motions are marginal at best, and the time spent trying to adjust will never be won back. But you know, the important thing at the time was it kept me engaged with programming. It also exposed me to more computer sciencey developers and low-level language practitioners. Which in turn, of course, lead me to <a href="https://neovim.io/">Neovim</a>.</p>
-<p>And Neovim obliterated any sense of smugness that I had.</p>
-<p>It’s good to get in over your head every once in a while. It’s humbling.</p>
-</section><section id="neovim" class="level2"><h2 class="anchored" data-anchor-id="neovim">Neovim</h2>
-<p>If you don’t know, Neovim (A.K.A <code>nvim</code>) is a text editor that can be used as an IDE. It’s a bit like VS Code in that it’s configurable, but way harder. In the nvim world people juice up the editor with extra functionality by installing plugins, most of which are written in Lua.</p>
-<p>Apparently Lua is the easiest language ever to learn and literal children use it to make Roblox games. If you use nvim you’ll also be coding in Lua: it’s the language used for your config file/s.</p>
-<p>I’m not going to say that I didn’t understand <strong>anything</strong> in the config files. But I didn’t find Lua super easy to get a flavour of. I just wanted my config to work most of the time, so I would mostly look at other people’s configs – limiting my exposure to Lua as a general language. This meant whenever the config would break or I’d get unexpected behaviour I didn’t really know what to do. It turns out that knowing words is important<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> when you’re learning programming.</p>
-<p>I also found the documentation for most plugins threadbare. Developers: Don’t assume too much of your potential users. Many of us are, frankly, morons, and many more will have a TikTok user’s attention span. You do actually need to tell us what your software does and how it can be used.</p>
-<p>Clearly I needed more help, so I read and watched a <strong>lot</strong> of tutorials. I found <a href="https://www.youtube.com/@typecraft_dev/videos">typecraft</a>, who I would like to hug. I found the mononymous <a href="https://www.youtube.com/@teej_dv">TJ</a>, nvim contributor and creator of treesitter. There is of course fellow sober addict and programming craftsman <a href="https://www.youtube.com/@ThePrimeTimeagen">ThePrimeagen</a> (“Primeagen mentioned!”, “Let’s go boys!!”, etc.). I watched <a href="https://www.youtube.com/@joseanmartinez">Josean Martinez’s</a> and <a href="https://www.youtube.com/@henrymisc">Henry Misc’s</a> guides. Probably the best series of them all was by <a href="https://www.youtube.com/@vhyrro/videos">Vhyrro</a>, who gave examples and explained the ‘why’ of things<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> for different facets of the editor – but who maddeningly never finished the video series!</p>
-<p>They all helped, but in the end, it was still a huge amount of work. My knowledge wasn’t coming together. I couldn’t touch type, which is kind of a vim pre-requisite, so I tried to learn that via <a href="https://www.typingclub.com/">TypingClub</a>. That definitely helped, but didn’t stick because it was too slow for work. Then a young 20-something on Mastodon tooted about how they were able to touch type faster than their old speed after <strong>just a month of TypingClub</strong>, and it completely unlocked nvim for them, and… I died a bit inside. Touch typing for me is honestly just super hard – even after several months.</p>
-<p>I’d estimate that all told I probably spent a few weeks dedicated to learning about Neovim as a tool, lots of vim motions and commands, editing and using different configs, the language server protocol, linters, formatters, stuff like that. I must have used it as an IDE for a good 3 months. There were periods that I really enjoyed it.</p>
-<p>I’d like to try again one day. There’s just something alluring about it. It reminds me of watching my older brother on the computer in the early 90s. The vibe appeals.</p>
-</section><section id="not-all-wasted" class="level2"><h2 class="anchored" data-anchor-id="not-all-wasted">Not all wasted</h2>
-<p>So now I’m mostly using VS Code and the vim extension. I’m maybe faster in some ways than pre-nvim. One thing I like to do is open nvim in the terminal VS Code’s integrated terminal. That way I can qickly edit a file without having to open and close a new tab in the main editor.</p>
-<p>It’s also given me gems like the vim ‘find and replace within highlighted text’ command: <code>:s/find this phrase/replace with this/g</code>.</p>
-<p>Maybe even better is that it started to teach me about the differences between formatters, linters, and LSPs. In reality there’s overlap between the three categories, with some LSPs using linters, or formatters that use linters, and whatever <a href="https://docs.astral.sh/ruff/">ruff</a> does. But at least it’s not a <strong>complete</strong> mystery. Case in point, I was recently able to <a href="https://hachyderm.io/@jimgar/114197304839595680">help someone on Mastodon</a> with an R linting bugbear in the context of nvim – even though it’s been 6 months since I used it in earnest!</p>
-<p>Learning is a journey and even when it is hard, or doesn’t work out, we are bound to learn some things along the way.</p>
+<p>Sounds like that should be easy to do. After all, I was able to get the Quarto HTML preview and hdg graphics viewer for R sorted. I bet it’ll take 30 minutes or so!</p>
+<p>How naive of me.</p>
+</section><section id="problem-solution" class="level2"><h2 class="anchored" data-anchor-id="problem-solution">Problem / solution</h2>
+<p>For those who don’t know - and this included me before this week - you can launch a website containing <strong>all</strong> of the help pages for both R’s standard library (base, tools, utils, Matrix, etc.) and user installed packages. You can launch this website by using the <code><a href="https://rdrr.io/r/utils/help.start.html">help.start()</a></code> function that comes with R. The more you know.</p>
+<p>This is useful if, for example, you’re using R in a terminal setting, which as we established last time is what Pete does.</p>
+<p>I quickly found out that the root cause of the problem is within the <code><a href="https://rdrr.io/r/utils/help.start.html">help.start()</a></code> function body. Specifically, both <code><a href="https://rdrr.io/r/utils/help.start.html">help.start()</a></code> and a function it calls, <code><a href="https://rdrr.io/r/tools/startDynamicHelp.html">tools::startDynamicHelp()</a></code>, have the IP address <code>127.0.0.1</code> hard coded into their definitions. This is a problem because HTTP servers running inside containers using <code>127.0.0.1</code> can’t be accessed from outside the container. Instead, you have to use <code>0.0.0.0</code>. Thankfully, it is at least possible to tell R that you always want to use the same port when running the server.</p>
+<p>A few hours later I hit a brick wall and <a href="https://hachyderm.io/@jimgar/114457423581278999">posted about it</a> on Mastodon. R legend <a href="https://yihui.org/">Yihui Xie</a> jumped in and replied, kindly telling us exactly what we needed to do. This was very much appreciated – I had clearly gone down a dead end. It gave me hope!</p>
+<p>What Yihui turned us onto was a command line tool called <code>socat</code>. You can use it to create proxies and bind ports. In our case, the magic command looked like this:</p>
+<pre class="shell"><code>socat TCP-LISTEN:20633,bind=0.0.0.0,fork TCP:127.0.0.1:20000 &amp;</code></pre>
+<p>This means: Accept traffic (listen) on 0.0.0.0:20633, i.e.&nbsp;receive requests for web pages as we browse the site. Then pass the requests to 127.0.0.1:20000. Fork allows us to handle multiple requests. And the final ampersand tells bash to run the socat process in the background, otherwise socat will make the terminal busy.</p>
+<p>To put this into practice I added some more R code to <code>~/.Rprofile</code> during container build time. This is an important file because whenever R starts it runs the code in this file. That means we can use it for performing setup, such as getting socat to forward our traffic. The code looks like this:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| eval: false</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">'help.ports'</span> <span class="op">=</span> <span class="fl">20000</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">'socat TCP-LISTEN:20633,bind=0.0.0.0,fork TCP:127.0.0.1:20000 &amp;'</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_h1.html">cli_h1</a></span><span class="op">(</span><span class="st">'HTML help pages'</span><span class="op">)</span></span>
+<span>  <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html">cli_alert_info</a></span><span class="op">(</span><span class="st">'Starting httpd help server...'</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">resp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/startDynamicHelp.html">startDynamicHelp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">resp</span> <span class="op">!=</span> <span class="fl">20000</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html">cli_alert_danger</a></span><span class="op">(</span><span class="st">'Failed to start server. Try running {.fn tools::startDynamicHelp} manually to see what happens.'</span><span class="op">)</span></span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_text.html">cli_text</a></span><span class="op">(</span><span class="st">''</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html">cli_alert_info</a></span><span class="op">(</span><span class="st">'If container is running with {.code -p 20633:20633}'</span><span class="op">)</span></span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html">cli_alert_info</a></span><span class="op">(</span><span class="st">'{.url http://localhost:20633/doc/html/index.html}'</span><span class="op">)</span></span>
+<span>    <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_text.html">cli_text</a></span><span class="op">(</span><span class="st">''</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">resp</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">.Last</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># Attempt to clean up after ourselves when R closes.</span></span>
+<span>    <span class="co"># When R closes the help pages are no longer served, so we</span></span>
+<span>    <span class="co"># should also stop socat.</span></span>
+<span></span>
+<span>    <span class="co"># A bit of a blunt instrument as it will terminal ALL instances</span></span>
+<span>    <span class="co"># of socat. But I'm assuming for this container that R help will</span></span>
+<span>    <span class="co"># be the sole user of the command, so it's safe to do</span></span>
+<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">'pgrep socat'</span>, intern <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">1L</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">'pgrep socat | xargs kill -9'</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When starting R with the radian terminal, we get this lovely startup message:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="radian-startup.png" class="img-fluid figure-img"></p>
+<figcaption>The radian terminal immediately following boot up. Brief messages tell the user that the http server has been started for the HTML help pages.</figcaption></figure>
+</div>
+<p>As my comments say in the code block, this is a rather inelegant solution. There is the possibility of using the bash command <code>$!</code> in order to get the PID of the socat process (<code>$!</code> gets the PID of the most recent background process) and do a targeted kill. But I found that socat was a bit erratic, sometimes spawning a few processes. Unfortunately the second and third processes weren’t children of the first, otherwise we could have captured the value of <code>$!</code>, say as <code>panret_pid</code> and used <code>pkill -P parent_pid</code>. On the plus side I think this is a very clean solution, insofar as socat will always be started and killed in tandem with R.</p>
+</section><section id="how-its-going" class="level2"><h2 class="anchored" data-anchor-id="how-its-going">How it’s going</h2>
+<p>Well, I wrote this blog post using Neovim from the container in question! That includes previewing the post :)</p>
+<p>The Containerfile <a href="https://github.com/jimgar/nvim-r-py-quarto-container">now exists in a GitHub repo</a>. At time of writing there’s no documentation, but I will get to it soon. One thing I’ve noticed is that the container image size is rather large, about 2.7GB. Maybe that’s ok - there is a <strong>lot</strong> of stuff being installed into it, after all. It’s also very tiresome having the plugins install every time the container is restarted and Neovim gets invoked for the first time. I think it might be possible to simply copy everything from <code>.local/share/nvim/lazy</code> into the GitHub repo and copy it into the image at build time instead, but that requires some experimentation.</p>
 
 
-</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-<ol>
-<li id="fn1"><p>See <a href="https://www.youtube.com/watch?v=g1ib43q3uXQ">“How to teach programming (and other things)?” by Felienne Hermans</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Again, see Felienne’s talk. It’s important!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
