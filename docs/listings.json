@@ -2,6 +2,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/cpd-jul-2025/post.html",
       "/posts/interactive-neovim-development-container-r-quarto-part-2/post.html",
       "/posts/interactive-neovim-development-container-r-quarto/post.html",
       "/posts/learning-neovim-is-hard/post.html",

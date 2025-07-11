@@ -5,9 +5,9 @@
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Jim Gardner">
-<meta name="dcterms.date" content="2023-10-12">
-<meta name="description" content="My favourite command line tools with zsh">
-<title>Making the terminal zsh-tosh on macOS – ~ jim</title>
+<meta name="dcterms.date" content="2025-07-11">
+<meta name="description" content="A grab bag of stuff">
+<title>CPD for July 2025 – ~ jim</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,8 +99,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<meta name="twitter:title" content="Making the terminal zsh-tosh on macOS – ~ jim">
-<meta name="twitter:description" content="My favourite command line tools with zsh">
+<meta name="twitter:title" content="CPD for July 2025 – ~ jim">
+<meta name="twitter:description" content="A grab bag of stuff">
 <meta name="twitter:card" content="summary">
 </head>
 <body class="nav-fixed">
@@ -155,20 +155,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Making the terminal zsh-tosh on macOS</h1>
+      <h1 class="title">CPD for July 2025</h1>
                   <div>
         <div class="description">
-          My favourite command line tools with zsh
+          A grab bag of stuff
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">terminal</div>
-                <div class="quarto-category">zsh</div>
-                <div class="quarto-category">command line</div>
-                <div class="quarto-category">macOS</div>
-                <div class="quarto-category">bat</div>
-                <div class="quarto-category">eza</div>
-                <div class="quarto-category">ohmyzsh</div>
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">Advent of Code</div>
+                <div class="quarto-category">Advent of Code 2024</div>
+                <div class="quarto-category">Polars</div>
+                <div class="quarto-category">uv</div>
               </div>
                   </div>
   </div>
@@ -186,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 12, 2023</p>
+        <p class="date">July 11, 2025</p>
       </div>
     </div>
     
@@ -201,191 +199,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li>
-<a href="#installation-quick-ref" id="toc-installation-quick-ref" class="nav-link" data-scroll-target="#installation-quick-ref"><span class="header-section-number">2</span> Installation quick ref</a>
+<li>
+<a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2025-07-10</a>
   <ul class="collapse">
-<li><a href="#zsh-stuff" id="toc-zsh-stuff" class="nav-link" data-scroll-target="#zsh-stuff"><span class="header-section-number">2.1</span> zsh stuff</a></li>
-  <li><a href="#cli-tools" id="toc-cli-tools" class="nav-link" data-scroll-target="#cli-tools"><span class="header-section-number">2.2</span> cli tools</a></li>
+<li><a href="#advent-of-code-2024-day-1-part-1" id="toc-advent-of-code-2024-day-1-part-1" class="nav-link" data-scroll-target="#advent-of-code-2024-day-1-part-1">Advent of Code 2024 Day 1, Part 1</a></li>
   </ul>
 </li>
-  <li>
-<a href="#context" id="toc-context" class="nav-link" data-scroll-target="#context"><span class="header-section-number">3</span> Context</a>
-  <ul class="collapse">
-<li><a href="#zsh" id="toc-zsh" class="nav-link" data-scroll-target="#zsh"><span class="header-section-number">3.1</span> zsh</a></li>
-  <li><a href="#oh-my-zsh" id="toc-oh-my-zsh" class="nav-link" data-scroll-target="#oh-my-zsh"><span class="header-section-number">3.2</span> Oh My Zsh</a></li>
-  <li><a href="#bat-and-eza" id="toc-bat-and-eza" class="nav-link" data-scroll-target="#bat-and-eza"><span class="header-section-number">3.3</span> bat and eza</a></li>
-  </ul>
-</li>
-  <li><a href="#sec-rstudio" id="toc-sec-rstudio" class="nav-link" data-scroll-target="#sec-rstudio"><span class="header-section-number">4</span> RStudio settings</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><div class="cell">
-<style type="text/css">
-.figure-caption {
-    text-align: center;
-}
-
-.center {
-    text-align: center;
-}
-</style>
-</div>
-<section id="overview" class="level2" data-number="1"><h2 data-number="1" class="anchored" data-anchor-id="overview">
-<span class="header-section-number">1</span> Overview</h2>
-<p>In this post I’m going to share a few tools that have made my zsh terminal experience on macOS a little bit nicer.</p>
-<p>There’s two separate sets of tools. One is to <a href="https://github.com/ohmyzsh/ohmyzsh">Oh My Zsh</a> with a couple of plugins. The other are so-called modern versions of a couple of commonly used command line tools. The purpose of all these tools is to make the terminal colourful and easier to use.</p>
-<p>All of the changes here will also apply to terminals in VS Code. If you’re an R programmer using RStudio, I’m <del>sorry, that’s not a nice thing people like us get to have :(</del> a fool! Of course this is possible - though not the default. See <a href="#sec-rstudio" class="quarto-xref">Section&nbsp;4</a> to see how to make it so.</p>
-</section><section id="installation-quick-ref" class="level2" data-number="2"><h2 data-number="2" class="anchored" data-anchor-id="installation-quick-ref">
-<span class="header-section-number">2</span> Installation quick ref</h2>
-<p>Assuming you are putting installs in default locations</p>
-<section id="zsh-stuff" class="level3" data-number="2.1"><h3 data-number="2.1" class="anchored" data-anchor-id="zsh-stuff">
-<span class="header-section-number">2.1</span> zsh stuff</h3>
-<ul>
-<li>Install <a href="https://github.com/ohmyzsh/ohmyzsh#basic-installation">zsh</a> (if you need to)</li>
-</ul>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>My team (Data Science) at Smart Data Foundry have started to spend an hour of CPD time together once a week. July is our first month doing it, and I figured I would use it as an excuse to blog a little bit.</p>
+<section id="section" class="level2"><h2 class="anchored" data-anchor-id="section">2025-07-10</h2>
+<section id="advent-of-code-2024-day-1-part-1" class="level3"><h3 class="anchored" data-anchor-id="advent-of-code-2024-day-1-part-1">Advent of Code 2024 Day 1, Part 1</h3>
+<p>I <a href="https://github.com/jimgar/advent-of-code/blob/main/2024/01.R">did AoC Day 1 last year</a> and challenged myself to only use base R. We figured this would be a nice little problem to start our sessions with.</p>
+<p>This time, I wanted to try using Python. I’m kinda enjoying the language now, and between boot.dev and work am using it more than R. But! Instead of the standard library, I wanted to try using Polars and compare the solution to my base R one. Recently I’ve used Polars a fair bit for work but the operations I needed have been <strong>very</strong> simple. My spidey senses told me that if I used Polars then I’d end up learning something new.</p>
+<p>I also used uv, the hot new Python project/package manager, to start the project off:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add ruff</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add polars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>Install <a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a>
-</li>
-</ul>
+<p>That creates a few files, including a <code>uv.lock</code> and <code>pyproject.toml</code>. These essentially contain metadata such as the Python and package versions. The files can be copied into another project, or a container image, to install the same version of Python and packages with a simple <code>uv sync</code>.</p>
+<section id="solution" class="level4"><h4 class="anchored" data-anchor-id="solution">Solution</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/zsh-users/zsh-autosuggestions <span class="va">${ZSH_CUSTOM</span><span class="op">:-</span>~/.oh-my-zsh/custom<span class="va">}</span>/plugins/zsh-autosuggestions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> (</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    pl.read_csv(<span class="st">"aoc_day1/input.txt"</span>, has_header<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        column_1<span class="op">=</span>pl.col(<span class="st">"column_1"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">str</span>.split_exact(<span class="st">"   "</span>, <span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        .struct.rename_fields([<span class="st">"l"</span>, <span class="st">"r"</span>])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    .unnest(<span class="st">"column_1"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.with_columns(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    l<span class="op">=</span>pl.col(<span class="st">"l"</span>).cast(pl.Int32).sort(),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    r<span class="op">=</span>pl.col(<span class="st">"r"</span>).cast(pl.Int32).sort(),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> df.select((pl.col(<span class="st">"r"</span>) <span class="op">-</span> pl.col(<span class="st">"l"</span>)).<span class="bu">abs</span>().<span class="bu">sum</span>()).item()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>Install <a href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md">zsh-syntax-highlighting</a>
-</li>
-</ul>
+<p>Comparing to the R version of the code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting.git</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"source </span><span class="va">${</span><span class="er">(q-)PWD</span><span class="va">}</span><span class="st">/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"</span> <span class="op">&gt;&gt;</span> <span class="va">${ZDOTDIR</span><span class="op">:-</span><span class="va">$HOME}</span>/.zshrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"2024/01-input.txt"</span>, col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">l</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">r</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">r</span> <span class="op">-</span> <span class="va">df</span><span class="op">$</span><span class="va">l</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>Update zshrc</li>
-</ul>
+<p>It’s more verbose. Most of that comes down to fundamental differences between base R and Polars. In this case - which is common - the R solution uses functions. We also benefit from data.frames being native data structures, and <code>read.table</code> which does two things for us: identifies the delimiter (three whitespace characters), and infers the types correctly (numeric).</p>
+<p>The Polars solution is fiddlier. The csv parser can only take a single byte delimiter, meaning no regex, no multiple whitespace. I had to look this up, because it seemed frankly idiotic for a modern data processing package, and read the author saying they did this on purpose: It puts speed before anything else, and speed is at the heart of Polars. Doing anything else would go against that. Not so idiotic after all!!!</p>
+<p>Anyway this leads to extra processing because the table gets read as a single string column. When it gets split, it becomes a Polars <strong><a href="https://docs.pola.rs/user-guide/expressions/structs/">struct</a></strong>. I didn’t know what a struct actually was, though I saw the name appear in the user guide as I hacked on projects for work. Turns out they’re essentially a typed dictionary.</p>
+<p><code>str.split_exact()</code> returns “a struct of <code>n+1</code> fields”. So the result of</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the autosuggestions and highliting to the plugins variable like so</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>   git</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>   zsh-autosuggestions</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>   zsh-syntax-highlighting</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>split_exact(<span class="st">"   "</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>Source</li>
-</ul>
+<p>on a row of data like <code>50123   10023</code> in a column called <code>column_1</code> is</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">"column_1"</span>: <span class="st">"50123"</span>, <span class="st">"column_2"</span>: <span class="st">"10023"</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="cli-tools" class="level3" data-number="2.2"><h3 data-number="2.2" class="anchored" data-anchor-id="cli-tools">
-<span class="header-section-number">2.2</span> cli tools</h3>
-<p>Require <a href="https://brew.sh">homebrew</a></p>
-<ul>
-<li>Install <a href="https://github.com/eza-community/eza/blob/main/INSTALL.md#brew-macos">eza</a>
-</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install eza</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Install <a href="https://github.com/sharkdp/bat#on-macos-or-linux-via-homebrew">bat</a>
-</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install bat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>exit</code> your terminal session and start a new one.</p>
-</section></section><section id="context" class="level2" data-number="3"><h2 data-number="3" class="anchored" data-anchor-id="context">
-<span class="header-section-number">3</span> Context</h2>
-<section id="zsh" class="level3" data-number="3.1"><h3 data-number="3.1" class="anchored" data-anchor-id="zsh">
-<span class="header-section-number">3.1</span> zsh</h3>
-<p>zsh has come as the default shell for mac’s terminal since October 2019, with the release of macOS Catalina.</p>
-<p>The standard experience is perfectly fine, just like bash, but is rather bare bones. There’s no syntax highlighting even for the native shell scripting. In fact, everything is black-and-white by default. I’m not down on zsh or bash as they are. I just prefer some colour to help visually parse wtf I’m looking at.</p>
-<p>If you’re unsure you have it, run the following to check. You should see something similar to my output.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">zsh</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>zsh 5.9 (x86_64-apple-darwin23.0)</code></pre>
-</div>
-</div>
-<p>Also run this to check that it’s your default shell. You should see the same output as I have here.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$SHELL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>/bin/zsh</code></pre>
-</div>
-</div>
-<p>If you get <code>command not found</code> or the default shell is something else (like bash), follow the instructions <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH">here</a> to install zsh and make it your default.</p>
-</section><section id="oh-my-zsh" class="level3" data-number="3.2"><h3 data-number="3.2" class="anchored" data-anchor-id="oh-my-zsh">
-<span class="header-section-number">3.2</span> Oh My Zsh</h3>
-<p><a href="https://github.com/ohmyzsh/ohmyzsh">Oh My Zsh</a> makes the terminal a bit more colourful and can show you things like which git branch you’re on. I’ve found it quite useful for that alone, and it is really easy to install, with a great default theme.</p>
-<p>zsh has a config file, typically found at <code>~/.zshrc</code>. What Oh My Zsh does is essentially modify your .zshrc, putting some defaults in and setting things up to further configure as you see fit.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/zsh.png" class="img-fluid figure-img"></p>
-<figcaption>Once installed, you will see something like this</figcaption></figure>
-</div>
-<p>It doesn’t look like a lot, true.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/zsh2.png" class="img-fluid figure-img"></p>
-<figcaption>But once you actually start doing something…</figcaption></figure>
-</div>
-<p>You can see the shortened current directory, which git branch I’m on (“zsh”, that I’m working in for this blog post), and some colour when calling <code>ls -l</code>.</p>
-<p>Oh My Zsh also has loads of <a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">plugins</a> to enhance functionality. Most are for working with common tools, languages and frameworks for developers. The plugins I’ve enabled are for syntax highlighting and autosuggestions. The syntax highlighting is nice because if I’m writing a little shell script, or piping a bunch of commands together, it helps me to more quickly visually parse the content. The autosuggestions are a bit like tab completion, but they use your execution history to autosuggest what might come next. This can be useful if you’re doing a repetitive workflow like making regular git commits, or moving back and forth between a small number of directories.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/syntax-highlighting.png" class="img-fluid figure-img"></p>
-<figcaption>After adding the plugins to my zshrc using the <code>nano</code> editor, you can see there’s now syntax highlighting in this <code>for</code> loop.</figcaption></figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/autosuggestions.png" class="img-fluid figure-img"></p>
-<figcaption>Here’s an example of an autosuggestion. If I hit the right arrow key it would accept the suggestion.</figcaption></figure>
-</div>
-</section><section id="bat-and-eza" class="level3" data-number="3.3"><h3 data-number="3.3" class="anchored" data-anchor-id="bat-and-eza">
-<span class="header-section-number">3.3</span> bat and eza</h3>
-<p>Both <a href="https://github.com/sharkdp/bat">bat</a> and <a href="https://github.com/eza-community/eza">eza</a> are “modern” versions of the classic command line tools <code>cat</code> and <code>ls</code>, respectively. The former is for printing the contents of files, and the latter is for listing files and directories.</p>
-<p>bat is particularly nice for several reasons. Let’s look at the contents of my zshrc with cat first</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/cat.png" class="img-fluid figure-img"></p>
-<figcaption>zshrc printed with cat</figcaption></figure>
-</div>
-<p>The output is single-colour, printed via stdout, in full. It’s literally just a dump of the file contents to the screen. Compare that to bat</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/bat.png" class="img-fluid figure-img"></p>
-<figcaption>zshrc printed with bat</figcaption></figure>
-</div>
-<p>That’s more like it. We’ve got syntax highlighting, and the print is paginated a la <code>less</code>. There’s more though - if you have git it shows modifications in the sidebar, it can show all non-printable characters, concatenate files together, and when used in pipes will behave as a drop-in replacement for cat. So all around pretty awesome.</p>
-<p>eza I like for two reasons.</p>
-<p>First, yes, it’s colour again. You can see in the image below that the return values for <code>eza -l</code> are colourised in comparison to <code>ls -l</code>. And I always use the <code>-l</code> flag, so that matters to me.</p>
-<p>Second is the tree flag <code>-T</code>. Sometimes a simple tree is all you need to see a project’s structure. The really nice thing about <code>-T</code> is you can combine it with <code>-L</code> (level), and specify a depth. For example if I only wanted to show stuff in the root of my current directory, I can do <code>eza -TL=1</code>. You may also have noticed that the trees are colourised 👀</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/eza.png" class="img-fluid figure-img"></p>
-<figcaption>Examples of using eza</figcaption></figure>
-</div>
-</section></section><section id="sec-rstudio" class="level2" data-number="4"><h2 data-number="4" class="anchored" data-anchor-id="sec-rstudio">
-<span class="header-section-number">4</span> RStudio settings</h2>
-<p>It’s really simple to make zsh the default terminal in RStudio.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/rstudio1.png" class="img-fluid figure-img"></p>
-<figcaption>In the Terminal tab, click the down arrow next to <code>Terminal n</code>. Then click <code>Terminal Options</code></figcaption></figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/rstudio2.png" class="img-fluid figure-img"></p>
-<figcaption>New terminals open with: zsh. Then click <code>Apply</code>, and <code>OK</code></figcaption></figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/rstudio3.png" class="img-fluid figure-img"></p>
-<figcaption>Start a new terminal and there you go!</figcaption></figure>
-</div>
-</section><section id="conclusion" class="level2" data-number="5"><h2 data-number="5" class="anchored" data-anchor-id="conclusion">
-<span class="header-section-number">5</span> Conclusion</h2>
-<p>Go get some colour in your terminal ;)</p>
+<p>Every row gets a dict like that, which taken together are the values in the struct.</p>
+<p>Calling <code>unnest()</code> splits a struct into columns. The column names come from whatever the fields are called.</p>
+<p>So, all in all, it’s a little bit like an R list-column situation.</p>
+<p>Once the columns were unnested they were still string and have to be cast to the correct integer type. And then finally we get to do the calculation, which also looks way more verbose to me. One benefit of chaining methods is that you get to see what happens sequentially. That’s not the case with nested function calls, like in the R code. I don’t like the amount of noise in having to refer to columns with <code>pl.col("l")</code>, but it’s not that bad in this case to be honest.</p>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

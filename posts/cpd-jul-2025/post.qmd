@@ -1,0 +1,98 @@
+---
+title: "CPD for July 2025"
+description: "A grab bag of stuff"
+author:
+  - name: Jim Gardner
+    url: https://jimgar.github.io/jimgar/
+date: 2025-07-11
+categories: [Python, Advent of Code, Advent of Code 2024, Polars, uv]
+engine: knitr
+eval: false
+draft: false
+---
+
+My team (Data Science) at Smart Data Foundry have started to spend an hour of CPD time together once a week. July is our first month doing it, and I figured I would use it as an excuse to blog a little bit.
+
+## 2025-07-10
+
+### Advent of Code 2024 Day 1, Part 1
+
+I [did AoC Day 1 last year](https://github.com/jimgar/advent-of-code/blob/main/2024/01.R) and challenged myself to only use base R. We figured this would be a nice little problem to start our sessions with.
+
+This time, I wanted to try using Python. I'm kinda enjoying the language now, and between boot.dev and work am using it more than R. But! Instead of the standard library, I wanted to try using Polars and compare the solution to my base R one. Recently I've used Polars a fair bit for work but the operations I needed have been **very** simple. My spidey senses told me that if I used Polars then I'd end up learning something new.
+
+I also used uv, the hot new Python project/package manager, to start the project off:
+
+```{bash}
+uv init
+uv venv
+source venv/bin/activate
+uv add ruff
+uv add polars
+```
+
+That creates a few files, including a `uv.lock` and `pyproject.toml`. These essentially contain metadata such as the Python and package versions. The files can be copied into another project, or a container image, to install the same version of Python and packages with a simple `uv sync`.
+
+#### Solution
+
+```{python}
+import polars as pl
+
+
+df = (
+    pl.read_csv("aoc_day1/input.txt", has_header=False)
+    .with_columns(
+        column_1=pl.col("column_1")
+        .str.split_exact("   ", 1)
+        .struct.rename_fields(["l", "r"])
+    )
+    .unnest("column_1")
+)
+
+df = df.with_columns(
+    l=pl.col("l").cast(pl.Int32).sort(),
+    r=pl.col("r").cast(pl.Int32).sort(),
+)
+
+res = df.select((pl.col("r") - pl.col("l")).abs().sum()).item()
+
+print(res)
+```
+
+Comparing to the R version of the code:
+
+```{r}
+df <- read.table("2024/01-input.txt", col.names = c("l", "r"))
+
+df$l <- sort(df$l)
+df$r <- sort(df$r)
+
+sum(abs(df$r - df$l))
+```
+
+It's more verbose. Most of that comes down to fundamental differences between base R and Polars. In this case - which is common - the R solution uses functions. We also benefit from data.frames being native data structures, and `read.table` which does two things for us: identifies the delimiter (three whitespace characters), and infers the types correctly (numeric).
+
+The Polars solution is fiddlier. The csv parser can only take a single byte delimiter, meaning no regex, no multiple whitespace. I had to look this up, because it seemed frankly idiotic for a modern data processing package, and read the author saying they did this on purpose: It puts speed before anything else, and speed is at the heart of Polars. Doing anything else would go against that. Not so idiotic after all!!!
+
+Anyway this leads to extra processing because the table gets read as a single string column. When it gets split, it becomes a Polars **[struct](https://docs.pola.rs/user-guide/expressions/structs/)**. I didn't know what a struct actually was, though I saw the name appear in the user guide as I hacked on projects for work. Turns out they're essentially a typed dictionary.
+
+`str.split_exact()` returns "a struct of `n+1` fields". So the result of 
+
+```{python}
+split_exact("   ", 1)
+```
+
+on a row of data like `50123   10023` in a column called `column_1` is
+
+```{python}
+{"column_1": "50123", "column_2": "10023"}
+```
+
+Every row gets a dict like that, which taken together are the values in the struct.
+
+Calling `unnest()` splits a struct into columns. The column names come from whatever the fields are called.
+
+So, all in all, it's a little bit like an R list-column situation.
+
+Once the columns were unnested they were still string and have to be cast to the correct integer type. And then finally we get to do the calculation, which also looks way more verbose to me. One benefit of chaining methods is that you get to see what happens sequentially. That's not the case with nested function calls, like in the R code. I don't like the amount of noise in having to refer to columns with `pl.col("l")`, but it's not that bad in this case to be honest.
+
