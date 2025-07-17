@@ -205,6 +205,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#advent-of-code-2024-day-1-part-1" id="toc-advent-of-code-2024-day-1-part-1" class="nav-link" data-scroll-target="#advent-of-code-2024-day-1-part-1">Advent of Code 2024 Day 1, Part 1</a></li>
   </ul>
 </li>
+  <li>
+<a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2025-07-17</a>
+  <ul class="collapse">
+<li><a href="#advent-of-code-2024-day-1-part-2" id="toc-advent-of-code-2024-day-1-part-2" class="nav-link" data-scroll-target="#advent-of-code-2024-day-1-part-2">Advent of Code 2024 Day 1, Part 2</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -270,6 +276,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Calling <code>unnest()</code> splits a struct into columns. The column names come from whatever the fields are called.</p>
 <p>So, all in all, it’s a little bit like an R list-column situation.</p>
 <p>Once the columns were unnested they were still string and have to be cast to the correct integer type. And then finally we get to do the calculation, which also looks way more verbose to me. One benefit of chaining methods is that you get to see what happens sequentially. That’s not the case with nested function calls, like in the R code. I don’t like the amount of noise in having to refer to columns with <code>pl.col("l")</code>, but it’s not that bad in this case to be honest.</p>
+</section></section></section><section id="section-1" class="level2"><h2 class="anchored" data-anchor-id="section-1">2025-07-17</h2>
+<section id="advent-of-code-2024-day-1-part-2" class="level3"><h3 class="anchored" data-anchor-id="advent-of-code-2024-day-1-part-2">Advent of Code 2024 Day 1, Part 2</h3>
+<p>Same deal as last week, but part two of the problem.</p>
+<section id="solution-1" class="level4"><h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df was defined in the week 1 section</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df.select(<span class="st">"r"</span>).to_series().value_counts()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>joined <span class="op">=</span> df.join(counts, how<span class="op">=</span><span class="st">"inner"</span>, left_on<span class="op">=</span><span class="st">"l"</span>, right_on<span class="op">=</span><span class="st">"r"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>joined <span class="op">=</span> joined.with_columns(multiplied<span class="op">=</span>pl.col(<span class="st">"count"</span>) <span class="op">*</span> pl.col(<span class="st">"l"</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>summed <span class="op">=</span> joined.select(<span class="st">"multiplied"</span>).<span class="bu">sum</span>().item()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Part 2 result: </span><span class="sc">{</span>summed<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Comparing to the R version:</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># df already defined in the week 1 section</span></span>
+<span></span>
+<span><span class="va">freq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">r</span><span class="op">[</span><span class="va">df</span><span class="op">$</span><span class="va">r</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">df</span><span class="op">$</span><span class="va">l</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">freq</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"f"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">freq</span>, by <span class="op">=</span> <span class="st">"l"</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span>, sort <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">l</span> <span class="op">*</span> <span class="va">df</span><span class="op">$</span><span class="va">f</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It’s a similar approach: Make a frequency table of the values in the right-hand column, join those values onto the original table, multiply the left-hand values against the frequency values and sum up the results.</p>
+<p>I couldn’t remember what I did in the R version, but my mind went to almost exactly the same places. In both versions I started by making a frequency table, which was trivial. However, in the R version I first filtered the values in the right-hand column by those of the left-hand column, so that the frequency table would be much smaller (there were only 37 shared values between the columns in my dataset). This seemed more efficient for further steps because with a smaller dataframe there will be fewer comparisons to make.</p>
+<p>This was what I wanted to do in the Polars version, too, but it was fiddly. There might be a better way of doing this, but my code ended up looking like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> df.select(<span class="st">"r"</span>).to_series().is_in(df.select(<span class="st">"l"</span>).to_series())</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> df.select(<span class="st">"r"</span>).to_series().<span class="bu">filter</span>(mask).value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That’s not terrible, but to me the R way of subsetting a vector looks <strong>far</strong> more elegant. Once again Polars is more verbose; I get lost trying to read the repetition of <code>select</code> and <code>to_series</code> and the brackets. There <strong>is</strong> a <code>df.to_series()</code> method, so the code could be streamlined slightly, but it takes a column’s position as it’s arg, rather than a name. I stand resolute and refuse to do <code>df.to_series(0)</code>. That… is opaque bullshit!</p>
+<p>Instead, I did an inner join between the two DataFrames. An inner join is a “filtering join”, where the left-hand df gets filtered by the contents of the right-hand df. And in the R version I did the same thing using <code><a href="https://rdrr.io/r/base/merge.html">merge()</a></code>.</p>
+<p>At this juncture of writing the blog post something quite nice happened. I realise that the R code was doing some redundant things. Because <code><a href="https://rdrr.io/r/base/merge.html">merge()</a></code> does an inner join by default, there was no need to specify <code>all.x = TRUE</code>. In fact, it causes the opposite behaviour of what is needed: It’s like saying “Yes, make sure you keep all the rows from the left-hand df, and if you don’t mind, add NAs whenever there was no matching row in the right-hand df!”. That’s why the subsequent sum requires <code>na.rm = TRUE</code>.</p>
+<p>In my opinion the more elegant approach is the Polars version: Don’t bother filtering the frequency table first, simply allow the inner join to do its job and filter for you.</p>
+<p>With those changes made, the R code is even slicker (isn’t it satisfying to delete things??):</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">freq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">r</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">freq</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"f"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">freq</span>, by <span class="op">=</span> <span class="st">"l"</span>, sort <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">l</span> <span class="op">*</span> <span class="va">df</span><span class="op">$</span><span class="va">f</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All in all:</p>
+<ul>
+<li>Humbling to look back at simple problems and try to solve them with a new tool</li>
+<li>Satisfying to revisit concepts and end up streamlining old code</li>
+<li>Interesting to observe what <strong>feels nicer to read</strong> as I look at the code. Never underestimate how important feel is to craft</li>
+</ul>
 
 
 </section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

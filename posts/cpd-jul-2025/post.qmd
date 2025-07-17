@@ -96,3 +96,75 @@ So, all in all, it's a little bit like an R list-column situation.
 
 Once the columns were unnested they were still string and have to be cast to the correct integer type. And then finally we get to do the calculation, which also looks way more verbose to me. One benefit of chaining methods is that you get to see what happens sequentially. That's not the case with nested function calls, like in the R code. I don't like the amount of noise in having to refer to columns with `pl.col("l")`, but it's not that bad in this case to be honest.
 
+## 2025-07-17
+
+### Advent of Code 2024 Day 1, Part 2
+
+Same deal as last week, but part two of the problem.
+
+#### Solution
+
+```{python}
+# df was defined in the week 1 section
+
+counts = df.select("r").to_series().value_counts()
+
+joined = df.join(counts, how="inner", left_on="l", right_on="r")
+
+joined = joined.with_columns(multiplied=pl.col("count") * pl.col("l"))
+
+summed = joined.select("multiplied").sum().item()
+
+print(f"Part 2 result: {summed}")
+```
+
+Comparing to the R version:
+
+```{r}
+# df already defined in the week 1 section
+
+freq <- as.data.frame(table(df$r[df$r %in% df$l]))
+names(freq) <- c("l", "f")
+
+df <- merge(df, freq, by = "l", all.x = TRUE, sort = FALSE)
+
+sum(df$l * df$f, na.rm = TRUE)
+```
+
+It's a similar approach: Make a frequency table of the values in the right-hand column, join those values onto the original table, multiply the left-hand values against the frequency values and sum up the results.
+
+I couldn't remember what I did in the R version, but my mind went to almost exactly the same places. In both versions I started by making a frequency table, which was trivial. However, in the R version I first filtered the values in the right-hand column by those of the left-hand column, so that the frequency table would be much smaller (there were only 37 shared values between the columns in my dataset). This seemed more efficient for further steps because with a smaller dataframe there will be fewer comparisons to make.
+
+This was what I wanted to do in the Polars version, too, but it was fiddly. There might be a better way of doing this, but my code ended up looking like:
+
+
+```{python}
+mask = df.select("r").to_series().is_in(df.select("l").to_series())
+counts = df.select("r").to_series().filter(mask).value_counts()
+```
+
+That's not terrible, but to me the R way of subsetting a vector looks **far** more elegant. Once again Polars is more verbose; I get lost trying to read the repetition of `select` and `to_series` and the brackets. There **is** a `df.to_series()` method, so the code could be streamlined slightly, but it takes a column's position as it's arg, rather than a name. I stand resolute and refuse to do `df.to_series(0)`. That... is opaque bullshit!
+
+Instead, I did an inner join between the two DataFrames. An inner join is a "filtering join", where the left-hand df gets filtered by the contents of the right-hand df. And in the R version I did the same thing using `merge()`. 
+
+At this juncture of writing the blog post something quite nice happened. I realise that the R code was doing some redundant things. Because `merge()` does an inner join by default, there was no need to specify `all.x = TRUE`. In fact, it causes the opposite behaviour of what is needed: It's like saying "Yes, make sure you keep all the rows from the left-hand df, and if you don't mind, add NAs whenever there was no matching row in the right-hand df!". That's why the subsequent sum requires `na.rm = TRUE`.
+
+In my opinion the more elegant approach is the Polars version: Don't bother filtering the frequency table first, simply allow the inner join to do its job and filter for you.
+
+With those changes made, the R code is even slicker (isn't it satisfying to delete things??):
+
+```{r}
+freq <- as.data.frame(table(df$r))
+names(freq) <- c("l", "f")
+
+df <- merge(df, freq, by = "l", sort = FALSE)
+
+sum(df$l * df$f)
+```
+
+All in all:
+
+- Humbling to look back at simple problems and try to solve them with a new tool
+- Satisfying to revisit concepts and end up streamlining old code
+- Interesting to observe what **feels nicer to read** as I look at the code. Never underestimate how important feel is to craft
+
