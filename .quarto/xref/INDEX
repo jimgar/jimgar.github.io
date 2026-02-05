@@ -61,5 +61,14 @@
   },
   "posts/cpd-jul-2025/post.qmd": {
     "post.html": "f37adc34"
+  },
+  "posts/collaborations-workshop-2025/post.qmd": {
+    "post.html": "781a7199"
+  },
+  "posts/jazz-ish-six-months/post.qmd": {
+    "post.html": "d21cae7a"
+  },
+  "posts/quarto-code-conditionals/post.rmarkdown": {
+    "post.html": "fb7eeca3"
   }
 }

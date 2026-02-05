@@ -1,0 +1,135 @@
+---
+title: "Trip Report: Collaborations Workshop 2025"
+description: "An inspiring few days"
+author:
+  - name: Jim Gardner
+    url: https://jimgar.github.io/jimgar/
+date: 2025-05-19
+categories: [R, Python, Conferences]
+engine: knitr
+draft: true
+---
+
+```{css}
+#| echo: false
+.figure-caption {
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+```
+
+![The radian R terminal running from inside a container, showing a custom startup message. To the side is a browser with the R HTML help page loaded, which is being served from the container.](r-html-help.png){fig-align="center"}
+
+I attended all three days of the Software Sustainability Insitute's [Collaborations Workshop 2025](https://www.software.ac.uk/workshop/collaborations-workshop-2025-cw25).
+
+> CW25 will centre around future proofing research software and how we evolve together as a diverse community. Over three days, delegates will be invited to take part in discussion sessions, collaborative ideas sessions, and hack day sessions, to explore together and create together.
+
+It took place in a hotel on Stirling University's campus, which was nice and quiet and green. The food was pretty decent, the SSI staff were excellent, and all in all I'd say it was an exceptionally well put together event. Mad respect for the organising team.
+
+## Nerves
+
+To be honest, from the day I asked if my company would send me, until the end of the first day of the workshop itself, I was terrified. Collaboration is something I deeply love. I think it makes most of what we do, as programmers, much better, and is good for the soul. But the uncertainty about what each session would actually include, if I would fit in (I'm not a Research Software Engineer and my attendance was speculative), if the food would be ok, would I be well rested enough each day, could I meaningfully contribute during group work, and so on, is just very difficult.
+
+In fact, I'm willing to admit that's an understatement. Before leaving home in Edinburgh I seriously considered backing out. Approaching the hotel, I called my partner just so that she could tell me everything was going to be ok. My whole body was shaking as I walked in and it felt so hard just to tell the staff my name!
+
+It wasn't long before I found [Ella Kaye](https://ellakaye.co.uk/), a friendly face from the UK R scene. She gave me some reassurances, including that as far as conferences go, the people at this one are some of the friendliest you could find. And a couple of times again during the day she came to make sure that I was doing ok. It made a difference, and she was right, people were absolutely lovely.
+
+## A diverse community
+
+Diversity was very much the thread running through the three days. It was super nice. I found myself moved to some small tears as [Malvika Sharan](https://malvikasharan.github.io/) spoke during the EDI panel. Like so many, I find the current global political landscape, especially that of the US, distressing. I find myself feeling overwhelmed by how bad things are. As Malvika spoke, she shared a deep strength, her principles on display, and I felt so humbled and instilled with hope. The rest of the panel were equally as impressive.
+
+It's overwhelming trying to come up with stuff.
+
+Project managing the hack days was challenging. Roles and responsibilities. Trying to break things down to epics and tickets. Doug.
+
+Accessibility was important.
+
+I didn't realise how much I needed
+
+
+
+## blah
+
+This is a follow-on about my [attempt to make](https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto/post.html) a container that can be used as an interactive Neovim development environment with R and Quarto.
+
+[Pete](https://hcommons.social/@petejones), who started me dancing down the devil's road in the first place, had a follow-up request:
+
+> [...] is there a way to run R's HTML help server in the container and view it in a browser on the host?
+
+Sounds like that should be easy to do. After all, I was able to get the Quarto HTML preview and hdg graphics viewer for R sorted. I bet it'll take 30 minutes or so!
+
+How naive of me.
+
+## Problem / solution
+
+For those who don't know - and this included me before this week - you can launch a website containing **all** of the help pages for both R's standard library (base, tools, utils, Matrix, etc.) and user installed packages. You can launch this website by using the `help.start()` function that comes with R. The more you know.
+
+This is useful if, for example, you're using R in a terminal setting, which as we established last time is what Pete does.
+
+I quickly found out that the root cause of the problem is within the `help.start()` function body. Specifically, both `help.start()` and a function it calls, `tools::startDynamicHelp()`, have the IP address `127.0.0.1` hard coded into their definitions. This is a problem because HTTP servers running inside containers using `127.0.0.1` can't be accessed from outside the container. Instead, you have to use `0.0.0.0`. Thankfully, it is at least possible to tell R that you always want to use the same port when running the server.
+
+A few hours later I hit a brick wall and [posted about it](https://hachyderm.io/@jimgar/114457423581278999) on Mastodon. R legend [Yihui Xie](https://yihui.org/) jumped in and replied, kindly telling us exactly what we needed to do. This was very much appreciated -- I had clearly gone down a dead end. It gave me hope!
+
+What Yihui turned us onto was a command line tool called `socat`. You can use it to create proxies and bind ports. In our case, the magic command looked like this:
+
+```shell
+socat TCP-LISTEN:20633,bind=0.0.0.0,fork TCP:127.0.0.1:20000 &
+```
+
+This means: Accept traffic (listen) on 0.0.0.0:20633, i.e. receive requests for web pages as we browse the site. Then pass the requests to 127.0.0.1:20000. Fork allows us to handle multiple requests. And the final ampersand tells bash to run the socat process in the background, otherwise socat will make the terminal busy.
+
+To put this into practice I added some more R code to `~/.Rprofile` during container build time. This is an important file because whenever R starts it runs the code in this file. That means we can use it for performing setup, such as getting socat to forward our traffic. The code looks like this:
+
+```r
+#| eval: false
+if (interactive()) {
+  options('help.ports' = 20000)
+  system('socat TCP-LISTEN:20633,bind=0.0.0.0,fork TCP:127.0.0.1:20000 &')
+
+  cli::cli_h1('HTML help pages')
+  cli::cli_alert_info('Starting httpd help server...')
+
+  resp <- suppressMessages(tools::startDynamicHelp())
+
+  if (resp != 20000) {
+    cli::cli_alert_danger('Failed to start server. Try running {.fn tools::startDynamicHelp} manually to see what happens.')
+    cli::cli_text('')
+  } else {
+    cli::cli_alert_info('If container is running with {.code -p 20633:20633}')
+    cli::cli_alert_info('{.url http://localhost:20633/doc/html/index.html}')
+    cli::cli_text('')
+  }
+
+  rm(resp)
+
+  .Last <- function() {
+    # Attempt to clean up after ourselves when R closes.
+    # When R closes the help pages are no longer served, so we
+    # should also stop socat.
+
+    # A bit of a blunt instrument as it will terminal ALL instances
+    # of socat. But I'm assuming for this container that R help will
+    # be the sole user of the command, so it's safe to do
+    x <- suppressWarnings(system('pgrep socat', intern = TRUE))
+    if (length(x) >= 1L) {
+      system('pgrep socat | xargs kill -9')
+    }
+  }
+}
+```
+
+When starting R with the radian terminal, we get this lovely startup message:
+
+![The radian terminal immediately following boot up. Brief messages tell the user that the http server has been started for the HTML help pages.](radian-startup.png){fig-align="center"}
+
+As my comments say in the code block, this is a rather inelegant solution. There is the possibility of using the bash command `$!` in order to get the PID of the socat process (`$!` gets the PID of the most recent background process) and do a targeted kill. But I found that socat was a bit erratic, sometimes spawning a few processes. Unfortunately the second and third processes weren't children of the first, otherwise we could have captured the value of `$!`, say as `panret_pid` and used `pkill -P parent_pid`. On the plus side I think this is a very clean solution, insofar as socat will always be started and killed in tandem with R.
+
+## How it's going
+
+Well, I wrote this blog post using Neovim from the container in question! That includes previewing the post :)
+
+The Containerfile [now exists in a GitHub repo](https://github.com/jimgar/nvim-r-py-quarto-container). At time of writing there's no documentation, but I will get to it soon. One thing I've noticed is that the container image size is rather large, about 2.7GB. Maybe that's ok - there is a **lot** of stuff being installed into it, after all. It's also very tiresome having the plugins install every time the container is restarted and Neovim gets invoked for the first time. I think it might be possible to simply copy everything from `.local/share/nvim/lazy` into the GitHub repo and copy it into the image at build time instead, but that requires some experimentation.
+

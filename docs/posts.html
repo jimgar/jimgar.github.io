@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,15 +33,17 @@ ul.task-list li input[type="checkbox"] {
 <link href="./favicon.ico" rel="icon">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-42da390b1251f2a7a621bc99940f6342.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-06d6a099fb458b5ee487db60f874aad9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,7 +115,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -134,13 +136,15 @@ window.Quarto = {
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">~ jim</span>
     </a>
@@ -194,7 +198,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="Advent of Code">Advent of Code <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Advent of Code 2023">Advent of Code 2023 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Advent of Code 2024">Advent of Code 2024 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Container">Container <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Docker">Docker <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Neovim">Neovim <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Podman">Podman <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Polars">Polars <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Quarto">Quarto <span class="quarto-category-count">(3)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(9)</span></div><div class="category" data-category="RStudio">RStudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VS Code">VS Code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Visual Studio Code">Visual Studio Code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="base R">base R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bat">bat <span class="quarto-category-count">(1)</span></div><div class="category" data-category="command line">command line <span class="quarto-category-count">(1)</span></div><div class="category" data-category="eza">eza <span class="quarto-category-count">(1)</span></div><div class="category" data-category="knitr">knitr <span class="quarto-category-count">(1)</span></div><div class="category" data-category="macOS">macOS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ohmyzsh">ohmyzsh <span class="quarto-category-count">(1)</span></div><div class="category" data-category="terminal">terminal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="uv">uv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="zsh">zsh <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2Rl">Advent of Code <span class="quarto-category-count">(4)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw==">Advent of Code 2023 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyNA==">Advent of Code 2024 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmFuZGNhbXA=">Bandcamp <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmFzZSUyMFI=">base R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YmF0">bat <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29tbWFuZCUyMGxpbmU=">command line <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29udGFpbmVy">Container <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RG9ja2Vy">Docker <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZXph">eza <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SmF6eg==">Jazz <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a25pdHI=">knitr <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFjT1M=">macOS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVzaWM=">Music <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmVvdmlt">Neovim <span class="quarto-category-count">(3)</span></div><div class="category" data-category="b2hteXpzaA==">ohmyzsh <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9kbWFu">Podman <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UG9sYXJz">Polars <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(9)</span></div><div class="category" data-category="UlN0dWRpbw==">RStudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVybWluYWw=">terminal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dXY=">uv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VmlzdWFsJTIwU3R1ZGlvJTIwQ29kZQ==">Visual Studio Code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VlMlMjBDb2Rl">VS Code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="enNo">zsh <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -225,26 +229,26 @@ window.Quarto = {
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-file-modified-sort" data-direction="asc">
-          Modified - Oldest
-        </option>
-         <option value="listing-file-modified-sort" data-direction="desc">
-          Modified - Newest
-        </option>
-     </select>
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title" data-direction="asc">
+        Title
+      </option>
+      <option value="listing-date-sort" data-direction="asc">
+        Date - Oldest
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Date - Newest
+      </option>
+      <option value="listing-file-modified-sort" data-direction="asc">
+        Modified - Oldest
+      </option>
+      <option value="listing-file-modified-sort" data-direction="desc">
+        Modified - Newest
+      </option>
+    </select>
   </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -252,7 +256,39 @@ window.Quarto = {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Python,Advent of Code,Advent of Code 2024,Polars,uv" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1752790530361" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1220">
+<div class="g-col-1" data-index="0" data-categories="TXVzaWMlMkNCYW5kY2FtcCUyQ0pheno=" data-listing-date-sort="1770163200000" data-listing-file-modified-sort="1770249684555" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1858">
+<a href="./posts/jazz-ish-six-months/post.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="posts/jazz-ish-six-months/orbits.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Six months of Bandcamp’s Jazz-ish Jazz Club
+</h5>
+<div class="listing-reading-time card-text text-muted">10 min</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TXVzaWM='); return false;">Music</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QmFuZGNhbXA='); return false;">Bandcamp</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SmF6eg=='); return false;">Jazz</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Reflections on my first digital record club</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Feb 4, 2026
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">2/5/26, 12:01:24 AM</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="UHl0aG9uJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyNCUyQ1BvbGFycyUyQ3V2" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1770234933945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1220">
 <a href="./posts/cpd-jul-2025/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -260,28 +296,22 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 CPD for July 2025
 </h5>
-<div class="listing-reading-time card-text text-muted">
-7 min
-</div>
+<div class="listing-reading-time card-text text-muted">7 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyNA=='); return false;">Advent of Code 2024</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9sYXJz'); return false;">Polars</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('dXY='); return false;">uv</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code'); return false;">
-Advent of Code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code 2024'); return false;">
-Advent of Code 2024
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Polars'); return false;">
-Polars
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('uv'); return false;">
-uv
-</div>
-</div>
-<div class="card-text listing-description">
-A grab bag of stuff
+<div class="card-text listing-description delink">
+<p>A grab bag of stuff</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -290,14 +320,11 @@ Jul 11, 2025
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>7/17/25, 11:15:30 PM</p>
+<div class="card-file-modified listing-file-modified">2/4/26, 7:55:33 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="R,Quarto,Python,Neovim,Container,Docker,Podman" data-listing-date-sort="1746745200000" data-listing-file-modified-sort="1752251715625" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="978">
+<div class="g-col-1" data-index="2" data-categories="UiUyQ1F1YXJ0byUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ0NvbnRhaW5lciUyQ0RvY2tlciUyQ1BvZG1hbg==" data-listing-date-sort="1746745200000" data-listing-file-modified-sort="1746830052777" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="978">
 <a href="./posts/interactive-neovim-development-container-r-quarto-part-2/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/interactive-neovim-development-container-r-quarto-part-2/r-html-help.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -305,34 +332,26 @@ Jul 11, 2025
 <h5 class="no-anchor card-title listing-title">
 Accessing R HTML help pages from outside a container
 </h5>
-<div class="listing-reading-time card-text text-muted">
-5 min
-</div>
+<div class="listing-reading-time card-text text-muted">5 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">Quarto</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmVvdmlt'); return false;">Neovim</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29udGFpbmVy'); return false;">Container</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RG9ja2Vy'); return false;">Docker</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9kbWFu'); return false;">Podman</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Quarto'); return false;">
-Quarto
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Neovim'); return false;">
-Neovim
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Container'); return false;">
-Container
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Docker'); return false;">
-Docker
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Podman'); return false;">
-Podman
-</div>
-</div>
-<div class="card-text listing-description">
-Solved by an R legend (not me)
+<div class="card-text listing-description delink">
+<p>Solved by an R legend (not me)</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -341,14 +360,11 @@ May 9, 2025
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>7/11/25, 5:35:15 PM</p>
+<div class="card-file-modified listing-file-modified">5/9/25, 11:34:12 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="R,Quarto,Python,Neovim,Container,Docker,Podman" data-listing-date-sort="1746054000000" data-listing-file-modified-sort="1746142973294" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2399">
+<div class="g-col-1" data-index="3" data-categories="UiUyQ1F1YXJ0byUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ0NvbnRhaW5lciUyQ0RvY2tlciUyQ1BvZG1hbg==" data-listing-date-sort="1746054000000" data-listing-file-modified-sort="1746821037723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2399">
 <a href="./posts/interactive-neovim-development-container-r-quarto/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/interactive-neovim-development-container-r-quarto/nvim_container_1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -356,34 +372,26 @@ May 9, 2025
 <h5 class="no-anchor card-title listing-title">
 A containerised Neovim dev environment for R and Quarto
 </h5>
-<div class="listing-reading-time card-text text-muted">
-12 min
-</div>
+<div class="listing-reading-time card-text text-muted">12 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">Quarto</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmVvdmlt'); return false;">Neovim</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29udGFpbmVy'); return false;">Container</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RG9ja2Vy'); return false;">Docker</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9kbWFu'); return false;">Podman</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Quarto'); return false;">
-Quarto
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Neovim'); return false;">
-Neovim
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Container'); return false;">
-Container
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Docker'); return false;">
-Docker
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Podman'); return false;">
-Podman
-</div>
-</div>
-<div class="card-text listing-description">
-I got nerd-sniped.
+<div class="card-text listing-description delink">
+<p>I got nerd-sniped.</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -392,14 +400,11 @@ May 1, 2025
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>5/2/25, 12:42:53 AM</p>
+<div class="card-file-modified listing-file-modified">5/9/25, 9:03:57 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="R,Python,Neovim,VS Code" data-listing-date-sort="1742774400000" data-listing-file-modified-sort="1746131736512" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1343">
+<div class="g-col-1" data-index="4" data-categories="UiUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ1ZTJTIwQ29kZQ==" data-listing-date-sort="1742774400000" data-listing-file-modified-sort="1742856306074" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1343">
 <a href="./posts/learning-neovim-is-hard/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/learning-neovim-is-hard/nvim.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -407,25 +412,20 @@ May 1, 2025
 <h5 class="no-anchor card-title listing-title">
 Learning Neovim is Hard
 </h5>
-<div class="listing-reading-time card-text text-muted">
-7 min
-</div>
+<div class="listing-reading-time card-text text-muted">7 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmVvdmlt'); return false;">Neovim</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VlMlMjBDb2Rl'); return false;">VS Code</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
-Python
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Neovim'); return false;">
-Neovim
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('VS Code'); return false;">
-VS Code
-</div>
-</div>
-<div class="card-text listing-description">
-Trying to orient myself in the Neovim landscape proved harder than I anticipated
+<div class="card-text listing-description delink">
+<p>Trying to orient myself in the Neovim landscape proved harder than I anticipated</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -434,14 +434,11 @@ Mar 24, 2025
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>5/1/25, 9:35:36 PM</p>
+<div class="card-file-modified listing-file-modified">3/24/25, 10:45:06 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="VS Code,Visual Studio Code,R" data-listing-date-sort="1703030400000" data-listing-file-modified-sort="1737372970352" data-listing-date-modified-sort="1712012400000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2852">
+<div class="g-col-1" data-index="5" data-categories="VlMlMjBDb2RlJTJDVmlzdWFsJTIwU3R1ZGlvJTIwQ29kZSUyQ1I=" data-listing-date-sort="1703030400000" data-listing-file-modified-sort="1715513628272" data-listing-date-modified-sort="1712012400000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2852">
 <a href="./posts/vs-code-macos-r/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/vs-code-macos-r/images/rainbow-csv.png" alt="A VS Code window showing the R dataset 'mtcars' open as a standalone csv file. The Rainbow CSV extension is installed and enabled, applying a series of alternating colours to the columns of mtcars.csv" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -449,22 +446,18 @@ Mar 24, 2025
 <h5 class="no-anchor card-title listing-title">
 VS Code for R on macOS
 </h5>
-<div class="listing-reading-time card-text text-muted">
-15 min
-</div>
+<div class="listing-reading-time card-text text-muted">15 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('VS Code'); return false;">
-VS Code
+
+<div class="listing-category" onclick="window.quartoListingCategory('VlMlMjBDb2Rl'); return false;">VS Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsJTIwU3R1ZGlvJTIwQ29kZQ=='); return false;">Visual Studio Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Visual Studio Code'); return false;">
-Visual Studio Code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="card-text listing-description">
-More or less everything you need to know to get started
+<div class="card-text listing-description delink">
+<p>More or less everything you need to know to get started</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -473,14 +466,11 @@ Dec 20, 2023
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>1/20/25, 11:36:10 AM</p>
+<div class="card-file-modified listing-file-modified">5/12/24, 12:33:48 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="R,base R,Advent of Code,Advent of Code 2023" data-listing-date-sort="1702598400000" data-listing-file-modified-sort="1737372970333" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1768">
+<div class="g-col-1" data-index="6" data-categories="UiUyQ2Jhc2UlMjBSJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw==" data-listing-date-sort="1702598400000" data-listing-file-modified-sort="1702625286687" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1768">
 <a href="./posts/advent-of-code-2023-day-3/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/advent-of-code-2023-day-3/matrix.jpeg" alt="Green text streaming vertically down a black background. It looks like the code seen in The Matrix movies." style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -488,25 +478,20 @@ Dec 20, 2023
 <h5 class="no-anchor card-title listing-title">
 Day 3 - Advent of Code 2023
 </h5>
-<div class="listing-reading-time card-text text-muted">
-9 min
-</div>
+<div class="listing-reading-time card-text text-muted">9 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YmFzZSUyMFI='); return false;">base R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw=='); return false;">Advent of Code 2023</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('base R'); return false;">
-base R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code'); return false;">
-Advent of Code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code 2023'); return false;">
-Advent of Code 2023
-</div>
-</div>
-<div class="card-text listing-description">
-Commitment to a data structure
+<div class="card-text listing-description delink">
+<p>Commitment to a data structure</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -515,14 +500,11 @@ Dec 15, 2023
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>1/20/25, 11:36:10 AM</p>
+<div class="card-file-modified listing-file-modified">12/15/23, 7:28:06 AM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="R,base R,Advent of Code,Advent of Code 2023" data-listing-date-sort="1702166400000" data-listing-file-modified-sort="1737372970332" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2859">
+<div class="g-col-1" data-index="7" data-categories="UiUyQ2Jhc2UlMjBSJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw==" data-listing-date-sort="1702166400000" data-listing-file-modified-sort="1702223754125" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2859">
 <a href="./posts/advent-of-code-2023-day-2/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -530,25 +512,20 @@ Dec 15, 2023
 <h5 class="no-anchor card-title listing-title">
 Day 2 - Advent of Code 2023
 </h5>
-<div class="listing-reading-time card-text text-muted">
-15 min
-</div>
+<div class="listing-reading-time card-text text-muted">15 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YmFzZSUyMFI='); return false;">base R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw=='); return false;">Advent of Code 2023</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('base R'); return false;">
-base R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code'); return false;">
-Advent of Code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code 2023'); return false;">
-Advent of Code 2023
-</div>
-</div>
-<div class="card-text listing-description">
-In which we compare multiple solutions.
+<div class="card-text listing-description delink">
+<p>In which we compare multiple solutions.</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -557,14 +534,11 @@ Dec 10, 2023
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>1/20/25, 11:36:10 AM</p>
+<div class="card-file-modified listing-file-modified">12/10/23, 3:55:54 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="R,Advent of Code,Advent of Code 2023" data-listing-date-sort="1701648000000" data-listing-file-modified-sort="1737372970333" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="949">
+<div class="g-col-1" data-index="8" data-categories="UiUyQ0FkdmVudCUyMG9mJTIwQ29kZSUyQ0FkdmVudCUyMG9mJTIwQ29kZSUyMDIwMjM=" data-listing-date-sort="1701648000000" data-listing-file-modified-sort="1701731601367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="949">
 <a href="./posts/advent-of-code-2023/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
@@ -572,22 +546,18 @@ Dec 10, 2023
 <h5 class="no-anchor card-title listing-title">
 Day 1 - Advent of Code 2023
 </h5>
-<div class="listing-reading-time card-text text-muted">
-5 min
-</div>
+<div class="listing-reading-time card-text text-muted">5 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2Rl'); return false;">Advent of Code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw=='); return false;">Advent of Code 2023</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code'); return false;">
-Advent of Code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Advent of Code 2023'); return false;">
-Advent of Code 2023
-</div>
-</div>
-<div class="card-text listing-description">
-Harder than I thought it would be. Much harder.
+<div class="card-text listing-description delink">
+<p>Harder than I thought it would be. Much harder.</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -596,14 +566,11 @@ Dec 4, 2023
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>1/20/25, 11:36:10 AM</p>
+<div class="card-file-modified listing-file-modified">12/4/23, 11:13:21 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="8" data-categories="terminal,zsh,command line,macOS,bat,eza,ohmyzsh" data-listing-date-sort="1697065200000" data-listing-file-modified-sort="1737372970358" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="937">
+<div class="g-col-1" data-index="9" data-categories="dGVybWluYWwlMkN6c2glMkNjb21tYW5kJTIwbGluZSUyQ21hY09TJTJDYmF0JTJDZXphJTJDb2hteXpzaA==" data-listing-date-sort="1697065200000" data-listing-file-modified-sort="1700071251337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="937">
 <a href="./posts/zsh-tosh-pretty-terminal/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/zsh-tosh-pretty-terminal/images/zsh.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -611,34 +578,26 @@ Dec 4, 2023
 <h5 class="no-anchor card-title listing-title">
 Making the terminal zsh-tosh on macOS
 </h5>
-<div class="listing-reading-time card-text text-muted">
-5 min
-</div>
+<div class="listing-reading-time card-text text-muted">5 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('terminal'); return false;">
-terminal
+
+<div class="listing-category" onclick="window.quartoListingCategory('dGVybWluYWw='); return false;">terminal</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('enNo'); return false;">zsh</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29tbWFuZCUyMGxpbmU='); return false;">command line</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bWFjT1M='); return false;">macOS</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YmF0'); return false;">bat</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZXph'); return false;">eza</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('b2hteXpzaA=='); return false;">ohmyzsh</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('zsh'); return false;">
-zsh
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('command line'); return false;">
-command line
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('macOS'); return false;">
-macOS
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('bat'); return false;">
-bat
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('eza'); return false;">
-eza
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('ohmyzsh'); return false;">
-ohmyzsh
-</div>
-</div>
-<div class="card-text listing-description">
-My favourite command line tools with zsh
+<div class="card-text listing-description delink">
+<p>My favourite command line tools with zsh</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -647,14 +606,11 @@ Oct 12, 2023
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>1/20/25, 11:36:10 AM</p>
+<div class="card-file-modified listing-file-modified">11/15/23, 6:00:51 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="9" data-categories="R,RStudio" data-listing-date-sort="1691103600000" data-listing-file-modified-sort="1737372970349" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1308">
+<div class="g-col-1" data-index="10" data-categories="UiUyQ1JTdHVkaW8=" data-listing-date-sort="1691103600000" data-listing-file-modified-sort="1700071208894" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1308">
 <a href="./posts/rstudio-keyboard-shortcuts/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/rstudio-keyboard-shortcuts/images/helvetica-found.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -662,19 +618,16 @@ Oct 12, 2023
 <h5 class="no-anchor card-title listing-title">
 Comfy keyboard shortcuts for RStudio
 </h5>
-<div class="listing-reading-time card-text text-muted">
-7 min
-</div>
+<div class="listing-reading-time card-text text-muted">7 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UlN0dWRpbw=='); return false;">RStudio</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('RStudio'); return false;">
-RStudio
-</div>
-</div>
-<div class="card-text listing-description">
-Aimed at beginner and intermediate users
+<div class="card-text listing-description delink">
+<p>Aimed at beginner and intermediate users</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -683,14 +636,11 @@ Aug 4, 2023
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>1/20/25, 11:36:10 AM</p>
+<div class="card-file-modified listing-file-modified">11/15/23, 6:00:08 PM</div>
 </div>
+</div></a>
 </div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="10" data-categories="Quarto,R,knitr" data-listing-date-sort="1682290800000" data-listing-file-modified-sort="1737375609798" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1167">
+<div class="g-col-1" data-index="11" data-categories="UXVhcnRvJTJDUiUyQ2tuaXRy" data-listing-date-sort="1682290800000" data-listing-file-modified-sort="1742856636465" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1167">
 <a href="./posts/quarto-code-conditionals/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="posts/quarto-code-conditionals/images/damsel1.png" alt="A cropped photograph of the eyes and surrounding fur of a cat's face. The cat is a chimera with green eyes, the left side of her face coloured black and the right side orange. The cat's name is Damsel." style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -698,22 +648,18 @@ Aug 4, 2023
 <h5 class="no-anchor card-title listing-title">
 Publishing content in Quarto using conditionals and if/else code flow
 </h5>
-<div class="listing-reading-time card-text text-muted">
-6 min
-</div>
+<div class="listing-reading-time card-text text-muted">6 min</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Quarto'); return false;">
-Quarto
+
+<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">Quarto</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('a25pdHI='); return false;">knitr</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('knitr'); return false;">
-knitr
-</div>
-</div>
-<div class="card-text listing-description">
-A selection of simple methods using the knitr engine and HTML output
+<div class="card-text listing-description delink">
+<p>A selection of simple methods using the knitr engine and HTML output</p>
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
@@ -722,252 +668,251 @@ Apr 24, 2023
 </div>
 </div>
 <div class="card-footer">
-<div class="card-file-modified listing-file-modified">
-<p>1/20/25, 12:20:09 PM</p>
+<div class="card-file-modified listing-file-modified">3/24/25, 10:50:36 PM</div>
+</div>
+</div></a>
 </div>
 </div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
+<div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -975,185 +920,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 
