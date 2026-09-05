@@ -64,7 +64,7 @@ Findings from the repo:
 - `posts/_metadata.yaml`: pin giscus `repo-id` and `category-id` (read them from `.quarto/giscus/jimgar.jimgar.github.io.json`, which the current render already cached) so rendering no longer needs a GitHub API call.
 - `posts.qmd`: add `feed: true` to the listing so the blog gets an RSS feed (optional but cheap now that `site-url` exists). Also drop the redundant `execute: freeze: true` from either `_quarto.yml` or `posts/_metadata.yaml` (keep the one in `_metadata.yaml`, which is where the docs put it).
 - `styles.scss`: only change what render warnings tell us to. Likely candidates: move the three Google Fonts `@import url(...)` lines into a `/*-- scss:uses --*/` block (the layer Quarto now provides for imports), and fix the invalid `font-size: 1;` in the trestles title rule. Leave palette and rules alone. The rules target Quarto-internal class names (`quarto-about-trestles`, `quarto-grid-item`, `quarto-title-meta-heading`, `callout-title-container`), which is why the visual checks in Verification matter more than the render succeeding.
-- `mainfont: Atkinson Hyperlegible` in `_quarto.yml` duplicates the `$font-family` and Google Fonts import in `styles.scss`. Check the rendered `<head>` for a double font load; if present, drop `mainfont` and keep the SCSS.
+- `mainfont: Atkinson Hyperlegible` in `_quarto.yml` was checked against the rendered output: there is no double font load (the Google Fonts URLs appear once each inside the compiled theme CSS), and `mainfont` is what actually sets Bootstrap's body font because `$font-family` in the SCSS is not a Bootstrap variable. Keep it.
 - Do not touch post front matter; nothing in it is deprecated.
 
 ### 6. Render on 1.10.18 and compare

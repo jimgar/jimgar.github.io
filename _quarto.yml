@@ -1,3 +1,5 @@
+quarto-required: ">=1.10.0"
+
 project:
   type: website
   output-dir: docs
@@ -10,8 +12,11 @@ project:
 
 website:
   title: "~ jim"
+  description: "Jim Gardner's personal website and blog: R, Python, Quarto, tooling, and whatever else is on my mind."
+  site-url: https://jimgar.github.io
   favicon: "favicon.ico"
   twitter-card: true
+  open-graph: true
   navbar:
     left:
       - href: index.qmd
@@ -33,6 +38,3 @@ format:
     theme: [darkly, styles.scss]
     mainfont: Atkinson Hyperlegible
     toc: true
-
-execute:
-  freeze: true
