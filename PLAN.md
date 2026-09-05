@@ -14,7 +14,7 @@ Findings from the repo:
 - Stale cruft that predates freeze/output-dir changes and will confuse a before/after comparison:
   - `_site/` is committed (rendered by 1.2.280; the output dir has been `docs/` since the first commit).
   - `.quarto/` files are tracked even though `.gitignore` excludes it.
-  - `docs/posts/{go-lesson-1,collaborations-workshop-2025,resources,test}/*.html` are orphaned drafts rendered by an old version (modern Quarto does not emit draft pages).
+  - `docs/posts/{go-lesson-1,collaborations-workshop-2025,resources,test}/*.html` are 90-byte empty stubs. Step 1 showed Quarto 1.8.25 regenerates them for draft posts, so they are current behaviour, not cruft.
   - `_freeze/site_libs/` (should never be in freeze), `_freeze/posts/art-from-code/`, `_freeze/posts/vs-code-for-r-and-macos/` (posts deleted), `_freeze/posts/quarto-code-conditionals/script/` (source gone).
   - `posts/interactive-neovim-development-container-r-quarto/post_files/figure-html/unnamed-chunk-3-1.png` is a tracked intermediate that belongs in `_freeze` only.
 - `_extensions/quarto-ext/fontawesome` is 1.1.0; current is 1.3.0.
