@@ -8,6 +8,7 @@ listing:
   categories: true
   sort-ui: true
   filter-ui: true
+  feed: true
 ---
 
 This is my personal blog. While I may showcase some of my professional work and learning, any opinions expressed are mine alone!

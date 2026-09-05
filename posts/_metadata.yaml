@@ -16,3 +16,7 @@ comments:
   giscus:
     theme: dark_protanopia
     repo: jimgar/jimgar.github.io
+    # pinned so rendering does not need a GitHub API call (values from .quarto/giscus cache)
+    repo-id: R_kgDOIrtj7A
+    category: General
+    category-id: DIC_kwDOIrtj7M4CTWB3
