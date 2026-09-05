@@ -73,6 +73,13 @@ Findings from the repo:
 - `git diff --stat docs/` to see which pages changed. Expect: every HTML page (generator meta, Bootstrap/site_libs bumps) but no content diffs beyond markup churn. Spot-check with `git diff docs/posts.html` and one post.
 - Commit.
 
+### 6a. Findings from the 1.10.18 render
+- Render log: no Sass deprecation warnings, no errors. The only warnings are knitr's pre-existing "incomplete final line" notes on three posts.
+- One regression: the heading `## The {{{< include >}}} shortcode` in `posts/quarto-code-conditionals/post.qmd` got an auto-generated id containing a shortcode placeholder (`the-b58fc729-...-shortcode`) instead of `the-shortcode`. Fixed by giving the heading an explicit `{#the-shortcode}` id, which keeps the old anchor URL. Because the post is frozen, the same one-line change was applied to the cached markdown in `_freeze/.../html.json` and its hash updated to the new source, so the post did not need re-executing.
+- New output because `site-url` now exists: `docs/sitemap.xml`, `docs/robots.txt`, `docs/posts.xml` (RSS, 12 items), and absolute `og:image`/`twitter:image` URLs on every post.
+- `docs/posts/resources/images/wanted.jpg` is now copied for the draft resources post. Its source is tracked, so it is committed with the rest of `docs/`.
+- Second render after the first produced no changes: the build is idempotent.
+
 ### 7. Merge and deploy
 - Push the branch, open a PR, merge to `main`. GitHub Pages picks up `docs/` from `main`; confirm the live site after merge.
 
