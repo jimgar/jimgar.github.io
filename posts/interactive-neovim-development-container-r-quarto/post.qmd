@@ -5,7 +5,7 @@ author:
   - name: Jim Gardner
     url: https://jimgar.github.io/jimgar/
 date: 2025-05-01
-categories: [R, Quarto, Python, Neovim, Container, Docker, Podman]
+categories: [R, Quarto, Python, Neovim, Containers, Docker, Podman]
 engine: knitr
 draft: false
 ---

@@ -1,180 +1,221 @@
+/*-- scss:uses --*/
+
+// Fraunces (variable serif) for headings, Atkinson Hyperlegible for body,
+// JetBrains Mono for code. One request for all three families.
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=JetBrains+Mono:ital,wght@0,400;0,600;1,400&display=swap');
+
 /*-- scss:defaults --*/
 
-
+// Shared by light.scss and dark.scss. Typography and shape only: NO colours
+// here. Everything uses !default so the palette files always win.
 // https://quarto.org/docs/output-formats/html-themes.html#sass-variables
 
+$font-family-sans-serif: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$headings-font-family:   "Fraunces", Georgia, "Times New Roman", serif !default;
+$font-family-monospace:  "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace !default;
+$headings-font-weight:   600 !default;
+$font-size-root:         17px !default;
 
-// ~*~ Fonts ~*~
+$border-radius:    .5rem !default;
+$border-radius-lg: .75rem !default;
 
-// Atkinson Hyperlegible designed for people with low vis
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,600;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Supermercado+One&display=swap');
-
-$font-family: 'Atkinson Hyperlegible', sans-serif;
-$font-family-monospace: 'Roboto Mono', monospace;
-$font-family-fredoka: 'Fredoka One', cursive;
-$font-family-supermercado: 'Supermercado One', cursive;
-
-// ~*~ Colors ~*~
-
-/* 
-- Create a simple colour palette with one dark colour and several lighter 
-  colours that work together.
-- Make sure darkest colour has a contrast of 10 - 12 with the lighter colours 
-  https://colourcontrast.cc/
-- Check the palette for colour-blind friendliness. The colours just need to 
-  be distinct from one another. {prismatic} is a great tool for this:
-  prismatic::check_color_blindness(c("#07193b", "#3fecff", "#cffaff"))
-*/
-
-$dark-navy-blue: #07193b;
-$purple-ish: #103884;
-$light-sky-blue: #3fecff;
-$lightest-blue: #87cff3;
-$light-salmon: #ffb1b1;
-$light-yellow: #ffd977;
-$dull-red: #6c1111;
-
-// Base document colors
-$navbar-bg: $purple-ish; // navbar
-$navbar-fg: $light-yellow; // navbar foreground elements
-$navbar-hl: $light-salmon; // highlight color when hovering over navbar links
-$body-bg: $dark-navy-blue; // page background 
-$body-color: $lightest-blue; // page text 
-$link-color: $light-salmon; // hyperlinks 
-
-// Inline code
-$code-bg: $light-yellow; // inline code background color
-$code-color: $dark-navy-blue; // inline code text color
-
-// Code blocks
-$code-block-bg: $purple-ish; // code block background color
-$btn-code-copy-color: $light-yellow;	// The color used for the copy button at the top right of code blocks
-
-// Callouts
-$callout-color-note: $light-salmon;
+$code-block-border-left: false !default;
+$callout-border-width:   4px !default;
 
 /*-- scss:rules --*/
 
-// Get rid of the vertical border from 'trestles' template
+// ~*~ Home page (about / trestles template) ~*~
+
 div.quarto-about-trestles {
   .about-entity {
     padding-top: 3em;
+
     .bi {
-      color: $light-yellow;
+      color: $site-olive;
       font-size: 32px;
     }
+
     .about-link {
-      border: solid 0px;
-      border-radius: 0;
+      border: 0;
+      border-radius: $border-radius;
+      color: $site-olive;
+
+      &:hover {
+        background-color: $site-surface;
+      }
     }
-    .title { 
-      /* https://localghost.dev/blog/building-a-website-like-it-s-1999-in-2022/
-      Makes my name on the homepage all WordArt-y! */
-      background: linear-gradient(183deg, $purple-ish 10%, $lightest-blue 70%);
+
+    .title {
+      // Gradient-filled name with an olive underline
+      font-family: $headings-font-family;
+      font-weight: 800;
+      font-size: 2.75rem;
+      line-height: 1.1;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+      background: linear-gradient(183deg, $wordart-from 10%, $wordart-to 70%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      transform: skewY(-8deg) scaleY(1) scaleX(1.2);
-      filter: drop-shadow(2px 2px 0px #CA00CD);
-      padding-bottom: 0.7em;
+      text-decoration: underline;
+      text-decoration-color: $site-olive;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 6px;
+      padding-bottom: 0.5em;
       padding-top: 0.3em;
     }
   }
+
   .about-contents {
     padding-top: 3em;
+
+    // Get rid of the vertical border from the trestles template
     @include media-breakpoint-up(lg) {
       border-left: solid 0px $border-color;
       padding-left: 1.5em;
     }
-    .fa-solid {
-      color: $light-yellow;
+
+    .fa-solid,
+    .fa-brands {
+      color: $site-olive;
     }
+
     p {
-    margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
     }
   }
 }
+
+// Experience / Education grid on the home page
+.about-cv {
+  h2 {
+    margin-top: 0.5rem;
+  }
+
+  .cv-item {
+    margin-bottom: 1.5rem;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// ~*~ Navbar ~*~
 
 .navbar {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
-footer.footer .nav-footer, #quarto-header nav {
-    padding-left: 2em;
-    padding-right: 1em;
-}
-
-.navbar-title, .menu-text {
-  font-weight: bolder;
-  letter-spacing: 3px;
-  font-family: $font-family-fredoka;
+footer.footer .nav-footer,
+#quarto-header nav {
+  padding-left: 2em;
+  padding-right: 1em;
 }
 
 .navbar-title {
-  font-family: $font-family-supermercado;
+  font-family: $headings-font-family;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-h1, .title {
-    font-family: $font-family-supermercado;
+.menu-text {
+  font-weight: 600;
 }
 
-h2 {
-  color: $light-yellow;
-}
+// ~*~ Blog listing (posts.qmd) ~*~
 
-/*
-Listing page (posts.qmd)
-*/
+.quarto-grid-item.card {
+  border: 1px solid $site-line;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 
-div.card-body.post-contents {
-  background-color: $purple-ish;
-}
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
 
-.quarto-grid-item .card-footer {
-  background-color: $light-salmon;
-  color: $dark-navy-blue;
-}
+  .card-img-top img {
+    object-fit: cover;
+  }
 
-.page-layout-article h1 {
-  color: $light-yellow;
-}
+  // Posts without an image get a themed placeholder instead of a blank block
+  .listing-item-img-placeholder {
+    background: linear-gradient(135deg, $site-olive-deep, $site-sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-// Blog post titles
-h5, .listing-title {
-  color: $light-yellow;
-}
-
-.listing-categories .listing-category {
-  color: $light-salmon !important;
-}
-
-// Meta headings at the top of posts
-.quarto-title-meta-heading {
-  color: $light-yellow;
-}
-
-// Callout blocks
-.callout.callout-style-default {
-  border-right: 0px;
-  border-top: 0px;
-  border-bottom: 0px
-}
-
-div.callout-note {
-  .callout-header {
-    .callout-title-container {
-        color: $light-yellow;
+    &::after {
+      content: "~";
+      font-family: $headings-font-family;
+      font-size: 2.5rem;
+      color: $site-bg;
+      opacity: 0.85;
     }
+  }
+
+  .listing-title {
+    font-family: $headings-font-family;
+    color: $site-olive;
+  }
+
+  .card-attribution {
+    color: $site-muted;
+  }
+
+  .listing-categories .listing-category {
+    color: $site-olive !important;
+    border-color: $site-sage;
+    background: transparent;
   }
 }
 
-div.callout-warning {
-  .callout-header {
-    .callout-title-container {
-        color: $light-yellow;
+.quarto-listing-category .category {
+  color: $site-muted;
+
+  &.active {
+    color: $site-olive;
+  }
+}
+
+// ~*~ Post pages ~*~
+
+.quarto-title-meta-heading {
+  color: $site-muted;
+}
+
+.quarto-category {
+  border-color: $site-sage;
+}
+
+// Callouts: left accent bar only
+.callout.callout-style-default {
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+// ~*~ Contact form (contact.qmd) ~*~
+
+#fs-frm {
+  max-width: 40rem;
+
+  .form-label {
+    color: $site-muted;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-control {
+    margin-bottom: 1.25rem;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($site-accent, 0.25);
     }
+  }
+
+  textarea {
+    resize: vertical;
   }
 }

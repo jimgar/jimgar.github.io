@@ -6,7 +6,7 @@ author:
     url: https://jimgar.github.io/jimgar/
 date: 2023-12-20
 date-modified: 2024-04-02
-categories: [VS Code, Visual Studio Code, R]
+categories: [VS Code, R, macOS]
 execute:
   echo: true
   eval: false

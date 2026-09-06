@@ -5,7 +5,7 @@ author:
   - name: Jim Gardner
     url: https://jimgar.github.io/jimgar/
 date: 2023-10-12
-categories: [terminal, zsh, command line, macOS, bat, eza, ohmyzsh]
+categories: [Terminal, zsh, Command Line, macOS, bat, eza, Oh My Zsh]
 engine: knitr
 number-sections: true
 draft: false

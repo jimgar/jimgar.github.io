@@ -1,0 +1,58 @@
+/*-- scss:defaults --*/
+
+// Dark palette. Same token names as light.scss.
+
+$site-bg:         #1B1F14;   // olive-charcoal page
+$site-surface:    #262B1E;   // cards, inline code, inputs
+$site-surface-2:  #30362A;   // code blocks, card footers
+$site-line:       #3A4232;   // borders
+$site-text:       #E6E4D8;   // body text        (13.1:1 on bg)
+$site-muted:      #B5B7A6;   // dates, meta      (8.2:1)
+$site-olive:      #C5D19A;   // links, primary   (10.4:1)
+$site-olive-deep: #141810;   // navbar
+$site-sage:       #A3B071;   // decorative       (7.2:1)
+$site-accent:     #E0B84A;   // mustard: WordArt shadow, focus ring
+$site-code:       #D8DFB8;   // inline code text
+
+$wordart-from:   #F3F1E2;      // cream at the top of the letters
+$wordart-to:     #8A9A5B;      // olive at the bottom
+$wordart-shadow: #B4552D;      // rust back layer, reads against both bg and front
+
+// Bootstrap / Quarto
+$body-bg:              $site-bg;
+$body-color:           $site-text;
+$primary:              $site-olive;
+$secondary:            $site-sage;
+$link-color:           $site-olive;
+$link-hover-color:     #DCE5B4;
+$headings-color:       $site-olive;
+$border-color:         $site-line;
+$text-muted:           $site-muted;
+$body-secondary-color: $site-muted;
+
+$navbar-bg: $site-olive-deep;
+$navbar-fg: $site-text;
+$navbar-hl: $site-olive;
+
+$card-bg:           $site-surface;
+$card-border-color: $site-line;
+$card-cap-bg:       $site-surface-2;
+
+$code-bg:             $site-surface;
+$code-color:          $site-code;
+$code-block-bg:       $site-surface-2;
+$btn-code-copy-color: $site-muted;
+
+$input-bg:                 $site-surface;
+$input-color:              $site-text;
+$input-border-color:       $site-line;
+$input-focus-border-color: $site-olive;
+$input-placeholder-color:  $site-muted;
+
+$toc-color:           $site-olive;
+$toc-active-border:   $site-olive;
+$toc-inactive-border: $site-line;
+
+$callout-color-note:    $site-olive;
+$callout-color-tip:     $site-sage;
+$callout-color-warning: $site-accent;

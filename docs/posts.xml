@@ -9,6 +9,11 @@
 <link>https://jimgar.github.io/posts.html</link>
 <atom:link href="https://jimgar.github.io/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Jim Gardner&#39;s personal website and blog: R, Python, Quarto, tooling, and whatever else is on my mind.</description>
+<image>
+<url>https://jimgar.github.io/cheddar.JPG</url>
+<title>~ jim</title>
+<link>https://jimgar.github.io/posts.html</link>
+</image>
 <generator>quarto-1.10.18</generator>
 <lastBuildDate>Wed, 04 Feb 2026 00:00:00 GMT</lastBuildDate>
 <item>
@@ -1001,7 +1006,7 @@ font-style: inherit;">}</span></span></code></pre></div></div>
   <category>Quarto</category>
   <category>Python</category>
   <category>Neovim</category>
-  <category>Container</category>
+  <category>Containers</category>
   <category>Docker</category>
   <category>Podman</category>
   <guid>https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto-part-2/post.html</guid>
@@ -1955,7 +1960,7 @@ font-style: inherit;">--port</span> 9000</span></code></pre></div></div>
   <category>Quarto</category>
   <category>Python</category>
   <category>Neovim</category>
-  <category>Container</category>
+  <category>Containers</category>
   <category>Docker</category>
   <category>Podman</category>
   <guid>https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto/post.html</guid>
@@ -3830,8 +3835,8 @@ font-style: inherit;">"r.createRTerm"</span></span>
 <li id="fn2"><p>If you’re on a version of macOS Sonoma &lt; 14.4, the line should read <code>"^@\UF701" = "noop";</code>↩︎</p></li>
 </ol></section></div> ]]></description>
   <category>VS Code</category>
-  <category>Visual Studio Code</category>
   <category>R</category>
+  <category>macOS</category>
   <guid>https://jimgar.github.io/posts/vs-code-macos-r/post.html</guid>
   <pubDate>Wed, 20 Dec 2023 00:00:00 GMT</pubDate>
 </item>
@@ -10405,13 +10410,13 @@ font-style: inherit;">$SHELL</span></span></code></pre></div></div>
 
 
 </section> ]]></description>
-  <category>terminal</category>
+  <category>Terminal</category>
   <category>zsh</category>
-  <category>command line</category>
+  <category>Command Line</category>
   <category>macOS</category>
   <category>bat</category>
   <category>eza</category>
-  <category>ohmyzsh</category>
+  <category>Oh My Zsh</category>
   <guid>https://jimgar.github.io/posts/zsh-tosh-pretty-terminal/post.html</guid>
   <pubDate>Wed, 11 Oct 2023 23:00:00 GMT</pubDate>
 </item>

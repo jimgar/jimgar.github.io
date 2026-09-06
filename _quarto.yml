@@ -15,26 +15,28 @@ website:
   description: "Jim Gardner's personal website and blog: R, Python, Quarto, tooling, and whatever else is on my mind."
   site-url: https://jimgar.github.io
   favicon: "favicon.ico"
+  image: cheddar.JPG
   twitter-card: true
   open-graph: true
   navbar:
     left:
       - href: index.qmd
-        text: ~ home
+        text: ~ about
       - posts.qmd
     right:
       - icon: github
         href: https://github.com/jimgar
-      - icon: stack-overflow
-        href: https://stackoverflow.com/users/20624624/jimgar
       - icon: linkedin
         href: https://www.linkedin.com/in/jim-gardner-330368ab/
       - icon: mastodon
-        href: https://www.hachyderm.io/@jimgar
+        href: https://hachyderm.io/@jimgar
 
 format:
   html:
+    theme:
+      light: [default, styles.scss, light.scss]
+      dark: [default, styles.scss, dark.scss]
+    respect-user-color-scheme: true
     code-link: true
-    theme: [darkly, styles.scss]
-    mainfont: Atkinson Hyperlegible
     toc: true
+    date-format: "D MMMM YYYY"

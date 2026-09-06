@@ -45,10 +45,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4c7bfa4c4c7014df65ce8603dfb1d681.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-55d0e057869ad88b5495b2227f7019fc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-f1dc749df20b1e08b3a4856047134027.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ba807184ef81c71bbfe7c533cefd76f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-067ea9d21c70ab70ac6ac554e595ad09.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-da7fa08e0a847d0e8dcd8aeff6f2d962.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-067ea9d21c70ab70ac6ac554e595ad09.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -86,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-image','listing-title','listing-reading-time','listing-categories','listing-description','listing-date','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-reading-time','listing-categories','listing-description','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
@@ -138,13 +142,186 @@ window.Quarto = {
 
 <link rel="alternate" type="application/rss+xml" title="~ jim" href="posts.xml" data-external="1"><meta property="og:title" content="~ blog – ~ jim">
 <meta property="og:description" content="Jim Gardner’s personal website and blog: R, Python, Quarto, tooling, and whatever else is on my mind.">
+<meta property="og:image" content="https://jimgar.github.io/cheddar.JPG">
 <meta property="og:site_name" content="~ jim">
 <meta name="twitter:title" content="~ blog – ~ jim">
 <meta name="twitter:description" content="Jim Gardner’s personal website and blog: R, Python, Quarto, tooling, and whatever else is on my mind.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jimgar.github.io/cheddar.JPG">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -163,7 +340,7 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">~ home</span></a>
+<span class="menu-text">~ about</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./posts.html" aria-current="page"> 
@@ -177,23 +354,19 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://stackoverflow.com/users/20624624/jimgar"> <i class="bi bi-stack-overflow" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
     <a class="nav-link" href="https://www.linkedin.com/in/jim-gardner-330368ab/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.hachyderm.io/@jimgar"> <i class="bi bi-mastodon" role="img">
+    <a class="nav-link" href="https://hachyderm.io/@jimgar"> <i class="bi bi-mastodon" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -204,9 +377,10 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2Rl">Advent of Code <span class="quarto-category-count">(4)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw==">Advent of Code 2023 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyNA==">Advent of Code 2024 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmFuZGNhbXA=">Bandcamp <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmFzZSUyMFI=">base R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YmF0">bat <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29tbWFuZCUyMGxpbmU=">command line <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29udGFpbmVy">Container <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RG9ja2Vy">Docker <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZXph">eza <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SmF6eg==">Jazz <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a25pdHI=">knitr <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFjT1M=">macOS <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TXVzaWM=">Music <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmVvdmlt">Neovim <span class="quarto-category-count">(3)</span></div><div class="category" data-category="b2hteXpzaA==">ohmyzsh <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9kbWFu">Podman <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UG9sYXJz">Polars <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(9)</span></div><div class="category" data-category="UlN0dWRpbw==">RStudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVybWluYWw=">terminal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dXY=">uv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VmlzdWFsJTIwU3R1ZGlvJTIwQ29kZQ==">Visual Studio Code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VlMlMjBDb2Rl">VS Code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="enNo">zsh <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2Rl">Advent of Code <span class="quarto-category-count">(4)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw==">Advent of Code 2023 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="QWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyNA==">Advent of Code 2024 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmFuZGNhbXA=">Bandcamp <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmFzZSUyMFI=">base R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YmF0">bat <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29tbWFuZCUyMExpbmU=">Command Line <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29udGFpbmVycw==">Containers <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RG9ja2Vy">Docker <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZXph">eza <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SmF6eg==">Jazz <span class="quarto-category-count">(1)</span></div><div class="category" data-category="a25pdHI=">knitr <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFjT1M=">macOS <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TXVzaWM=">Music <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TmVvdmlt">Neovim <span class="quarto-category-count">(3)</span></div><div class="category" data-category="T2glMjBNeSUyMFpzaA==">Oh My Zsh <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9kbWFu">Podman <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UG9sYXJz">Polars <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHl0aG9u">Python <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UXVhcnRv">Quarto <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(9)</span></div><div class="category" data-category="UlN0dWRpbw==">RStudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VGVybWluYWw=">Terminal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dXY=">uv <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VlMlMjBDb2Rl">VS Code <span class="quarto-category-count">(2)</span></div><div class="category" data-category="enNo">zsh <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -248,12 +422,6 @@ window.Quarto = {
       <option value="listing-date-sort" data-direction="desc">
         Date - Newest
       </option>
-      <option value="listing-file-modified-sort" data-direction="asc">
-        Modified - Oldest
-      </option>
-      <option value="listing-file-modified-sort" data-direction="desc">
-        Modified - Newest
-      </option>
     </select>
   </div>
     <div class="input-group input-group-sm quarto-listing-filter">
@@ -261,11 +429,11 @@ window.Quarto = {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="list grid quarto-listing-cols-3">
+<div class="list grid quarto-listing-cols-2">
 <div class="g-col-1" data-index="0" data-categories="TXVzaWMlMkNCYW5kY2FtcCUyQ0pheno=" data-listing-date-sort="1770163200000" data-listing-file-modified-sort="1770311403300" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2037">
 <a href="./posts/jazz-ish-six-months/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/jazz-ish-six-months/orbits.jpg" alt="Album cover for 'Orbits', by The Circling Sun. A black background representing space appears to be peppered with small celestial bodies of light, with a large blue-purple-white smear across the centre." style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/jazz-ish-six-months/orbits.jpg" alt="Album cover for 'Orbits', by The Circling Sun. A black background representing space appears to be peppered with small celestial bodies of light, with a large blue-purple-white smear across the centre." style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Six months of Bandcamp’s Jazz-ish Jazz Club
@@ -285,19 +453,16 @@ Six months of Bandcamp’s Jazz-ish Jazz Club
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Feb 4, 2026
+4 Feb 2026
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">2/5/26, 5:10:03 PM</div>
 </div>
 </div></a>
 </div>
 <div class="g-col-1" data-index="1" data-categories="UHl0aG9uJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyNCUyQ1BvbGFycyUyQ3V2" data-listing-date-sort="1752188400000" data-listing-file-modified-sort="1770234933945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1220">
 <a href="./posts/cpd-jul-2025/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="listing-item-img-placeholder card-img-top" style="height: 180px;">&nbsp;</div>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 CPD for July 2025
@@ -321,19 +486,16 @@ CPD for July 2025
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Jul 11, 2025
+11 Jul 2025
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">2/4/26, 7:55:33 PM</div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="UiUyQ1F1YXJ0byUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ0NvbnRhaW5lciUyQ0RvY2tlciUyQ1BvZG1hbg==" data-listing-date-sort="1746745200000" data-listing-file-modified-sort="1746830052777" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="978">
+<div class="g-col-1" data-index="2" data-categories="UiUyQ1F1YXJ0byUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ0NvbnRhaW5lcnMlMkNEb2NrZXIlMkNQb2RtYW4=" data-listing-date-sort="1746745200000" data-listing-file-modified-sort="1788727514277" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="978">
 <a href="./posts/interactive-neovim-development-container-r-quarto-part-2/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/interactive-neovim-development-container-r-quarto-part-2/r-html-help.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/interactive-neovim-development-container-r-quarto-part-2/r-html-help.png" style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Accessing R HTML help pages from outside a container
@@ -349,7 +511,7 @@ Accessing R HTML help pages from outside a container
 
 <div class="listing-category" onclick="window.quartoListingCategory('TmVvdmlt'); return false;">Neovim</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Q29udGFpbmVy'); return false;">Container</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q29udGFpbmVycw=='); return false;">Containers</div>
 
 <div class="listing-category" onclick="window.quartoListingCategory('RG9ja2Vy'); return false;">Docker</div>
 
@@ -361,19 +523,16 @@ Accessing R HTML help pages from outside a container
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-May 9, 2025
+9 May 2025
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">5/9/25, 11:34:12 PM</div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="UiUyQ1F1YXJ0byUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ0NvbnRhaW5lciUyQ0RvY2tlciUyQ1BvZG1hbg==" data-listing-date-sort="1746054000000" data-listing-file-modified-sort="1746821037723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2399">
+<div class="g-col-1" data-index="3" data-categories="UiUyQ1F1YXJ0byUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ0NvbnRhaW5lcnMlMkNEb2NrZXIlMkNQb2RtYW4=" data-listing-date-sort="1746054000000" data-listing-file-modified-sort="1788727514276" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2399">
 <a href="./posts/interactive-neovim-development-container-r-quarto/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/interactive-neovim-development-container-r-quarto/nvim_container_1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/interactive-neovim-development-container-r-quarto/nvim_container_1.png" style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 A containerised Neovim dev environment for R and Quarto
@@ -389,7 +548,7 @@ A containerised Neovim dev environment for R and Quarto
 
 <div class="listing-category" onclick="window.quartoListingCategory('TmVvdmlt'); return false;">Neovim</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Q29udGFpbmVy'); return false;">Container</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q29udGFpbmVycw=='); return false;">Containers</div>
 
 <div class="listing-category" onclick="window.quartoListingCategory('RG9ja2Vy'); return false;">Docker</div>
 
@@ -401,19 +560,16 @@ A containerised Neovim dev environment for R and Quarto
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-May 1, 2025
+1 May 2025
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">5/9/25, 9:03:57 PM</div>
 </div>
 </div></a>
 </div>
 <div class="g-col-1" data-index="4" data-categories="UiUyQ1B5dGhvbiUyQ05lb3ZpbSUyQ1ZTJTIwQ29kZQ==" data-listing-date-sort="1742774400000" data-listing-file-modified-sort="1742856306074" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1343">
 <a href="./posts/learning-neovim-is-hard/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/learning-neovim-is-hard/nvim.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/learning-neovim-is-hard/nvim.png" style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Learning Neovim is Hard
@@ -435,19 +591,16 @@ Learning Neovim is Hard
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Mar 24, 2025
+24 Mar 2025
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">3/24/25, 10:45:06 PM</div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="VlMlMjBDb2RlJTJDVmlzdWFsJTIwU3R1ZGlvJTIwQ29kZSUyQ1I=" data-listing-date-sort="1703030400000" data-listing-file-modified-sort="1715513628272" data-listing-date-modified-sort="1712012400000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2852">
+<div class="g-col-1" data-index="5" data-categories="VlMlMjBDb2RlJTJDUiUyQ21hY09T" data-listing-date-sort="1703030400000" data-listing-file-modified-sort="1788727514275" data-listing-date-modified-sort="1712012400000" data-listing-reading-time-sort="15" data-listing-word-count-sort="2852">
 <a href="./posts/vs-code-macos-r/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/vs-code-macos-r/images/rainbow-csv.png" alt="A VS Code window showing the R dataset 'mtcars' open as a standalone csv file. The Rainbow CSV extension is installed and enabled, applying a series of alternating colours to the columns of mtcars.csv" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/vs-code-macos-r/images/rainbow-csv.png" alt="A VS Code window showing the R dataset 'mtcars' open as a standalone csv file. The Rainbow CSV extension is installed and enabled, applying a series of alternating colours to the columns of mtcars.csv" style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 VS Code for R on macOS
@@ -457,9 +610,9 @@ VS Code for R on macOS
 
 <div class="listing-category" onclick="window.quartoListingCategory('VlMlMjBDb2Rl'); return false;">VS Code</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsJTIwU3R1ZGlvJTIwQ29kZQ=='); return false;">Visual Studio Code</div>
-
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bWFjT1M='); return false;">macOS</div>
 
 </div>
 <div class="card-text listing-description delink">
@@ -467,19 +620,16 @@ VS Code for R on macOS
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Dec 20, 2023
+20 Dec 2023
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">5/12/24, 12:33:48 PM</div>
 </div>
 </div></a>
 </div>
 <div class="g-col-1" data-index="6" data-categories="UiUyQ2Jhc2UlMjBSJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw==" data-listing-date-sort="1702598400000" data-listing-file-modified-sort="1702625286687" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1768">
 <a href="./posts/advent-of-code-2023-day-3/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/advent-of-code-2023-day-3/matrix.jpeg" alt="Green text streaming vertically down a black background. It looks like the code seen in The Matrix movies." style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/advent-of-code-2023-day-3/matrix.jpeg" alt="Green text streaming vertically down a black background. It looks like the code seen in The Matrix movies." style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Day 3 - Advent of Code 2023
@@ -501,19 +651,16 @@ Day 3 - Advent of Code 2023
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Dec 15, 2023
+15 Dec 2023
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">12/15/23, 7:28:06 AM</div>
 </div>
 </div></a>
 </div>
 <div class="g-col-1" data-index="7" data-categories="UiUyQ2Jhc2UlMjBSJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTJDQWR2ZW50JTIwb2YlMjBDb2RlJTIwMjAyMw==" data-listing-date-sort="1702166400000" data-listing-file-modified-sort="1702223754125" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2859">
 <a href="./posts/advent-of-code-2023-day-2/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="listing-item-img-placeholder card-img-top" style="height: 180px;">&nbsp;</div>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Day 2 - Advent of Code 2023
@@ -535,19 +682,16 @@ Day 2 - Advent of Code 2023
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Dec 10, 2023
+10 Dec 2023
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">12/10/23, 3:55:54 PM</div>
 </div>
 </div></a>
 </div>
 <div class="g-col-1" data-index="8" data-categories="UiUyQ0FkdmVudCUyMG9mJTIwQ29kZSUyQ0FkdmVudCUyMG9mJTIwQ29kZSUyMDIwMjM=" data-listing-date-sort="1701648000000" data-listing-file-modified-sort="1701731601367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="949">
 <a href="./posts/advent-of-code-2023/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="listing-item-img-placeholder card-img-top" style="height: 180px;">&nbsp;</div>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Day 1 - Advent of Code 2023
@@ -567,19 +711,16 @@ Day 1 - Advent of Code 2023
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Dec 4, 2023
+4 Dec 2023
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">12/4/23, 11:13:21 PM</div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="dGVybWluYWwlMkN6c2glMkNjb21tYW5kJTIwbGluZSUyQ21hY09TJTJDYmF0JTJDZXphJTJDb2hteXpzaA==" data-listing-date-sort="1697065200000" data-listing-file-modified-sort="1700071251337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="937">
+<div class="g-col-1" data-index="9" data-categories="VGVybWluYWwlMkN6c2glMkNDb21tYW5kJTIwTGluZSUyQ21hY09TJTJDYmF0JTJDZXphJTJDT2glMjBNeSUyMFpzaA==" data-listing-date-sort="1697065200000" data-listing-file-modified-sort="1788727514275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="937">
 <a href="./posts/zsh-tosh-pretty-terminal/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/zsh-tosh-pretty-terminal/images/zsh.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/zsh-tosh-pretty-terminal/images/zsh.png" style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Making the terminal zsh-tosh on macOS
@@ -587,11 +728,11 @@ Making the terminal zsh-tosh on macOS
 <div class="listing-reading-time card-text text-muted">5 min</div>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('dGVybWluYWw='); return false;">terminal</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VGVybWluYWw='); return false;">Terminal</div>
 
 <div class="listing-category" onclick="window.quartoListingCategory('enNo'); return false;">zsh</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Y29tbWFuZCUyMGxpbmU='); return false;">command line</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tbWFuZCUyMExpbmU='); return false;">Command Line</div>
 
 <div class="listing-category" onclick="window.quartoListingCategory('bWFjT1M='); return false;">macOS</div>
 
@@ -599,7 +740,7 @@ Making the terminal zsh-tosh on macOS
 
 <div class="listing-category" onclick="window.quartoListingCategory('ZXph'); return false;">eza</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('b2hteXpzaA=='); return false;">ohmyzsh</div>
+<div class="listing-category" onclick="window.quartoListingCategory('T2glMjBNeSUyMFpzaA=='); return false;">Oh My Zsh</div>
 
 </div>
 <div class="card-text listing-description delink">
@@ -607,19 +748,16 @@ Making the terminal zsh-tosh on macOS
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Oct 12, 2023
+12 Oct 2023
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">11/15/23, 6:00:51 PM</div>
 </div>
 </div></a>
 </div>
 <div class="g-col-1" data-index="10" data-categories="UiUyQ1JTdHVkaW8=" data-listing-date-sort="1691103600000" data-listing-file-modified-sort="1700071208894" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1308">
 <a href="./posts/rstudio-keyboard-shortcuts/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/rstudio-keyboard-shortcuts/images/helvetica-found.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/rstudio-keyboard-shortcuts/images/helvetica-found.png" style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Comfy keyboard shortcuts for RStudio
@@ -637,19 +775,16 @@ Comfy keyboard shortcuts for RStudio
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Aug 4, 2023
+4 Aug 2023
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">11/15/23, 6:00:08 PM</div>
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="11" data-categories="UXVhcnRvJTJDUiUyQ2tuaXRy" data-listing-date-sort="1682290800000" data-listing-file-modified-sort="1788646118111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1168">
+<div class="g-col-1" data-index="11" data-categories="UXVhcnRvJTJDUiUyQ2tuaXRy" data-listing-date-sort="1682290800000" data-listing-file-modified-sort="1788647169675" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1168">
 <a href="./posts/quarto-code-conditionals/post.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img loading='lazy' src="posts/quarto-code-conditionals/images/damsel1.png" alt="A cropped photograph of the eyes and surrounding fur of a cat's face. The cat is a chimera with green eyes, the left side of her face coloured black and the right side orange. The cat's name is Damsel." style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/quarto-code-conditionals/images/damsel1.png" alt="A cropped photograph of the eyes and surrounding fur of a cat's face. The cat is a chimera with green eyes, the left side of her face coloured black and the right side orange. The cat's name is Damsel." style="height: 180px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Publishing content in Quarto using conditionals and if/else code flow
@@ -669,12 +804,9 @@ Publishing content in Quarto using conditionals and if/else code flow
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-Apr 24, 2023
+24 Apr 2023
 </div>
 </div>
-</div>
-<div class="card-footer">
-<div class="card-file-modified listing-file-modified">9/5/26, 11:08:38 PM</div>
 </div>
 </div></a>
 </div>
@@ -683,6 +815,19 @@ Apr 24, 2023
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
