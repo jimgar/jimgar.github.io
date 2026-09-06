@@ -50,7 +50,7 @@ div.quarto-about-trestles {
       Makes my name on the homepage all WordArt-y! */
       font-family: $headings-font-family;
       font-weight: 800;
-      font-size: 2.7rem;
+      font-size: 2.3rem;
       line-height: 1.1;
       font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
       // Front layer: dark-to-light gradient down the glyphs
@@ -151,7 +151,7 @@ footer.footer .nav-footer,
     &::after {
       content: "~";
       font-family: $headings-font-family;
-      font-size: 2.7rem;
+      font-size: 2.3rem;
       color: $site-bg;
       opacity: 0.85;
     }
