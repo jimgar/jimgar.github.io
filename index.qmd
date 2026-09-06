@@ -19,7 +19,7 @@ format:
     page-layout: full
 ---
 
-I am a Data professional (engineer/ops/analytics) who really likes DuckDB, {{< fa brands python title="Python" >}} Python, and {{< fa brands r-project title="The R programming language" >}} R. I've got experience in both AWS and Trusted Research Environments. I take most pleasure at work in seeing my colleagues thrive, no matter which team or level they are in. In my personal time I love to exercise, garden at [Leith Community Croft](https://www.earth-in-common.org/), and hang with my wife and friends!
+I am a Data professional (engineer/ops/analytics) who really likes DuckDB, {{< fa brands python title="Python" >}}, and {{< fa brands r-project title="The R programming language" >}}. I've got experience in both AWS and Trusted Research Environments. I take most pleasure at work in seeing my colleagues thrive, no matter which team or level they are in. In my personal time I love to exercise, garden at [Leith Community Croft](https://www.earth-in-common.org/), and hang with my wife and friends!
 
 ::: {.grid .about-cv}
 ::: {.g-col-12 .g-col-md-6}
