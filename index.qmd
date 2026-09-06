@@ -26,20 +26,26 @@ I am a Data professional (engineer/ops/analytics) who really likes DuckDB, {{< f
 ## Experience
 
 ::: cv-item
-**{{< fa wrench title="Wrench icon" >}} Data and AI/MLOps Engineer**  
-Smart Data Foundry  
+**{{< fa wrench title="Wrench icon" >}} Data and AI/MLOps Engineer**
+
+Smart Data Foundry
+
 *Sept 2024 - Sept 2026*
 :::
 
 ::: cv-item
-**{{< fa gears title="Gear icon" >}} Automations Engineer**  
-Policy in Practice  
+**{{< fa gears title="Gear icon" >}} Automations Engineer**
+
+Policy in Practice
+
 *Sept 2021 - Aug 2024*
 :::
 
 ::: cv-item
-**{{< fa fish title="Guppy icon" >}} Research Assistant**  
-IEB, University of Edinburgh  
+**{{< fa fish title="Guppy icon" >}} Research Assistant**
+
+IEB, University of Edinburgh
+
 *Sept 2016 - Aug 2021*
 :::
 :::
@@ -48,14 +54,18 @@ IEB, University of Edinburgh
 ## Education
 
 ::: cv-item
-**{{< fa carrot title="Carrot icon" >}} MSc Gastronomy (Distinction)**  
-Queen Margaret University  
+**{{< fa carrot title="Carrot icon" >}} MSc Gastronomy (Distinction)**
+
+Queen Margaret University
+
 *2016 - 2017*
 :::
 
 ::: cv-item
-**{{< fa seedling title="Seedling icon" >}} BSc Biological Sciences (1:1)**  
-Heriot-Watt University  
+**{{< fa seedling title="Seedling icon" >}} BSc Biological Sciences (1:1)**
+
+Heriot-Watt University
+
 *2012 - 2016*
 :::
 :::
