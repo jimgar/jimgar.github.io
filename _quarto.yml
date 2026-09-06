@@ -21,7 +21,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: ~ home
+        text: ~ about
       - posts.qmd
     right:
       - icon: github
