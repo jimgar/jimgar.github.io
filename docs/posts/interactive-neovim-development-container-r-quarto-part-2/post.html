@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The Containerfile <a href="https://github.com/jimgar/nvim-r-py-quarto-container">now exists in a GitHub repo</a>. At time of writing there’s no documentation, but I will get to it soon. One thing I’ve noticed is that the container image size is rather large, about 2.7GB. Maybe that’s ok - there is a <strong>lot</strong> of stuff being installed into it, after all. It’s also very tiresome having the plugins install every time the container is restarted and Neovim gets invoked for the first time. I think it might be possible to simply copy everything from <code>.local/share/nvim/lazy</code> into the GitHub repo and copy it into the image at build time instead, but that requires some experimentation.</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -885,7 +885,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
-  </script><input type="hidden" id="giscus-base-theme" value="light_protanopia"><input type="hidden" id="giscus-alt-theme" value="dark_protanopia"><script>
+  </script><input type="hidden" id="giscus-base-theme" value="light_protanopia"><input type="hidden" id="giscus-alt-theme" value="transparent_dark"><script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {

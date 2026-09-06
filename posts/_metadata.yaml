@@ -16,7 +16,7 @@ comments:
   giscus:
     theme:
       light: light_protanopia
-      dark: dark_protanopia
+      dark: transparent_dark
     repo: jimgar/jimgar.github.io
     # pinned so rendering does not need a GitHub API call (values from .quarto/giscus cache)
     repo-id: R_kgDOIrtj7A

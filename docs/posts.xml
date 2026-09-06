@@ -108,7 +108,7 @@ Speak to us of love</p>
 <p>Favourite track: <em>Galata</em>. I just love that riff. The whole track sounds the way a vintage game cover looked, think Battletoads, Streets of Rage, night time, sunglasses.</p>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section></section> ]]></description>
   <category>Music</category>
   <category>Bandcamp</category>
   <category>Jazz</category>
@@ -655,7 +655,7 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 </ul>
 
 
-</section></section></section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section></section></section> ]]></description>
   <category>Python</category>
   <category>Advent of Code</category>
   <category>Advent of Code 2024</category>
@@ -1001,7 +1001,7 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <p>The Containerfile <a href="https://github.com/jimgar/nvim-r-py-quarto-container">now exists in a GitHub repo</a>. At time of writing there’s no documentation, but I will get to it soon. One thing I’ve noticed is that the container image size is rather large, about 2.7GB. Maybe that’s ok - there is a <strong>lot</strong> of stuff being installed into it, after all. It’s also very tiresome having the plugins install every time the container is restarted and Neovim gets invoked for the first time. I think it might be possible to simply copy everything from <code>.local/share/nvim/lazy</code> into the GitHub repo and copy it into the image at build time instead, but that requires some experimentation.</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section> ]]></description>
   <category>R</category>
   <category>Quarto</category>
   <category>Python</category>
@@ -1955,7 +1955,7 @@ font-style: inherit;">--port</span> 9000</span></code></pre></div></div>
 </ol>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section> ]]></description>
   <category>R</category>
   <category>Quarto</category>
   <category>Python</category>
@@ -2041,7 +2041,7 @@ Warning
 <p>Learning is a journey and even when it is hard, or doesn’t work out, we are bound to learn some things along the way.</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>See <a href="https://www.youtube.com/watch?v=g1ib43q3uXQ">“How to teach programming (and other things)?” by Felienne Hermans</a>↩︎</p></li>
 <li id="fn2"><p>Again, see Felienne’s talk. It’s important!↩︎</p></li>
@@ -3829,7 +3829,7 @@ font-style: inherit;">"r.createRTerm"</span></span>
 </div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+</section></section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 <ol>
 <li id="fn1"><p>If you want to change default lintr settings see https://github.com/REditorSupport/vscode-R/wiki/Code-linting↩︎</p></li>
 <li id="fn2"><p>If you’re on a version of macOS Sonoma &lt; 14.4, the line should read <code>"^@\UF701" = "noop";</code>↩︎</p></li>
@@ -5954,7 +5954,7 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 <p>Ending on an Adam Austin double-whammy: <code>aggregate</code> with <code>prod</code> inside.</p>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section></section> ]]></description>
   <category>R</category>
   <category>base R</category>
   <category>Advent of Code</category>
@@ -9430,7 +9430,7 @@ font-style: inherit;">]</span></span></code></pre></div></div>
 </div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section> ]]></description>
   <category>R</category>
   <category>base R</category>
   <category>Advent of Code</category>
@@ -10165,7 +10165,7 @@ font-style: inherit;">)</span></span></code></pre></div></div>
 </div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section></section> ]]></description>
   <category>R</category>
   <category>Advent of Code</category>
   <category>Advent of Code 2023</category>
@@ -10409,7 +10409,7 @@ font-style: inherit;">$SHELL</span></span></code></pre></div></div>
 <p>Go get some colour in your terminal ;)</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section> ]]></description>
   <category>Terminal</category>
   <category>zsh</category>
   <category>Command Line</category>
@@ -10662,7 +10662,7 @@ Note
 </div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section> ]]></description>
   <category>R</category>
   <category>RStudio</category>
   <guid>https://jimgar.github.io/posts/rstudio-keyboard-shortcuts/post.html</guid>
@@ -11192,7 +11192,7 @@ font-style: inherit;">```</span></span></code></pre></div></div>
 <p>Thank you to <a href="brodrigues.co">Bruno Rodrigues</a> and <a href="johnmackintosh.net">John MacKintosh</a> for proofreading a draft of this post.</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+</section> ]]></description>
   <category>Quarto</category>
   <category>R</category>
   <category>knitr</category>

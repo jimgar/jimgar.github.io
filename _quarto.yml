@@ -16,7 +16,6 @@ website:
   site-url: https://jimgar.github.io
   favicon: "favicon.ico"
   image: cheddar.JPG
-  back-to-top-navigation: true
   twitter-card: true
   open-graph: true
   navbar:
