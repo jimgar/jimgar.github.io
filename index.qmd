@@ -1,5 +1,5 @@
 ---
-title: "Jim Gardner"
+title: "jim gardner"
 image: cheddar.JPG
 about: 
   template: trestles
