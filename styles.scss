@@ -35,17 +35,12 @@ div.quarto-about-trestles {
       font-size: 32px;
     }
 
-    .about-image {
-      box-shadow: 0 0 0 4px $site-bg, 0 0 0 6px $site-sage;
-    }
-
     .about-link {
-      border: solid 1px $site-line;
+      border: 0;
       border-radius: $border-radius;
       color: $site-olive;
 
       &:hover {
-        border-color: $site-olive;
         background-color: $site-surface;
       }
     }
