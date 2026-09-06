@@ -46,22 +46,21 @@ div.quarto-about-trestles {
     }
 
     .title {
-      /* https://localghost.dev/blog/building-a-website-like-it-s-1999-in-2022/
-      Makes my name on the homepage all WordArt-y! */
+      // Gradient-filled name with an olive underline
       font-family: $headings-font-family;
       font-weight: 800;
-      font-size: 2.5rem;
+      font-size: 2.75rem;
       line-height: 1.1;
       font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
-      // Front layer: dark-to-light gradient down the glyphs
       background: linear-gradient(183deg, $wordart-from 10%, $wordart-to 70%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      // Tall, leaning, with the shadow layer offset well clear of the front
-      transform: skewY(-8deg) scaleY(1.2) scaleX(1.1);
-      filter: drop-shadow(3px 3px 0px $wordart-shadow);
-      padding-bottom: 0.7em;
+      text-decoration: underline;
+      text-decoration-color: $site-olive;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 6px;
+      padding-bottom: 0.5em;
       padding-top: 0.3em;
     }
   }
