@@ -1,0 +1,59 @@
+/*-- scss:defaults --*/
+
+// Light palette. Every colour on the site is derived from these tokens.
+// dark.scss must define the identical set of $site-* / $wordart-* names.
+
+$site-bg:         #FAFAF7;   // page
+$site-surface:    #EEF0E6;   // cards, inline code, inputs
+$site-surface-2:  #E3E6D6;   // code blocks, card footers
+$site-line:       #D3D7C4;   // borders
+$site-text:       #2B2E22;   // body text        (13.2:1 on bg)
+$site-muted:      #5C6150;   // dates, meta      (6.1:1)
+$site-olive:      #4F6228;   // links, primary   (6.5:1)
+$site-olive-deep: #3F5020;   // navbar, headings (8.4:1; white on it 8.8:1)
+$site-sage:       #8A9A5B;   // decorative only
+$site-accent:     #B4552D;   // terracotta: WordArt shadow, focus ring
+$site-code:       #3F5020;   // inline code text
+
+$wordart-from:   $site-olive-deep;
+$wordart-to:     $site-sage;
+$wordart-shadow: $site-accent;
+
+// Bootstrap / Quarto
+$body-bg:              $site-bg;
+$body-color:           $site-text;
+$primary:              $site-olive;
+$secondary:            $site-sage;
+$link-color:           $site-olive;
+$link-hover-color:     #3F5020;
+$headings-color:       $site-olive-deep;
+$border-color:         $site-line;
+$text-muted:           $site-muted;
+$body-secondary-color: $site-muted;
+
+$navbar-bg: $site-olive-deep;
+$navbar-fg: #FFFFFF;
+$navbar-hl: #E9EDD6;
+
+$card-bg:           #FFFFFF;
+$card-border-color: $site-line;
+$card-cap-bg:       $site-surface;
+
+$code-bg:             $site-surface;
+$code-color:          $site-code;
+$code-block-bg:       $site-surface-2;
+$btn-code-copy-color: $site-muted;
+
+$input-bg:                 #FFFFFF;
+$input-color:              $site-text;
+$input-border-color:       $site-line;
+$input-focus-border-color: $site-olive;
+$input-placeholder-color:  $site-muted;
+
+$toc-color:           $site-olive;
+$toc-active-border:   $site-olive;
+$toc-inactive-border: $site-line;
+
+$callout-color-note:    $site-olive;
+$callout-color-tip:     $site-sage;
+$callout-color-warning: $site-accent;

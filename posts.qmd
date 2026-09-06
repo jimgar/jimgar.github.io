@@ -2,8 +2,12 @@
 title: "~ blog"
 listing: 
   contents: posts/**/*.qmd
-  fields: [image, title, reading-time, categories, description, date, file-modified]
+  fields: [image, title, reading-time, categories, description, date]
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
+  grid-columns: 2
+  image-height: 180px
+  date-format: "D MMM YYYY"
+  max-description-length: 140
   sort: "date desc"
   categories: true
   sort-ui: true

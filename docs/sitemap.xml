@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jimgar.github.io/posts/zsh-tosh-pretty-terminal/post.html</loc>
-    <lastmod>2023-11-15T18:00:51.337Z</lastmod>
+    <lastmod>2026-09-06T20:45:14.275Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/learning-neovim-is-hard/post.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto/post.html</loc>
-    <lastmod>2025-05-09T20:03:57.723Z</lastmod>
+    <lastmod>2026-09-06T20:45:14.276Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/advent-of-code-2023-day-3/post.html</loc>
@@ -18,15 +18,15 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts.html</loc>
-    <lastmod>2026-09-05T21:58:51.002Z</lastmod>
+    <lastmod>2026-09-06T20:45:14.274Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/contact.html</loc>
-    <lastmod>2023-01-22T15:41:45.201Z</lastmod>
+    <lastmod>2026-09-06T20:44:49.115Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/index.html</loc>
-    <lastmod>2025-03-24T22:50:36.464Z</lastmod>
+    <lastmod>2026-09-06T20:44:49.111Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/advent-of-code-2023-day-2/post.html</loc>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto-part-2/post.html</loc>
-    <lastmod>2025-05-09T22:34:12.777Z</lastmod>
+    <lastmod>2026-09-06T20:45:14.277Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/jazz-ish-six-months/post.html</loc>
@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/quarto-code-conditionals/post.html</loc>
-    <lastmod>2026-09-05T22:08:38.111Z</lastmod>
+    <lastmod>2026-09-05T22:26:09.675Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/rstudio-keyboard-shortcuts/post.html</loc>
@@ -58,6 +58,6 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/vs-code-macos-r/post.html</loc>
-    <lastmod>2024-05-12T11:33:48.272Z</lastmod>
+    <lastmod>2026-09-06T20:45:14.275Z</lastmod>
   </url>
 </urlset>
