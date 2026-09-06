@@ -14,9 +14,9 @@ $site-sage:       #A3B071;   // decorative       (7.2:1)
 $site-accent:     #E0B84A;   // mustard: WordArt shadow, focus ring
 $site-code:       #D8DFB8;   // inline code text
 
-$wordart-from:   $site-sage;
-$wordart-to:     $site-olive;
-$wordart-shadow: $site-accent;
+$wordart-from:   #F3F1E2;      // cream at the top of the letters
+$wordart-to:     #8A9A5B;      // olive at the bottom
+$wordart-shadow: #B4552D;      // rust back layer, reads against both bg and front
 
 // Bootstrap / Quarto
 $body-bg:              $site-bg;

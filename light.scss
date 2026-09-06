@@ -15,9 +15,9 @@ $site-sage:       #8A9A5B;   // decorative only
 $site-accent:     #B4552D;   // terracotta: WordArt shadow, focus ring
 $site-code:       #3F5020;   // inline code text
 
-$wordart-from:   $site-olive-deep;
-$wordart-to:     $site-sage;
-$wordart-shadow: $site-accent;
+$wordart-from:   #2F3D16;      // deep olive at the top of the letters
+$wordart-to:     #D2DDA4;      // pale sage at the bottom
+$wordart-shadow: $site-accent; // terracotta back layer
 
 // Bootstrap / Quarto
 $body-bg:              $site-bg;

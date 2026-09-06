@@ -50,13 +50,17 @@ div.quarto-about-trestles {
       Makes my name on the homepage all WordArt-y! */
       font-family: $headings-font-family;
       font-weight: 800;
-      font-variation-settings: "SOFT" 100, "WONK" 1;
+      font-size: 3rem;
+      line-height: 1.1;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+      // Front layer: dark-to-light gradient down the glyphs
       background: linear-gradient(183deg, $wordart-from 10%, $wordart-to 70%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      transform: skewY(-8deg) scaleY(1) scaleX(1.2);
-      filter: drop-shadow(2px 2px 0px $wordart-shadow);
+      // Tall, leaning, with the shadow layer offset well clear of the front
+      transform: skewY(-8deg) scaleY(1.3) scaleX(1.1);
+      filter: drop-shadow(5px 5px 0px $wordart-shadow);
       padding-bottom: 0.7em;
       padding-top: 0.3em;
     }
