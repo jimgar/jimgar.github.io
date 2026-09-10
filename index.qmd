@@ -9,7 +9,7 @@ about:
     - icon: github
       href: https://github.com/jimgar
     - icon: linkedin
-      href: https://www.linkedin.com/in/jim-gardner-330368ab/
+      href: https://www.linkedin.com/in/jimgar/
     - icon: mastodon
       href: https://hachyderm.io/@jimgar
     - icon: envelope-heart

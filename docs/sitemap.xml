@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jimgar.github.io/posts/zsh-tosh-pretty-terminal/post.html</loc>
-    <lastmod>2026-09-06T20:45:14.275Z</lastmod>
+    <lastmod>2026-09-10T16:45:08.111Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/learning-neovim-is-hard/post.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto/post.html</loc>
-    <lastmod>2026-09-06T20:45:14.276Z</lastmod>
+    <lastmod>2026-09-10T16:45:08.110Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/advent-of-code-2023-day-3/post.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts.html</loc>
-    <lastmod>2026-09-06T20:45:14.274Z</lastmod>
+    <lastmod>2026-09-10T16:45:08.109Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/contact.html</loc>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/index.html</loc>
-    <lastmod>2026-09-06T21:38:11.286Z</lastmod>
+    <lastmod>2026-09-10T16:47:24.811Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/advent-of-code-2023-day-2/post.html</loc>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/interactive-neovim-development-container-r-quarto-part-2/post.html</loc>
-    <lastmod>2026-09-06T20:45:14.277Z</lastmod>
+    <lastmod>2026-09-10T16:45:08.110Z</lastmod>
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/jazz-ish-six-months/post.html</loc>
@@ -58,6 +58,6 @@
   </url>
   <url>
     <loc>https://jimgar.github.io/posts/vs-code-macos-r/post.html</loc>
-    <lastmod>2026-09-06T20:45:14.275Z</lastmod>
+    <lastmod>2026-09-10T16:45:08.111Z</lastmod>
   </url>
 </urlset>

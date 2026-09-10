@@ -12,7 +12,7 @@ project:
 
 website:
   title: "~ jim"
-  description: "Jim Gardner's personal website and blog: R, Python, Quarto, tooling, and whatever else is on my mind."
+  description: "Jim Gardner's personal website and blog: DuckDB, R, Python, Quarto, and whatever else is on my mind."
   site-url: https://jimgar.github.io
   favicon: "favicon.ico"
   image: cheddar.JPG
@@ -27,7 +27,7 @@ website:
       - icon: github
         href: https://github.com/jimgar
       - icon: linkedin
-        href: https://www.linkedin.com/in/jim-gardner-330368ab/
+        href: https://www.linkedin.com/in/jimgar/
       - icon: mastodon
         href: https://hachyderm.io/@jimgar
 
